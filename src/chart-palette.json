@@ -1,0 +1,74 @@
+[
+  {
+    "name": "teal",
+    "hue": 197.45687947795835,
+    "chroma": 60,
+    "tone": {
+      "light": 54,
+      "dark": 76
+    }
+  },
+  {
+    "name": "coral",
+    "hue": 13,
+    "chroma": 60,
+    "tone": {
+      "light": 60,
+      "dark": 50
+    }
+  },
+  {
+    "name": "violet",
+    "hue": 306,
+    "chroma": 60,
+    "tone": {
+      "light": 42,
+      "dark": 66
+    }
+  },
+  {
+    "name": "amber",
+    "hue": 98,
+    "chroma": 60,
+    "tone": {
+      "light": 58,
+      "dark": 68
+    }
+  },
+  {
+    "name": "blue",
+    "hue": 257,
+    "chroma": 60,
+    "tone": {
+      "light": 60,
+      "dark": 50
+    }
+  },
+  {
+    "name": "green",
+    "hue": 141,
+    "chroma": 60,
+    "tone": {
+      "light": 56,
+      "dark": 60
+    }
+  },
+  {
+    "name": "orange",
+    "hue": 54,
+    "chroma": 60,
+    "tone": {
+      "light": 58,
+      "dark": 58
+    }
+  },
+  {
+    "name": "magenta",
+    "hue": 341,
+    "chroma": 60,
+    "tone": {
+      "light": 36,
+      "dark": 58
+    }
+  }
+]

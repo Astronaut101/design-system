@@ -1,0 +1,41 @@
+{
+  "name": "@oestergaard/design-tokens",
+  "version": "0.1.0",
+  "description": "Oestergaard-AS design tokens: HCT-derived color roles and Tailwind-standard sizing for every framework.",
+  "private": true,
+  "repository": "github:Oestergaard-A-S/design-system",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./tokens.css": "./dist/tokens.css",
+    "./tailwind.css": "./dist/tailwind.css",
+    "./tokens.light.json": "./dist/tokens.light.json",
+    "./tokens.dark.json": "./dist/tokens.dark.json"
+  },
+  "scripts": {
+    "build": "tsx scripts/build.ts",
+    "palette:search": "tsx scripts/search-chart-palette.ts",
+    "test": "npm run build && vitest run",
+    "typecheck": "tsc --noEmit",
+    "dev": "npm run build && vite --config site/vite.config.ts",
+    "site:build": "npm run build && vite build --config site/vite.config.ts",
+    "site:preview": "vite preview --config site/vite.config.ts"
+  },
+  "devDependencies": {
+    "@material/material-color-utilities": "^0.4.0",
+    "@types/node": "^26.6.6",
+    "lucide": "^1.69.0",
+    "lucide-static": "^1.69.0",
+    "tailwindcss": "^4.3.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.6",
+    "vitest": "^5.1.0"
+  }
+}

@@ -1,0 +1,1956 @@
+{
+  "$description": "Oestergaard-AS design tokens, light mode. Generated, do not edit.",
+  "color": {
+    "fg": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.102,
+            0.1098,
+            0.1098
+          ],
+          "hex": "#1a1c1c"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 10
+          }
+        },
+        "$description": "Primary text"
+      },
+      "muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3647,
+            0.3725,
+            0.3686
+          ],
+          "hex": "#5d5f5e"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 40
+          }
+        },
+        "$description": "Secondary text, captions, placeholders"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6667,
+            0.6706,
+            0.6706
+          ],
+          "hex": "#aaabab"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 70
+          }
+        },
+        "$description": "Disabled text. Exempt from contrast minimums"
+      },
+      "link": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.4118,
+            0.4157
+          ],
+          "hex": "#00696a"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "teal",
+            "tone": 40
+          }
+        },
+        "$description": "Links"
+      },
+      "link-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.3098,
+            0.3137
+          ],
+          "hex": "#004f50"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "teal",
+            "tone": 30
+          }
+        },
+        "$description": "Links, hovered"
+      },
+      "on-inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9412,
+            0.9451,
+            0.9412
+          ],
+          "hex": "#f0f1f0"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 95
+          }
+        },
+        "$description": "Text on the inverse background"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "hex": "#ffffff"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "teal",
+            "tone": 100
+          }
+        },
+        "$description": "Text and icons on the solid fill"
+      },
+      "accent": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.4118,
+            0.4157
+          ],
+          "hex": "#00696a"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "teal",
+            "tone": 40
+          }
+        },
+        "$description": "Text and icons on surfaces and quiet backgrounds"
+      },
+      "on-neutral": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "hex": "#ffffff"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 100
+          }
+        },
+        "$description": "Text and icons on the solid fill"
+      },
+      "on-danger": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "hex": "#ffffff"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "red",
+            "tone": 100
+          }
+        },
+        "$description": "Text and icons on the solid fill"
+      },
+      "danger": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7294,
+            0.102,
+            0.102
+          ],
+          "hex": "#ba1a1a"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "red",
+            "tone": 40
+          }
+        },
+        "$description": "Text and icons on surfaces and quiet backgrounds"
+      },
+      "on-warning": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1529,
+            0.098,
+            0
+          ],
+          "hex": "#271900"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "amber",
+            "tone": 10
+          }
+        },
+        "$description": "Text and icons on the solid fill"
+      },
+      "warning": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4902,
+            0.3412,
+            0
+          ],
+          "hex": "#7d5700"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "amber",
+            "tone": 40
+          }
+        },
+        "$description": "Text and icons on surfaces and quiet backgrounds"
+      },
+      "on-success": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "hex": "#ffffff"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "green",
+            "tone": 100
+          }
+        },
+        "$description": "Text and icons on the solid fill"
+      },
+      "success": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.3765,
+            0.0745
+          ],
+          "hex": "#006013"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "green",
+            "tone": 35
+          }
+        },
+        "$description": "Text and icons on surfaces and quiet backgrounds"
+      },
+      "on-info": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "hex": "#ffffff"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "blue",
+            "tone": 100
+          }
+        },
+        "$description": "Text and icons on the solid fill"
+      },
+      "info": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0745,
+            0.349,
+            0.7647
+          ],
+          "hex": "#1359c3"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "blue",
+            "tone": 40
+          }
+        },
+        "$description": "Text and icons on surfaces and quiet backgrounds"
+      }
+    },
+    "bg": {
+      "page": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9765,
+            0.9765,
+            0.9765
+          ],
+          "hex": "#f9f9f9"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 98
+          }
+        },
+        "$description": "Page background"
+      },
+      "surface": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "hex": "#ffffff"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 100
+          }
+        },
+        "$description": "Cards and panels"
+      },
+      "raised": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "hex": "#ffffff"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 100
+          }
+        },
+        "$description": "Popovers, menus, dialogs"
+      },
+      "sunken": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9412,
+            0.9451,
+            0.9412
+          ],
+          "hex": "#f0f1f0"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 95
+          }
+        },
+        "$description": "Wells, table headers, code blocks"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.102,
+            0.1098,
+            0.1098
+          ],
+          "alpha": 0.07,
+          "hex": "#1a1c1c"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 10
+          }
+        },
+        "$description": "Hovered row or ghost control, on any surface"
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.102,
+            0.1098,
+            0.1098
+          ],
+          "alpha": 0.11,
+          "hex": "#1a1c1c"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 10
+          }
+        },
+        "$description": "Pressed row or ghost control, on any surface"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9294,
+            0.9333,
+            0.9294
+          ],
+          "hex": "#edeeed"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 94
+          }
+        },
+        "$description": "Disabled controls"
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1804,
+            0.1922,
+            0.1922
+          ],
+          "hex": "#2e3131"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 20
+          }
+        },
+        "$description": "Tooltips and toasts"
+      },
+      "scrim": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.102,
+            0.1098,
+            0.1098
+          ],
+          "alpha": 0.45,
+          "hex": "#1a1c1c"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 10
+          }
+        },
+        "$description": "Backdrop behind dialogs"
+      },
+      "accent-emphasis": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.498,
+            0.502
+          ],
+          "hex": "#007f80"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "teal",
+            "tone": 48
+          }
+        },
+        "$description": "Solid fill"
+      },
+      "accent-emphasis-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.4549,
+            0.4588
+          ],
+          "hex": "#007475"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "teal",
+            "tone": 44
+          }
+        },
+        "$description": "Solid fill, hovered"
+      },
+      "accent-emphasis-active": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.4118,
+            0.4157
+          ],
+          "hex": "#00696a"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "teal",
+            "tone": 40
+          }
+        },
+        "$description": "Solid fill, pressed"
+      },
+      "accent-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8549,
+            0.9647,
+            0.9647
+          ],
+          "hex": "#daf6f6"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "teal-tint",
+            "tone": 95
+          }
+        },
+        "$description": "Quiet background, also used for selected items"
+      },
+      "accent-muted-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8235,
+            0.9333,
+            0.9294
+          ],
+          "hex": "#d2eeed"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "teal-tint",
+            "tone": 92
+          }
+        },
+        "$description": "Quiet background, hovered"
+      },
+      "neutral-emphasis": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2275,
+            0.2353,
+            0.2353
+          ],
+          "hex": "#3a3c3c"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 25
+          }
+        },
+        "$description": "Solid fill"
+      },
+      "neutral-emphasis-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1804,
+            0.1922,
+            0.1922
+          ],
+          "hex": "#2e3131"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 20
+          }
+        },
+        "$description": "Solid fill, hovered"
+      },
+      "neutral-emphasis-active": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1412,
+            0.149,
+            0.149
+          ],
+          "hex": "#242626"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 15
+          }
+        },
+        "$description": "Solid fill, pressed"
+      },
+      "neutral-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9098,
+            0.9098,
+            0.9059
+          ],
+          "hex": "#e8e8e7"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 92
+          }
+        },
+        "$description": "Quiet background, also used for selected items"
+      },
+      "neutral-muted-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8627,
+            0.8667,
+            0.8627
+          ],
+          "hex": "#dcdddc"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 88
+          }
+        },
+        "$description": "Quiet background, hovered"
+      },
+      "danger-emphasis": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7294,
+            0.102,
+            0.102
+          ],
+          "hex": "#ba1a1a"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "red",
+            "tone": 40
+          }
+        },
+        "$description": "Solid fill"
+      },
+      "danger-emphasis-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6588,
+            0.0275,
+            0.0627
+          ],
+          "hex": "#a80710"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "red",
+            "tone": 35
+          }
+        },
+        "$description": "Solid fill, hovered"
+      },
+      "danger-emphasis-active": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5765,
+            0,
+            0.0392
+          ],
+          "hex": "#93000a"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "red",
+            "tone": 30
+          }
+        },
+        "$description": "Solid fill, pressed"
+      },
+      "danger-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9294,
+            0.9176
+          ],
+          "hex": "#ffedea"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "red-tint",
+            "tone": 95
+          }
+        },
+        "$description": "Quiet background, also used for selected items"
+      },
+      "danger-muted-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.8863,
+            0.8706
+          ],
+          "hex": "#ffe2de"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "red-tint",
+            "tone": 92
+          }
+        },
+        "$description": "Quiet background, hovered"
+      },
+      "warning-emphasis": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.7294,
+            0.1882
+          ],
+          "hex": "#ffba30"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "amber",
+            "tone": 80
+          }
+        },
+        "$description": "Solid fill"
+      },
+      "warning-emphasis-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.949,
+            0.6745,
+            0
+          ],
+          "hex": "#f2ac00"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "amber",
+            "tone": 75
+          }
+        },
+        "$description": "Solid fill, hovered"
+      },
+      "warning-emphasis-active": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8824,
+            0.6235,
+            0
+          ],
+          "hex": "#e19f00"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "amber",
+            "tone": 70
+          }
+        },
+        "$description": "Solid fill, pressed"
+      },
+      "warning-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9333,
+            0.851
+          ],
+          "hex": "#ffeed9"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "amber-tint",
+            "tone": 95
+          }
+        },
+        "$description": "Quiet background, also used for selected items"
+      },
+      "warning-muted-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9961,
+            0.898,
+            0.7529
+          ],
+          "hex": "#fee5c0"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "amber-tint",
+            "tone": 92
+          }
+        },
+        "$description": "Quiet background, hovered"
+      },
+      "success-emphasis": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.3765,
+            0.0745
+          ],
+          "hex": "#006013"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "green",
+            "tone": 35
+          }
+        },
+        "$description": "Solid fill"
+      },
+      "success-emphasis-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.3255,
+            0.0588
+          ],
+          "hex": "#00530f"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "green",
+            "tone": 30
+          }
+        },
+        "$description": "Solid fill, hovered"
+      },
+      "success-emphasis-active": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.2745,
+            0.0431
+          ],
+          "hex": "#00460b"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "green",
+            "tone": 25
+          }
+        },
+        "$description": "Solid fill, pressed"
+      },
+      "success-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8941,
+            0.9647,
+            0.8627
+          ],
+          "hex": "#e4f6dc"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "green-tint",
+            "tone": 95
+          }
+        },
+        "$description": "Quiet background, also used for selected items"
+      },
+      "success-muted-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8588,
+            0.9294,
+            0.8314
+          ],
+          "hex": "#dbedd4"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "green-tint",
+            "tone": 92
+          }
+        },
+        "$description": "Quiet background, hovered"
+      },
+      "info-emphasis": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0745,
+            0.349,
+            0.7647
+          ],
+          "hex": "#1359c3"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "blue",
+            "tone": 40
+          }
+        },
+        "$description": "Solid fill"
+      },
+      "info-emphasis-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.302,
+            0.6941
+          ],
+          "hex": "#004db1"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "blue",
+            "tone": 35
+          }
+        },
+        "$description": "Solid fill, hovered"
+      },
+      "info-emphasis-active": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.2588,
+            0.6
+          ],
+          "hex": "#004299"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "blue",
+            "tone": 30
+          }
+        },
+        "$description": "Solid fill, pressed"
+      },
+      "info-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9294,
+            0.9412,
+            1
+          ],
+          "hex": "#edf0ff"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "blue-tint",
+            "tone": 95
+          }
+        },
+        "$description": "Quiet background, also used for selected items"
+      },
+      "info-muted-hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8824,
+            0.9098,
+            1
+          ],
+          "hex": "#e1e8ff"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "blue-tint",
+            "tone": 92
+          }
+        },
+        "$description": "Quiet background, hovered"
+      }
+    },
+    "border": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8863,
+            0.8902,
+            0.8863
+          ],
+          "hex": "#e2e3e2"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 90
+          }
+        },
+        "$description": "Decorative hairlines and dividers"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5098,
+            0.5176,
+            0.5176
+          ],
+          "hex": "#828484"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 55
+          }
+        },
+        "$description": "Input and control boundaries, at least 3:1"
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9098,
+            0.9098,
+            0.9059
+          ],
+          "hex": "#e8e8e7"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "neutral",
+            "tone": 92
+          }
+        },
+        "$description": "Disabled controls"
+      },
+      "accent-emphasis": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.5216,
+            0.5255
+          ],
+          "hex": "#008586"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "teal",
+            "tone": 50
+          }
+        },
+        "$description": "Border, at least 3:1"
+      },
+      "accent-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4471,
+            0.8392,
+            0.8431
+          ],
+          "hex": "#72d6d7"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "teal",
+            "tone": 80
+          }
+        },
+        "$description": "Decorative border for quiet backgrounds"
+      },
+      "danger-emphasis": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8706,
+            0.2157,
+            0.1882
+          ],
+          "hex": "#de3730"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "red",
+            "tone": 50
+          }
+        },
+        "$description": "Border, at least 3:1"
+      },
+      "danger-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.7059,
+            0.6706
+          ],
+          "hex": "#ffb4ab"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "red",
+            "tone": 80
+          }
+        },
+        "$description": "Decorative border for quiet backgrounds"
+      },
+      "warning-emphasis": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6824,
+            0.4784,
+            0
+          ],
+          "hex": "#ae7a00"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "amber",
+            "tone": 55
+          }
+        },
+        "$description": "Border, at least 3:1"
+      },
+      "warning-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.8,
+            0.4667
+          ],
+          "hex": "#ffcc77"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "amber",
+            "tone": 85
+          }
+        },
+        "$description": "Decorative border for quiet backgrounds"
+      },
+      "success-emphasis": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0.5412,
+            0.1255
+          ],
+          "hex": "#008a20"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "green",
+            "tone": 50
+          }
+        },
+        "$description": "Border, at least 3:1"
+      },
+      "success-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4118,
+            0.8745,
+            0.4039
+          ],
+          "hex": "#69df67"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "green",
+            "tone": 80
+          }
+        },
+        "$description": "Decorative border for quiet backgrounds"
+      },
+      "info-emphasis": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2275,
+            0.451,
+            0.8667
+          ],
+          "hex": "#3a73dd"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "blue",
+            "tone": 50
+          }
+        },
+        "$description": "Border, at least 3:1"
+      },
+      "info-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6863,
+            0.7765,
+            1
+          ],
+          "hex": "#afc6ff"
+        },
+        "$extensions": {
+          "as.oestergaard.hct": {
+            "ramp": "blue",
+            "tone": 80
+          }
+        },
+        "$description": "Decorative border for quiet backgrounds"
+      }
+    },
+    "focus": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0,
+          0.498,
+          0.502
+        ],
+        "hex": "#007f80"
+      },
+      "$extensions": {
+        "as.oestergaard.hct": {
+          "ramp": "teal",
+          "tone": 48
+        }
+      },
+      "$description": "Focus ring on any surface. Always use an outline offset"
+    },
+    "chart": {
+      "categorical": {
+        "1": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.5647,
+              0.5686
+            ],
+            "hex": "#009091"
+          }
+        },
+        "2": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9098,
+              0.4,
+              0.4667
+            ],
+            "hex": "#e86677"
+          }
+        },
+        "3": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4745,
+              0.2863,
+              0.7333
+            ],
+            "hex": "#7949bb"
+          }
+        },
+        "4": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6353,
+              0.5412,
+              0
+            ],
+            "hex": "#a28a00"
+          }
+        },
+        "5": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1922,
+              0.5765,
+              0.9569
+            ],
+            "hex": "#3193f4"
+          }
+        },
+        "6": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2863,
+              0.5922,
+              0.2078
+            ],
+            "hex": "#499735"
+          }
+        },
+        "7": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8471,
+              0.4353,
+              0.0275
+            ],
+            "hex": "#d86f07"
+          }
+        },
+        "8": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5569,
+              0.1725,
+              0.4824
+            ],
+            "hex": "#8e2c7b"
+          }
+        }
+      },
+      "sequential": {
+        "1": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7686,
+              0.9176,
+              0.9137
+            ],
+            "hex": "#c4eae9"
+          }
+        },
+        "2": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4471,
+              0.8392,
+              0.8431
+            ],
+            "hex": "#72d6d7"
+          }
+        },
+        "3": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3216,
+              0.7333,
+              0.7333
+            ],
+            "hex": "#52bbbb"
+          }
+        },
+        "4": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1882,
+              0.6235,
+              0.6275
+            ],
+            "hex": "#309fa0"
+          }
+        },
+        "5": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.5216,
+              0.5255
+            ],
+            "hex": "#008586"
+          }
+        },
+        "6": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.4118,
+              0.4157
+            ],
+            "hex": "#00696a"
+          }
+        },
+        "7": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.3098,
+              0.3137
+            ],
+            "hex": "#004f50"
+          }
+        }
+      },
+      "diverging": {
+        "1": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6,
+              0.2784,
+              0
+            ],
+            "hex": "#994700"
+          }
+        },
+        "2": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8157,
+              0.4,
+              0.0588
+            ],
+            "hex": "#d0660f"
+          }
+        },
+        "3": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.5529,
+              0.2471
+            ],
+            "hex": "#ff8d3f"
+          }
+        },
+        "4": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.7882,
+              0.6667
+            ],
+            "hex": "#ffc9aa"
+          }
+        },
+        "5": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9098,
+              0.9098,
+              0.9059
+            ],
+            "hex": "#e8e8e7"
+          }
+        },
+        "6": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6235,
+              0.8784,
+              0.8784
+            ],
+            "hex": "#9fe0e0"
+          }
+        },
+        "7": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3216,
+              0.7333,
+              0.7333
+            ],
+            "hex": "#52bbbb"
+          }
+        },
+        "8": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.102,
+              0.5725,
+              0.5765
+            ],
+            "hex": "#1a9293"
+          }
+        },
+        "9": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0.4118,
+              0.4157
+            ],
+            "hex": "#00696a"
+          }
+        }
+      },
+      "grid": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9098,
+            0.9098,
+            0.9059
+          ],
+          "hex": "#e8e8e7"
+        }
+      },
+      "axis": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7216,
+            0.7255,
+            0.7216
+          ],
+          "hex": "#b8b9b8"
+        }
+      }
+    }
+  },
+  "size": {
+    "spacing": {
+      "spacing": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0.25,
+          "unit": "rem"
+        }
+      }
+    },
+    "breakpoint": {
+      "breakpoint-sm": {
+        "$type": "dimension",
+        "$value": {
+          "value": 40,
+          "unit": "rem"
+        }
+      },
+      "breakpoint-md": {
+        "$type": "dimension",
+        "$value": {
+          "value": 48,
+          "unit": "rem"
+        }
+      },
+      "breakpoint-lg": {
+        "$type": "dimension",
+        "$value": {
+          "value": 64,
+          "unit": "rem"
+        }
+      },
+      "breakpoint-xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 80,
+          "unit": "rem"
+        }
+      },
+      "breakpoint-2xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 96,
+          "unit": "rem"
+        }
+      }
+    },
+    "container": {
+      "container-3xs": {
+        "$type": "dimension",
+        "$value": {
+          "value": 16,
+          "unit": "rem"
+        }
+      },
+      "container-2xs": {
+        "$type": "dimension",
+        "$value": {
+          "value": 18,
+          "unit": "rem"
+        }
+      },
+      "container-xs": {
+        "$type": "dimension",
+        "$value": {
+          "value": 20,
+          "unit": "rem"
+        }
+      },
+      "container-sm": {
+        "$type": "dimension",
+        "$value": {
+          "value": 24,
+          "unit": "rem"
+        }
+      },
+      "container-md": {
+        "$type": "dimension",
+        "$value": {
+          "value": 28,
+          "unit": "rem"
+        }
+      },
+      "container-lg": {
+        "$type": "dimension",
+        "$value": {
+          "value": 32,
+          "unit": "rem"
+        }
+      },
+      "container-xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 36,
+          "unit": "rem"
+        }
+      },
+      "container-2xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 42,
+          "unit": "rem"
+        }
+      },
+      "container-3xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 48,
+          "unit": "rem"
+        }
+      },
+      "container-4xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 56,
+          "unit": "rem"
+        }
+      },
+      "container-5xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 64,
+          "unit": "rem"
+        }
+      },
+      "container-6xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 72,
+          "unit": "rem"
+        }
+      },
+      "container-7xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 80,
+          "unit": "rem"
+        }
+      }
+    },
+    "text": {
+      "text-xs": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0.75,
+          "unit": "rem"
+        }
+      },
+      "text-sm": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0.875,
+          "unit": "rem"
+        }
+      },
+      "text-base": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1,
+          "unit": "rem"
+        }
+      },
+      "text-lg": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1.125,
+          "unit": "rem"
+        }
+      },
+      "text-xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1.25,
+          "unit": "rem"
+        }
+      },
+      "text-2xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1.5,
+          "unit": "rem"
+        }
+      },
+      "text-3xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1.875,
+          "unit": "rem"
+        }
+      },
+      "text-4xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 2.25,
+          "unit": "rem"
+        }
+      },
+      "text-5xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 3,
+          "unit": "rem"
+        }
+      },
+      "text-6xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 3.75,
+          "unit": "rem"
+        }
+      },
+      "text-7xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 4.5,
+          "unit": "rem"
+        }
+      },
+      "text-8xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 6,
+          "unit": "rem"
+        }
+      },
+      "text-9xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 8,
+          "unit": "rem"
+        }
+      }
+    },
+    "radius": {
+      "radius-xs": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0.125,
+          "unit": "rem"
+        }
+      },
+      "radius-sm": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0.25,
+          "unit": "rem"
+        }
+      },
+      "radius-md": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0.375,
+          "unit": "rem"
+        }
+      },
+      "radius-lg": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0.5,
+          "unit": "rem"
+        }
+      },
+      "radius-xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0.75,
+          "unit": "rem"
+        }
+      },
+      "radius-2xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1,
+          "unit": "rem"
+        }
+      },
+      "radius-3xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1.5,
+          "unit": "rem"
+        }
+      },
+      "radius-4xl": {
+        "$type": "dimension",
+        "$value": {
+          "value": 2,
+          "unit": "rem"
+        }
+      }
+    }
+  }
+}
