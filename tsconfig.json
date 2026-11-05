@@ -10,8 +10,9 @@
     "skipLibCheck": true,
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
+    "allowJs": true,
     "verbatimModuleSyntax": true
   },
-  "include": ["src", "scripts", "tests", "site"],
+  "include": ["src", "scripts", "tests", "site", "lint", "bin"],
   "exclude": ["site/dist"]
 }

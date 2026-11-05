@@ -6,6 +6,7 @@ import { compile } from 'tailwindcss';
 import { describe, expect, it } from 'vitest';
 import { searchIcons } from '../site/icon-browser.ts';
 import { ICON_NODES } from '../site/icons.ts';
+import { PAGES } from '../site/nav.ts';
 import { CHART_GATES, PAIRWISE_SLOTS, minSeparation, type Mode } from '../src/chart-gates.ts';
 import palette from '../src/chart-palette.json';
 import { composite, deltaE, oklch } from '../src/color-math.ts';
@@ -238,6 +239,94 @@ describe('data-theme scoping', () => {
     for (const name of Object.keys(model.elevation)) expect(scoped).toContain(`--shadow-${name}:`);
     expect(scoped).toContain('--chart-1: light-dark(');
     expect(scoped).not.toContain('--ramp-neutral-98:');
+  });
+});
+
+describe('components.css', () => {
+  const css = readFileSync(new URL('../src/components.css', import.meta.url), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+  const rules = [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)].map(([, selector, body]) => ({ selector: selector.trim(), body }));
+  // --oe-* variables are the shell's own settings, declared in this file.
+  const usedVars = [...new Set([...css.matchAll(/var\((--[\w-]+)/g)].map((m) => m[1]))].filter((name) => !name.startsWith('--oe-'));
+
+  it('uses tokens rather than raw colors or internal ramps', () => {
+    expect(css).not.toMatch(/#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(|oklch\(|light-dark\(|--ramp-/i);
+  });
+
+  it('only uses variables the tokens define', () => {
+    const tokens = emitTokensCss(model);
+    for (const name of usedVars) expect(tokens, name).toContain(`${name}:`);
+  });
+
+  it('prefixes every class', () => {
+    const classes = [...css.matchAll(/\.(-?[a-z_][\w-]*)/gi)].map((m) => m[1]);
+    expect(classes.length).toBeGreaterThan(50);
+    for (const name of classes) expect(name).toMatch(/^oe-/);
+  });
+
+  it('never animates every property', () => {
+    expect(css).not.toMatch(/transition:\s*all|transition-property:\s*all/);
+  });
+
+  it('turns off every transition for reduced motion', () => {
+    const [before, after] = css.split('@media (prefers-reduced-motion: reduce)');
+    const reduced = after.replace(/\s+/g, ' ');
+    const animated = [...before.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter((m) => /\btransition:/.test(m[2]));
+    expect(animated.length).toBeGreaterThan(3);
+    for (const [, selector] of animated) expect(reduced, selector).toContain(selector.trim().replace(/\s+/g, ' '));
+  });
+
+  it('gives controls a fixed height of at least 24px', () => {
+    for (const name of ['.oe-btn', '.oe-btn-sm', '.oe-btn-lg', '.oe-input']) {
+      const rule = rules.find((r) => r.selector === name);
+      const steps = Number(rule?.body.match(/min-height: calc\(var\(--spacing\) \* ([\d.]+)\)/)?.[1]);
+      expect(steps * 4, name).toBeGreaterThanOrEqual(24);
+    }
+  });
+
+  // A hover rule usually changes only the background, so its text color comes from the base rule.
+  it('pairs each background with a text color that passes contrast', () => {
+    const colors = new Map<string, string>();
+    for (const { selector, body } of rules) {
+      const fg = body.match(/(?:^|[\s;])color: var\(--(fg-[\w-]+)\)/)?.[1];
+      if (fg) for (const part of selector.split(',')) colors.set(part.trim(), fg);
+    }
+    let checked = 0;
+    for (const { selector, body } of rules) {
+      const bg = body.match(/background: var\(--(bg-[\w-]+)\)/)?.[1];
+      if (!bg || bg === 'bg-disabled') continue;
+      for (const part of selector.split(',')) {
+        const fg = colors.get(part.trim()) ?? colors.get(part.trim().replace(/:(hover|active)$/, ''));
+        if (!fg) continue;
+        const pairs = model.contrast.filter((c) => c.fg === fg && (c.bg === bg || c.bg.startsWith(`${bg} over `)));
+        expect(pairs.length, `${part}: ${fg} on ${bg} has no contrast check`).toBeGreaterThan(0);
+        for (const pair of pairs) expect(pair.pass, `${part}: ${fg} on ${bg}`).toBe(true);
+        checked++;
+      }
+    }
+    expect(checked).toBeGreaterThan(20);
+  });
+
+  it('keeps every variable it needs when compiled by Tailwind, with utilities above it', async () => {
+    const read = (file: string) => readFileSync(new URL(`../node_modules/tailwindcss/${file}`, import.meta.url), 'utf8');
+    const compiler = await compile(`@layer theme, base, components, utilities;\n${read('theme.css')}\n${emitTailwindCss(model)}\n${css}\n@layer utilities {\n${read('utilities.css')}\n}`);
+    const output = compiler.build(['mt-2']);
+    for (const name of usedVars) expect(output, name).toContain(`${name}:`);
+    expect(output).toMatch(/@layer components \{\s*:is\(\.oe-btn/);
+    expect(output).toMatch(/@layer utilities \{[^}]*\.mt-2/);
+  });
+});
+
+describe('showcase pages', () => {
+  it.each(PAGES.map((p) => [p.id, p.path, p.icon]))('%s has an HTML entry for its module and a known icon', (id, path, icon) => {
+    const html = readFileSync(new URL(`../site/${path}index.html`, import.meta.url), 'utf8');
+    expect(html).toContain(`pages/${id}.ts`);
+    expect(ICON_NODES).toHaveProperty([icon]);
+  });
+
+  it('keeps the example app free of site styles', () => {
+    const example = readFileSync(new URL('../site/pages/layout-example.ts', import.meta.url), 'utf8');
+    expect(example).not.toContain('site.css');
+    expect(example).not.toContain('frame.ts');
   });
 });
 

@@ -1,16 +1,17 @@
-# Oestergaard design tokens
+# Oestergaard design system
 
-Color roles, chart palettes and sizing for every Oestergaard-AS app, in any framework. Everything is generated from one brand color, `#068B8C`, using [HCT](https://github.com/material-foundation/material-color-utilities).
+Color roles, chart palettes, sizing and component styles for every Oestergaard-AS app, in any framework. Everything is generated from one brand color, `#068B8C`, using [HCT](https://github.com/material-foundation/material-color-utilities).
 
-The package ships tokens and icon sizes only. Components stay with each app or framework until apps show a repeated need.
+The package ships tokens, icon sizes and CSS classes for the components apps repeat most. It has no JavaScript, so behavior such as keyboard handling and sorting stays with each app.
 
 ## Commands
 
 ```bash
 npm install
 npm run dev            # showcase site at http://localhost:5183
-npm test               # build tokens, then check contrast, chart palettes and Tailwind output
+npm test               # build, then check contrast, chart palettes, Tailwind output and components
 npm run typecheck
+npm run lint           # run oe-lint on the showcase
 npm run site:build     # static showcase in site/dist, for any static host
 ```
 
@@ -57,6 +58,83 @@ import { chart, light, dark } from "@oestergaard/design-tokens";
 `tokens.light.json` and `tokens.dark.json` use the W3C design token format.
 
 **Light and dark:** The OS setting chooses the mode. To force one, set `data-theme="light"` or `data-theme="dark"` on any element, including part of a page.
+
+## Components
+
+Import the classes after the tokens. They work with or without Tailwind.
+
+```css
+@import "@oestergaard/design-tokens/tokens.css";
+@import "@oestergaard/design-tokens/components.css";
+```
+
+With Tailwind, import `tailwind.css` first instead of `tokens.css`.
+
+```html
+<button class="oe-btn oe-btn-primary">Save changes</button>
+<span class="oe-badge oe-badge-success">Paid</span>
+```
+
+| Component | Classes |
+| --- | --- |
+| Button | `oe-btn` with `-primary`, `-secondary`, `-ghost`, `-neutral` or `-danger`, plus `-sm`, `-lg` and `-icon` |
+| Field | `oe-field`, `oe-field-label`, `oe-field-help`, `oe-field-error` |
+| Input, select, textarea | `oe-input`. Set `aria-invalid="true"` for the error state |
+| Checkbox, radio | `oe-check`, `oe-check-label` |
+| Badge | `oe-badge` with `-accent`, `-neutral`, `-info`, `-success`, `-warning` or `-danger` |
+| Alert | `oe-alert` with the same intents. Put the icon first, then one element of text |
+| Card, stat | `oe-card`; `oe-stat`, `oe-stat-label`, `oe-stat-value`, `oe-stat-delta` with `-success` or `-danger` |
+| Table | `oe-table-wrap`, `oe-table` with `-compact` or `-sticky`; `oe-table-num`, `oe-table-empty`, `oe-table-sort`, `oe-row-selected`. Set `aria-sort` on the sorted `th` |
+| Tabs | `oe-tabs` around elements with `aria-selected="true"` or `aria-current="page"` |
+| Segmented control | `oe-segmented` around buttons with `aria-pressed` |
+| Dialog | `oe-dialog` on a `<dialog>`, with `oe-dialog-title` and `oe-dialog-actions` |
+| Menu | `oe-menu`, `oe-menu-item`, `oe-menu-item-danger` |
+| Toast, tooltip | `oe-toast`, `oe-tooltip`. The app places and shows them |
+| Loading | `aria-busy="true"` on an `oe-btn`; `oe-spinner`, `oe-skeleton`, `oe-progress` |
+| Switch, key hint | `oe-switch`; `oe-kbd` |
+| Input with icon | `oe-input-group` |
+| Empty state | `oe-empty`, `oe-empty-title`, `oe-empty-text` |
+| Pagination, separator, accordion | `oe-pagination`; `oe-separator`; `oe-accordion` |
+| App shell | `oe-shell`, `oe-shell-main`, `oe-shell-menu`, `oe-shell-toggle`, `oe-topbar`, `oe-topbar-actions`, `oe-breadcrumb`, `oe-sidenav`, `oe-sidenav-brand`, `oe-sidenav-body`, `oe-sidenav-foot`, `oe-nav-heading`, `oe-nav-list`, `oe-nav-item`, `oe-avatar`, `oe-page`, `oe-page-head`, `oe-page-actions`, `oe-page-title`, `oe-page-subtitle` |
+
+- An `svg` placed directly inside a component gets the right size, so a Lucide icon needs no size of its own.
+- Buttons and inputs are 32px by default, with `oe-btn-sm` at 28px and `oe-btn-lg` at 40px. On touch screens, targets grow to 44px and inputs use 16px text so iOS doesn't zoom.
+- The classes only set the look. Add the behavior and ARIA roles in the app, such as arrow keys for `role="tab"`.
+- From 64rem, the page is an inset panel and `oe-shell-main` scrolls rather than the document. An `oe-shell-toggle` button closes the side nav to a rail of icons. Flip its `aria-expanded` between `true` and `false` on click, and the CSS does the rest.
+- Below 64rem the side nav becomes a drawer. Give `oe-sidenav` the `popover` attribute and open it from an `oe-shell-menu` button with `popovertarget`, which needs no JavaScript. In a single-page app, call `hidePopover()` on navigation. Set `--oe-sidenav-width` on `oe-shell` to change its width. The showcase's Layout page has the full markup.
+- For data tables, use [TanStack Table](https://tanstack.com/table) or similar for the logic and render a normal `<table>` with these classes.
+
+The classes are in the `components` CSS layer, so Tailwind utilities override them. Styles outside a layer always beat layered ones, so an app's own reset, such as `button { color: inherit }`, breaks them unless it's in a layer too: `@layer base { ... }`. Tailwind's reset already is.
+
+## Agents and the lint check
+
+The package ships [AGENT-GUIDE.md](AGENT-GUIDE.md), a short guide for agents writing UI. Point to it from the app's `AGENTS.md` or `CLAUDE.md`:
+
+```text
+Follow node_modules/@oestergaard/design-tokens/AGENT-GUIDE.md for all UI work.
+Run npx oe-lint src before finishing, and fix every error.
+```
+
+`oe-lint` needs no setup. It reads the installed version's real tokens and classes, so it also works as a check in an app's CI, where it exits with an error if it finds any.
+
+```bash
+npx oe-lint src
+npx oe-lint src --json
+```
+
+| Rule | Catches |
+| --- | --- |
+| `no-raw-colors` | Hex, `rgb()` and named colors in CSS, style objects, color attributes, Tailwind like `bg-[#fff]` and quoted hex in code |
+| `no-ramps` | `--ramp-*` variables |
+| `no-dark-overrides` | `prefers-color-scheme`, `[data-theme="dark"]` and `.dark` rules, and `dark:` classes |
+| `unknown-token` | `var(--bg-…)`, `--fg-`, `--border-` and `--chart-` names that don't exist, and shadcn names like `--primary` |
+| `unknown-class` | `oe-*` classes that don't exist |
+| `unknown-utility` | Tailwind's stock colors, and token utilities that don't exist, such as `bg-accent` or `bg-primary` |
+| `emphasis-pair` | A solid fill with the wrong text token |
+| `deprecated-icons` | Deprecated Lucide packages in `package.json` |
+| `unlayered-reset` | A warning for element styles outside a CSS layer, which override the component classes |
+
+An app's own variables, `--color-*` theme colors and `.oe-*` classes count as real if the app declares them. Names built at runtime, such as `` var(--fg-on-${intent}) ``, can't be checked and are skipped. To allow one line, add a comment containing `oe-lint-ignore` on it or the line before.
 
 ## Token naming
 
@@ -175,8 +253,11 @@ iconSizes.sm; // 4, the spacing step: size-4 or --space-4
 | `src/icons.ts` | The icon sizes |
 | `src/tokens.ts` | Builds the token model and the contrast checks |
 | `src/emit.ts` | Writes CSS, Tailwind, JSON and JS |
+| `src/components.css` | The component classes |
 | `scripts/search-chart-palette.ts` | Finds the chart palette |
-| `tests/` | Contrast, chart and Tailwind checks |
-| `site/` | Showcase, which uses only the generated tokens |
+| `AGENT-GUIDE.md` | The guide for agents in apps. Tests keep its class and token names real |
+| `lint/`, `bin/` | The `oe-lint` command, in plain JavaScript with no dependencies |
+| `tests/` | Contrast, chart, Tailwind, component and lint checks |
+| `site/` | Showcase, which uses only the generated tokens and classes. `site/pages/` has one module per page, and `site/nav.ts` lists the pages |
 
 The published `@material/material-color-utilities` 0.4.0 can't load in plain Node ESM, so scripts run through `tsx` and Vitest inlines it. It's only needed at build time, so apps never load it.

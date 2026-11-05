@@ -1,0 +1,775 @@
+/* Component styles built only from the design tokens. Import after tokens.css or tailwind.css.
+   They sit in a layer so Tailwind utilities and app styles can override them. Spacing uses
+   --spacing because Tailwind apps don't have the --space-* steps. */
+@layer theme, base, components, utilities;
+
+@layer base {
+  :root {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  /* Keeps the sticky top bar from covering whatever takes focus or is linked to. */
+  :root:has(.oe-shell) { scroll-padding-top: calc(var(--spacing) * 16 + env(safe-area-inset-top, 0px)); }
+}
+
+@layer components {
+  /* The display rules below would otherwise beat the hidden attribute. */
+  :is(.oe-btn, .oe-badge, .oe-alert, .oe-field, .oe-field-error, .oe-check-label, .oe-stat-label, .oe-stat-value, .oe-stat-delta, .oe-tabs, .oe-segmented, .oe-dialog-actions, .oe-menu-item, .oe-toast, .oe-spinner, .oe-kbd, .oe-input-group, .oe-empty, .oe-pagination, .oe-avatar, .oe-shell, .oe-shell-main, .oe-topbar, .oe-topbar-actions, .oe-breadcrumb ol, .oe-sidenav-brand, .oe-sidenav-foot, .oe-nav-list, .oe-nav-item, .oe-page-head)[hidden],
+  .oe-tabs > [hidden],
+  .oe-segmented > [hidden],
+  .oe-pagination > [hidden] {
+    display: none;
+  }
+
+  /* Hover and press ease in, on only the properties that change. */
+  :is(.oe-btn, .oe-input, .oe-table-sort, .oe-tabs > *, .oe-segmented > *, .oe-menu-item, .oe-nav-item, .oe-breadcrumb a, .oe-pagination > *, .oe-accordion > summary) {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 150ms var(--ease-out), background-color 150ms var(--ease-out), border-color 150ms var(--ease-out);
+  }
+
+  .oe-btn:focus-visible,
+  .oe-input:focus-visible,
+  .oe-check:focus-visible,
+  .oe-table-sort:focus-visible,
+  .oe-tabs > :focus-visible,
+  .oe-segmented > :focus-visible,
+  .oe-menu-item:focus-visible,
+  .oe-nav-item:focus-visible,
+  .oe-breadcrumb a:focus-visible,
+  .oe-switch:focus-visible,
+  .oe-pagination > :focus-visible,
+  .oe-accordion > summary:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+  /* Inside the edge of the side nav, which clips anything outside it. */
+  .oe-sidenav-brand:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: -2px;
+  }
+
+  /* Button */
+  .oe-btn {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--spacing) * 1.5);
+    min-height: calc(var(--spacing) * 8);
+    padding: 0 calc(var(--spacing) * 3);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--fg-default);
+    font-family: inherit;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--text-sm--line-height);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .oe-btn > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
+  .oe-btn-primary { background: var(--bg-accent-emphasis); color: var(--fg-on-accent); }
+  .oe-btn-primary:hover { background: var(--bg-accent-emphasis-hover); }
+  .oe-btn-primary:active { background: var(--bg-accent-emphasis-active); }
+  .oe-btn-secondary { background: var(--bg-surface); color: var(--fg-default); border-color: var(--border-default); }
+  .oe-btn-secondary:hover { background: var(--bg-hover); }
+  .oe-btn-secondary:active { background: var(--bg-pressed); }
+  .oe-btn-ghost { background: transparent; color: var(--fg-accent); }
+  .oe-btn-ghost:hover { background: var(--bg-accent-muted); }
+  .oe-btn-ghost:active { background: var(--bg-accent-muted-hover); }
+  .oe-btn-neutral { background: var(--bg-neutral-emphasis); color: var(--fg-on-neutral); }
+  .oe-btn-neutral:hover { background: var(--bg-neutral-emphasis-hover); }
+  .oe-btn-neutral:active { background: var(--bg-neutral-emphasis-active); }
+  .oe-btn-danger { background: var(--bg-danger-emphasis); color: var(--fg-on-danger); }
+  .oe-btn-danger:hover { background: var(--bg-danger-emphasis-hover); }
+  .oe-btn-danger:active { background: var(--bg-danger-emphasis-active); }
+  .oe-btn-sm { gap: var(--spacing); min-height: calc(var(--spacing) * 7); padding-inline: calc(var(--spacing) * 2); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
+  .oe-btn-sm > svg { width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); }
+  .oe-btn-lg { gap: calc(var(--spacing) * 2); min-height: calc(var(--spacing) * 10); padding-inline: calc(var(--spacing) * 4); font-size: var(--text-base); line-height: var(--text-base--line-height); }
+  .oe-btn-lg > svg { width: calc(var(--spacing) * 5); height: calc(var(--spacing) * 5); }
+  .oe-btn-icon { width: calc(var(--spacing) * 8); padding: 0; }
+  .oe-btn-icon.oe-btn-sm { width: calc(var(--spacing) * 7); }
+  .oe-btn-icon.oe-btn-lg { width: calc(var(--spacing) * 10); }
+  .oe-btn:disabled,
+  .oe-btn[aria-disabled="true"] { background: var(--bg-disabled); color: var(--fg-disabled); border-color: var(--border-disabled); cursor: not-allowed; }
+
+  /* Form fields */
+  .oe-field { display: grid; gap: var(--spacing); min-width: 0; font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-field-label { font-weight: var(--font-weight-medium); }
+  .oe-field-help { color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
+  .oe-field-error { display: flex; gap: var(--spacing); color: var(--fg-danger); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
+  .oe-field-error > svg { flex: none; width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); margin-top: 0.15em; }
+  .oe-input {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: calc(var(--spacing) * 8);
+    padding: calc(var(--spacing) * 1.25) calc(var(--spacing) * 2.5);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    color: var(--fg-default);
+    font-family: inherit;
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+  }
+  .oe-input::placeholder { color: var(--fg-muted); opacity: 1; }
+  .oe-input[aria-invalid="true"] { border-color: var(--border-danger-emphasis); }
+  .oe-input:disabled { background-color: var(--bg-disabled); color: var(--fg-disabled); border-color: var(--border-disabled); cursor: not-allowed; }
+  textarea.oe-input { resize: vertical; }
+  /* WebKit won't size a native select, so this draws the arrow in the text color instead. */
+  select.oe-input:not([multiple]) {
+    appearance: none;
+    padding-right: calc(var(--spacing) * 8);
+    background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position: calc(100% - calc(var(--spacing) * 4.25)) 50%, calc(100% - calc(var(--spacing) * 3)) 50%;
+    background-size: calc(var(--spacing) * 1.25) calc(var(--spacing) * 1.25);
+    background-repeat: no-repeat;
+  }
+  .oe-check { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); margin: 0; accent-color: var(--bg-accent-emphasis); }
+  .oe-check-label { display: inline-flex; align-items: center; gap: calc(var(--spacing) * 2); min-height: calc(var(--spacing) * 6); font-size: var(--text-sm); line-height: var(--text-sm--line-height); cursor: pointer; }
+  /* iOS zooms the page when a smaller input takes focus, including on a phone held sideways. */
+  @media (max-width: 48rem), (pointer: coarse) {
+    .oe-input { font-size: var(--text-base); }
+  }
+
+  /* Badge */
+  .oe-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing);
+    padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
+    border-radius: var(--radius-4xl);
+    background: var(--bg-neutral-muted);
+    color: var(--fg-default);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--text-xs--line-height);
+    white-space: nowrap;
+  }
+  .oe-badge > svg { flex: none; width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); }
+  .oe-badge-accent { background: var(--bg-accent-muted); color: var(--fg-accent); }
+  .oe-badge-neutral { background: var(--bg-neutral-muted); color: var(--fg-default); }
+  .oe-badge-info { background: var(--bg-info-muted); color: var(--fg-info); }
+  .oe-badge-success { background: var(--bg-success-muted); color: var(--fg-success); }
+  .oe-badge-warning { background: var(--bg-warning-muted); color: var(--fg-warning); }
+  .oe-badge-danger { background: var(--bg-danger-muted); color: var(--fg-danger); }
+
+  /* Alert */
+  .oe-alert {
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    gap: calc(var(--spacing) * 2.5);
+    padding: calc(var(--spacing) * 3);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    background: var(--bg-neutral-muted);
+    color: var(--fg-default);
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+  }
+  .oe-alert > svg { flex: none; width: calc(var(--spacing) * 5); height: calc(var(--spacing) * 5); }
+  .oe-alert > :not(svg) { flex: 1; min-width: 0; margin: 0; }
+  .oe-alert-accent { background: var(--bg-accent-muted); border-color: var(--border-accent-muted); color: var(--fg-default); }
+  .oe-alert-accent > svg { color: var(--fg-accent); }
+  .oe-alert-info { background: var(--bg-info-muted); border-color: var(--border-info-muted); color: var(--fg-default); }
+  .oe-alert-info > svg { color: var(--fg-info); }
+  .oe-alert-success { background: var(--bg-success-muted); border-color: var(--border-success-muted); color: var(--fg-default); }
+  .oe-alert-success > svg { color: var(--fg-success); }
+  .oe-alert-warning { background: var(--bg-warning-muted); border-color: var(--border-warning-muted); color: var(--fg-default); }
+  .oe-alert-warning > svg { color: var(--fg-warning); }
+  .oe-alert-danger { background: var(--bg-danger-muted); border-color: var(--border-danger-muted); color: var(--fg-default); }
+  .oe-alert-danger > svg { color: var(--fg-danger); }
+
+  /* Card and stat */
+  .oe-card {
+    box-sizing: border-box;
+    min-width: 0;
+    padding: calc(var(--spacing) * 5);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    background: var(--bg-surface);
+    color: var(--fg-default);
+  }
+  .oe-stat {
+    box-sizing: border-box;
+    min-width: 0;
+    padding-top: calc(var(--spacing) * 3);
+    border-top: 1px solid var(--border-default);
+    color: var(--fg-default);
+  }
+  .oe-stat-label { display: block; margin: 0; overflow: hidden; color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--text-xs--line-height); white-space: nowrap; text-overflow: ellipsis; }
+  .oe-stat-value { display: block; margin: calc(var(--spacing) * 1) 0; font-size: var(--text-2xl); font-weight: var(--font-weight-semibold); font-variant-numeric: tabular-nums; letter-spacing: var(--tracking-tight); line-height: var(--text-2xl--line-height); }
+  .oe-stat-delta { display: inline-flex; align-items: center; gap: var(--spacing); color: var(--fg-muted); font-size: var(--text-xs); font-variant-numeric: tabular-nums; line-height: var(--text-xs--line-height); }
+  .oe-stat-delta > svg { flex: none; width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); }
+  .oe-stat-delta-success { color: var(--fg-success); }
+  .oe-stat-delta-danger { color: var(--fg-danger); }
+
+  /* Table. Rows and sorting logic stay with the app. */
+  .oe-table-wrap {
+    overflow-x: auto;
+    color: var(--fg-default);
+  }
+  .oe-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-table th {
+    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+    border-bottom: 1px solid var(--border-default);
+    color: var(--fg-muted);
+    font-weight: var(--font-weight-medium);
+    text-align: left;
+    white-space: nowrap;
+  }
+  .oe-table td { padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3); border-top: 1px solid var(--border-default); }
+  .oe-table :is(th, td):first-child { padding-left: var(--spacing); }
+  .oe-table :is(th, td):last-child { padding-right: var(--spacing); }
+  .oe-table tbody tr:hover > td { background: var(--bg-hover); }
+  .oe-table .oe-row-selected > td { background: var(--bg-accent-muted); }
+  .oe-table tbody .oe-row-selected:hover > td { background: var(--bg-accent-muted-hover); }
+  .oe-table .oe-table-num { font-variant-numeric: tabular-nums; text-align: right; }
+  .oe-table td.oe-table-empty { padding-block: calc(var(--spacing) * 8); color: var(--fg-muted); text-align: center; }
+  .oe-table-compact { font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
+  .oe-table-compact th,
+  .oe-table-compact td { padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2); }
+  /* Collapsed borders scroll away with the rows, so a sticky header draws its own line. */
+  .oe-table-sticky th { position: sticky; top: 0; z-index: 1; background: var(--bg-surface); box-shadow: inset 0 -1px 0 var(--border-default); }
+  .oe-table-sort {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+  .oe-table-sort:hover,
+  [aria-sort="ascending"] > .oe-table-sort,
+  [aria-sort="descending"] > .oe-table-sort { color: var(--fg-default); }
+  .oe-table-sort > svg { flex: none; width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); }
+
+  /* Tabs and segmented control. The look only: apps add the keyboard behavior for role="tab". */
+  .oe-tabs { display: flex; flex-wrap: wrap; gap: var(--spacing); border-bottom: 1px solid var(--border-default); }
+  .oe-tabs > * {
+    display: flex;
+    align-items: center;
+    margin-bottom: -1px;
+    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--fg-muted);
+    font-family: inherit;
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .oe-tabs > :hover { color: var(--fg-default); }
+  .oe-tabs > [aria-selected="true"],
+  .oe-tabs > [aria-current="page"] { border-bottom-color: var(--border-accent-emphasis); color: var(--fg-accent); font-weight: var(--font-weight-medium); }
+  .oe-segmented {
+    display: inline-flex;
+    gap: calc(var(--spacing) * 0.5);
+    padding: calc(var(--spacing) * 0.5);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+  }
+  .oe-segmented > * {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 1.5);
+    min-height: calc(var(--spacing) * 6.5);
+    padding: 0 calc(var(--spacing) * 2);
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--fg-muted);
+    font-family: inherit;
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    cursor: pointer;
+  }
+  .oe-segmented > * > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
+  .oe-segmented > :hover { background: var(--bg-hover); color: var(--fg-default); }
+  .oe-segmented > [aria-pressed="true"] { background: var(--bg-accent-emphasis); color: var(--fg-on-accent); }
+
+  /* Overlays. Open and place them with <dialog>, popover or the app's own code. */
+  .oe-dialog {
+    box-sizing: border-box;
+    width: min(var(--container-md), calc(100vw - calc(var(--spacing) * 8)));
+    margin: auto;
+    padding: calc(var(--spacing) * 5);
+    border: 0;
+    border-radius: var(--radius-xl);
+    background: var(--bg-raised);
+    color: var(--fg-default);
+    box-shadow: var(--shadow-overlay);
+    overscroll-behavior: contain;
+  }
+  .oe-dialog::backdrop { background: var(--bg-scrim); }
+  dialog.oe-dialog { transition: opacity 150ms var(--ease-out), translate 150ms var(--ease-out), display 150ms allow-discrete, overlay 150ms allow-discrete; }
+  dialog.oe-dialog:not([open]) { opacity: 0; translate: 0 calc(var(--spacing) * 2); }
+  dialog.oe-dialog::backdrop { transition: opacity 150ms var(--ease-out); }
+  @starting-style {
+    dialog.oe-dialog[open] { opacity: 0; translate: 0 calc(var(--spacing) * 2); }
+    dialog.oe-dialog[open]::backdrop { opacity: 0; }
+  }
+  .oe-dialog-title { margin: 0; font-size: var(--text-base); font-weight: var(--font-weight-semibold); line-height: var(--text-base--line-height); }
+  .oe-dialog-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: calc(var(--spacing) * 2); margin-top: calc(var(--spacing) * 4); }
+  .oe-menu {
+    box-sizing: border-box;
+    min-width: calc(var(--spacing) * 40);
+    margin: 0;
+    padding: var(--spacing);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    background: var(--bg-raised);
+    color: var(--fg-default);
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    list-style: none;
+    box-shadow: var(--shadow-overlay);
+  }
+  .oe-menu[popover] { transition: opacity 150ms var(--ease-out), translate 150ms var(--ease-out), display 150ms allow-discrete, overlay 150ms allow-discrete; }
+  .oe-menu[popover]:not(:popover-open) { opacity: 0; translate: 0 calc(var(--spacing) * -1); }
+  @starting-style {
+    .oe-menu[popover]:popover-open { opacity: 0; translate: 0 calc(var(--spacing) * -1); }
+  }
+  .oe-menu-item {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 2);
+    width: 100%;
+    padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5);
+    border: 0;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--fg-default);
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .oe-menu-item > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
+  .oe-menu-item:hover { background: var(--bg-hover); }
+  .oe-menu-item:active { background: var(--bg-pressed); }
+  .oe-menu-item-danger { color: var(--fg-danger); }
+  .oe-toast {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 2);
+    padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+    border-radius: var(--radius-md);
+    background: var(--bg-inverse);
+    color: var(--fg-on-inverse);
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    box-shadow: var(--shadow-overlay);
+  }
+  .oe-toast > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
+  .oe-tooltip {
+    padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
+    border-radius: var(--radius-sm);
+    background: var(--bg-inverse);
+    color: var(--fg-on-inverse);
+    font-size: var(--text-xs);
+    line-height: var(--text-xs--line-height);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  /* Loading. A busy button keeps its label, and the app stops repeat clicks. */
+  @keyframes oe-spin { to { rotate: 360deg; } }
+  @keyframes oe-pulse { 50% { opacity: 0.5; } }
+  .oe-spinner,
+  .oe-btn[aria-busy="true"]::before {
+    box-sizing: border-box;
+    display: inline-block;
+    flex: none;
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: oe-spin 700ms linear infinite;
+  }
+  .oe-btn[aria-busy="true"] { cursor: progress; }
+  .oe-btn[aria-busy="true"]::before { content: ""; }
+  .oe-skeleton {
+    display: block;
+    min-height: 1em;
+    border-radius: var(--radius-md);
+    background: var(--bg-neutral-muted);
+    animation: oe-pulse 1500ms var(--ease-in-out) infinite;
+  }
+  .oe-progress {
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: calc(var(--spacing) * 2);
+    overflow: hidden;
+    border: 0;
+    border-radius: var(--radius-4xl);
+    background: var(--bg-neutral-muted);
+  }
+  .oe-progress::-webkit-progress-bar { background: var(--bg-neutral-muted); }
+  .oe-progress::-webkit-progress-value { background: var(--bg-accent-emphasis); }
+  .oe-progress::-moz-progress-bar { background: var(--bg-accent-emphasis); }
+
+  /* Switch. On a checkbox with role="switch". The thumb is a background, because browsers differ on ::before in inputs. */
+  .oe-switch {
+    appearance: none;
+    flex: none;
+    width: calc(var(--spacing) * 9);
+    height: calc(var(--spacing) * 5);
+    margin: 0;
+    border-radius: var(--radius-4xl);
+    background-color: var(--border-strong);
+    background-image: radial-gradient(closest-side, var(--bg-surface) 96%, transparent);
+    background-position: calc(var(--spacing) * 0.5) center;
+    background-repeat: no-repeat;
+    background-size: calc(var(--spacing) * 4) calc(var(--spacing) * 4);
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background-color 150ms var(--ease-out), background-position 150ms var(--ease-out);
+  }
+  .oe-switch:checked {
+    background-color: var(--bg-accent-emphasis);
+    background-image: radial-gradient(closest-side, var(--fg-on-accent) 96%, transparent);
+    background-position: calc(var(--spacing) * 4.5) center;
+  }
+  .oe-switch:disabled {
+    background-color: var(--bg-disabled);
+    background-image: radial-gradient(closest-side, var(--fg-disabled) 96%, transparent);
+    cursor: not-allowed;
+  }
+
+  /* Input with an icon, and an optional key hint */
+  .oe-kbd {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: calc(var(--spacing) * 5);
+    height: calc(var(--spacing) * 5);
+    padding-inline: var(--spacing);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    background: var(--bg-sunken);
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    line-height: 1;
+  }
+  .oe-input-group { position: relative; display: block; min-width: 0; }
+  .oe-input-group > svg { position: absolute; top: 50%; left: calc(var(--spacing) * 2.5); width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); color: var(--fg-muted); pointer-events: none; translate: 0 -50%; }
+  .oe-input-group > .oe-input { padding-left: calc(var(--spacing) * 8.5); }
+  .oe-input-group > .oe-kbd { position: absolute; top: 50%; right: calc(var(--spacing) * 2); pointer-events: none; translate: 0 -50%; }
+  .oe-input-group:has(> .oe-kbd) > .oe-input { padding-right: calc(var(--spacing) * 12); }
+
+  /* Empty state */
+  .oe-empty {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--spacing) * 1);
+    padding: calc(var(--spacing) * 12) calc(var(--spacing) * 6);
+    border: 1px dashed var(--border-default);
+    border-radius: var(--radius-lg);
+    color: var(--fg-muted);
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    text-align: center;
+  }
+  .oe-empty > svg { flex: none; width: calc(var(--spacing) * 8); height: calc(var(--spacing) * 8); margin-bottom: calc(var(--spacing) * 2); }
+  .oe-empty-title { margin: 0; color: var(--fg-default); font-size: var(--text-base); font-weight: var(--font-weight-semibold); line-height: var(--text-base--line-height); }
+  .oe-empty-text { max-width: var(--container-sm); margin: 0; }
+  .oe-empty > .oe-btn { margin-top: calc(var(--spacing) * 3); }
+
+  /* Pagination, separator and accordion */
+  .oe-pagination { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing); font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-pagination > * {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing);
+    min-width: calc(var(--spacing) * 8);
+    min-height: calc(var(--spacing) * 8);
+    padding-inline: calc(var(--spacing) * 2);
+    border: 0;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--fg-muted);
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .oe-pagination > * > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
+  .oe-pagination > :hover { background: var(--bg-hover); color: var(--fg-default); }
+  .oe-pagination > [aria-current="page"] { background: var(--bg-accent-muted); color: var(--fg-accent); font-weight: var(--font-weight-medium); }
+  .oe-pagination > [aria-disabled="true"],
+  .oe-pagination > :disabled { background: transparent; color: var(--fg-disabled); cursor: not-allowed; }
+  .oe-separator { height: 0; margin: calc(var(--spacing) * 4) 0; border: 0; border-top: 1px solid var(--border-default); }
+  .oe-separator[aria-orientation="vertical"] { align-self: stretch; width: 0; height: auto; margin: 0 calc(var(--spacing) * 2); border-top: 0; border-left: 1px solid var(--border-default); }
+  .oe-accordion { border-bottom: 1px solid var(--border-default); color: var(--fg-default); font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-accordion > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: calc(var(--spacing) * 3);
+    min-height: calc(var(--spacing) * 10);
+    font-weight: var(--font-weight-medium);
+    list-style: none;
+    cursor: pointer;
+  }
+  .oe-accordion > summary::-webkit-details-marker { display: none; }
+  .oe-accordion > summary::after {
+    content: "";
+    flex: none;
+    width: calc(var(--spacing) * 2);
+    height: calc(var(--spacing) * 2);
+    margin-right: var(--spacing);
+    border-right: 2px solid var(--fg-muted);
+    border-bottom: 2px solid var(--fg-muted);
+    rotate: 45deg;
+    transition: rotate 150ms var(--ease-out);
+  }
+  .oe-accordion[open] > summary::after { rotate: 225deg; }
+  .oe-accordion > :not(summary) { margin: 0 0 calc(var(--spacing) * 3); color: var(--fg-muted); }
+
+  /* Avatar */
+  .oe-avatar {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--spacing) * 6);
+    height: calc(var(--spacing) * 6);
+    overflow: hidden;
+    border-radius: 50%;
+    background: var(--bg-accent-muted);
+    color: var(--fg-accent);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* App shell: a full-height side nav beside the top bar and page. From 64rem, the page is an inset
+     panel that scrolls on its own, and the oe-shell-toggle button collapses the side nav to an icon
+     rail through its aria-expanded. Below that the document scrolls, and the side nav is a drawer: give it the popover attribute and open it from an oe-shell-menu button with
+     popovertarget, which needs no JavaScript. */
+  .oe-shell {
+    --oe-topbar-height: calc(var(--spacing) * 14);
+    --oe-sidenav-width: var(--container-3xs);
+    --oe-sidenav-rail: var(--oe-topbar-height);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 100dvh;
+    background: var(--bg-page);
+    color: var(--fg-default);
+  }
+  .oe-shell-main { box-sizing: border-box; display: flex; flex-direction: column; min-width: 0; background: var(--bg-surface); }
+  .oe-topbar {
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 2);
+    height: calc(var(--oe-topbar-height, calc(var(--spacing) * 14)) + env(safe-area-inset-top, 0px));
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-inline: max(calc(var(--spacing) * 4), env(safe-area-inset-left, 0px)) max(calc(var(--spacing) * 4), env(safe-area-inset-right, 0px));
+    border-bottom: 1px solid var(--border-default);
+    background: var(--bg-surface);
+    color: var(--fg-default);
+  }
+  .oe-topbar .oe-btn-ghost { color: var(--fg-muted); }
+  .oe-topbar .oe-btn-ghost:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .oe-topbar .oe-btn-ghost:active { background: var(--bg-pressed); }
+  .oe-topbar-actions { display: flex; flex: none; align-items: center; gap: calc(var(--spacing) * 1); margin-left: auto; }
+  /* The breadcrumb gives way first, so a long name can't push the page wider than the screen. */
+  .oe-breadcrumb { min-width: 0; overflow: hidden; margin-left: calc(var(--spacing) * 1); font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-breadcrumb ol { display: flex; align-items: center; gap: calc(var(--spacing) * 2); margin: 0; padding: 0; list-style: none; white-space: nowrap; }
+  .oe-breadcrumb li { display: flex; align-items: center; gap: calc(var(--spacing) * 2); min-width: 0; color: var(--fg-muted); }
+  .oe-breadcrumb li + li::before { content: "/"; content: "/" / ""; }
+  .oe-breadcrumb a { border-radius: var(--radius-xs); color: var(--fg-muted); text-decoration: none; }
+  .oe-breadcrumb a:hover { color: var(--fg-default); }
+  .oe-breadcrumb [aria-current="page"] { overflow: hidden; color: var(--fg-default); font-weight: var(--font-weight-medium); text-overflow: ellipsis; }
+  .oe-sidenav {
+    box-sizing: border-box;
+    flex-direction: column;
+    margin: 0;
+    padding: 0 0 0 env(safe-area-inset-left, 0px);
+    overflow: hidden;
+    border: 0;
+    border-right: 1px solid var(--border-default);
+    background: var(--bg-surface);
+    color: var(--fg-default);
+  }
+  .oe-sidenav::backdrop { background: var(--bg-scrim); }
+  .oe-sidenav-brand {
+    box-sizing: border-box;
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 4);
+    height: calc(var(--oe-topbar-height, calc(var(--spacing) * 14)) + env(safe-area-inset-top, 0px));
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-inline: calc(var(--spacing) * 4);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-default);
+    color: var(--fg-default);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .oe-sidenav-brand > :is(svg, img) { flex: none; width: calc(var(--spacing) * 6); height: calc(var(--spacing) * 6); }
+  .oe-sidenav-body { flex: 1; min-height: 0; padding: calc(var(--spacing) * 3); overflow: hidden auto; overscroll-behavior: contain; }
+  .oe-sidenav-foot { flex: none; display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--spacing) * 0.5); padding: calc(var(--spacing) * 3); padding-bottom: max(calc(var(--spacing) * 3), env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--border-default); }
+  .oe-nav-heading {
+    margin: calc(var(--spacing) * 5) 0 calc(var(--spacing) * 1);
+    padding-inline: calc(var(--spacing) * 2);
+    overflow: hidden;
+    color: var(--fg-muted);
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--text-xs--line-height);
+    white-space: nowrap;
+    transition: opacity 200ms var(--ease-out);
+  }
+  .oe-nav-heading:first-child { margin-top: 0; }
+  .oe-nav-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--spacing) * 0.5); margin: 0; padding: 0; list-style: none; }
+  /* The rail clips each item right after its icon, so the icon never moves and the label needs no wrapper. */
+  .oe-nav-item {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing) * 2);
+    width: 100%;
+    padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
+    overflow: hidden;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--fg-muted);
+    font-family: inherit;
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    text-align: left;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .oe-nav-item > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
+  .oe-nav-item > .oe-avatar { margin: calc(var(--spacing) * -0.5) calc(var(--spacing) * -1); }
+  .oe-nav-item > .oe-badge { flex: none; margin-left: auto; font-variant-numeric: tabular-nums; }
+  .oe-nav-item:hover { background: var(--bg-hover); color: var(--fg-default); }
+  .oe-nav-item[aria-current="page"] { background: var(--bg-accent-muted); color: var(--fg-accent); font-weight: var(--font-weight-medium); }
+  .oe-page {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: var(--container-6xl);
+    margin-inline: auto;
+    padding: calc(var(--spacing) * 8);
+    padding-inline: max(calc(var(--spacing) * 8), env(safe-area-inset-left, 0px)) max(calc(var(--spacing) * 8), env(safe-area-inset-right, 0px));
+    padding-bottom: max(calc(var(--spacing) * 8), env(safe-area-inset-bottom, 0px));
+  }
+  .oe-page-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: calc(var(--spacing) * 3); margin-bottom: calc(var(--spacing) * 6); }
+  .oe-page-actions { display: flex; flex-wrap: wrap; gap: calc(var(--spacing) * 2); }
+  .oe-page-title { margin: 0; font-size: var(--text-2xl); font-weight: var(--font-weight-semibold); letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); text-wrap: balance; }
+  .oe-page-subtitle { margin: calc(var(--spacing) * 1) 0 0; color: var(--fg-muted); font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  @media (width >= 64rem) {
+    .oe-shell {
+      grid-template-columns: var(--oe-sidenav-width) minmax(0, 1fr);
+      height: 100dvh;
+      overflow: hidden;
+      transition: grid-template-columns 200ms var(--ease-out);
+    }
+    .oe-shell:has(.oe-shell-toggle[aria-expanded="false"]) { grid-template-columns: var(--oe-sidenav-rail) minmax(0, 1fr); }
+    .oe-shell:has(.oe-shell-toggle[aria-expanded="false"]) .oe-nav-heading { opacity: 0; }
+    .oe-shell:has(.oe-shell-toggle[aria-expanded="false"]) .oe-sidenav-body { scrollbar-width: none; }
+    .oe-shell-main {
+      grid-column: 2;
+      height: calc(100dvh - calc(var(--spacing) * 4));
+      margin: calc(var(--spacing) * 2) calc(var(--spacing) * 2) calc(var(--spacing) * 2) 0;
+      overflow-y: auto;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      scroll-padding-top: calc(var(--spacing) * 16);
+    }
+    .oe-shell-menu { display: none; }
+    /* Always shown at this width, including when it has the popover attribute. */
+    .oe-sidenav {
+      position: sticky;
+      inset: auto;
+      top: 0;
+      display: flex;
+      width: auto;
+      height: 100dvh;
+      border-right: 0;
+      background: transparent;
+    }
+    .oe-sidenav-brand { margin-top: calc(var(--spacing) * 2); border-bottom: 0; }
+    .oe-sidenav-foot { border-top: 0; }
+    /* A drawer left open as the window grows sits in the top layer until it's dismissed. */
+    .oe-sidenav:popover-open { position: fixed; inset: 0 auto 0 0; width: var(--oe-sidenav-width); background: var(--bg-surface); }
+    .oe-sidenav::backdrop { background: transparent; }
+  }
+  @media (width < 64rem) {
+    .oe-shell-toggle { display: none; }
+    .oe-sidenav {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: min(var(--oe-sidenav-width), calc(100vw - calc(var(--spacing) * 12)));
+      height: auto;
+      box-shadow: var(--shadow-overlay);
+      overscroll-behavior: contain;
+      translate: -100% 0;
+      transition: translate 200ms var(--ease-out), display 200ms allow-discrete, overlay 200ms allow-discrete;
+    }
+    .oe-sidenav:popover-open { display: flex; translate: 0 0; }
+    @starting-style {
+      .oe-sidenav:popover-open { translate: -100% 0; }
+    }
+  }
+  @media (width < 48rem) {
+    .oe-page {
+      padding: calc(var(--spacing) * 4);
+      padding-inline: max(calc(var(--spacing) * 4), env(safe-area-inset-left, 0px)) max(calc(var(--spacing) * 4), env(safe-area-inset-right, 0px));
+      padding-bottom: max(calc(var(--spacing) * 4), env(safe-area-inset-bottom, 0px));
+    }
+    .oe-breadcrumb li:not(:last-child) { display: none; }
+    .oe-breadcrumb li + li::before { content: none; }
+  }
+  /* Touch: 44px targets. Small controls keep their size and reach further with an invisible area. */
+  @media (pointer: coarse) {
+    .oe-btn, .oe-input, .oe-nav-item, .oe-menu-item, .oe-tabs > *, .oe-segmented > *, .oe-check-label { min-height: calc(var(--spacing) * 11); }
+    .oe-pagination > *, .oe-accordion > summary { min-height: calc(var(--spacing) * 11); }
+    .oe-pagination > * { min-width: calc(var(--spacing) * 11); }
+    .oe-btn-icon { width: calc(var(--spacing) * 11); }
+    .oe-btn-sm { position: relative; min-height: calc(var(--spacing) * 7); }
+    .oe-btn-icon.oe-btn-sm { width: calc(var(--spacing) * 7); }
+    .oe-btn-sm::after { content: ""; position: absolute; inset: calc(var(--spacing) * -2.25) 0; }
+    .oe-btn-icon.oe-btn-sm::after { inset: calc(var(--spacing) * -2.25); }
+    .oe-table-sort { position: relative; }
+    .oe-table-sort::after { content: ""; position: absolute; inset: calc(var(--spacing) * -3) 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :is(.oe-btn, .oe-input, .oe-table-sort, .oe-tabs > *, .oe-segmented > *, .oe-menu-item, .oe-nav-item, .oe-breadcrumb a, .oe-pagination > *, .oe-accordion > summary),
+    dialog.oe-dialog, dialog.oe-dialog::backdrop, .oe-menu[popover], .oe-switch, .oe-accordion > summary::after, .oe-shell, .oe-sidenav, .oe-nav-heading { transition: none; }
+    .oe-skeleton { animation: none; }
+  }
+}

@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { emitDtcg, emitDts, emitJs, emitTailwindCss, emitTokensCss } from '../src/emit.ts';
 import { buildModel } from '../src/tokens.ts';
 
@@ -10,6 +10,7 @@ const json = (value: unknown) => JSON.stringify(value, null, 2) + '\n';
 const model = buildModel();
 write('tokens.css', emitTokensCss(model));
 write('tailwind.css', emitTailwindCss(model));
+write('components.css', readFileSync(new URL('../src/components.css', import.meta.url)).toString());
 write('tokens.light.json', json(emitDtcg(model, 'light')));
 write('tokens.dark.json', json(emitDtcg(model, 'dark')));
 write('index.js', emitJs(model));

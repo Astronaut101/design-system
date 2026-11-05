@@ -24,9 +24,9 @@ export const searchIcons = (query: string, names: string[], tags: Record<string,
 export const mountIconBrowser = (root: HTMLElement) => {
   root.innerHTML = `
     <div class="icon-toolbar">
-      <label class="icon-search">
+      <label class="icon-search oe-input-group">
         ${lucideSvg('search')}
-        <input type="search" placeholder="Search icons" aria-label="Search icons" autocomplete="off" spellcheck="false" />
+        <input class="oe-input" type="search" placeholder="Search icons" aria-label="Search icons" autocomplete="off" spellcheck="false" />
       </label>
       <span class="icon-count" role="status"></span>
     </div>
@@ -34,7 +34,7 @@ export const mountIconBrowser = (root: HTMLElement) => {
       <div class="icon-tiles" role="group" aria-label="Lucide icons"></div>
       <p class="icon-empty" hidden>No matching icons</p>
     </div>
-    <div class="icon-tip" hidden></div>`;
+    <div class="oe-tooltip icon-tip" hidden></div>`;
 
   const input = root.querySelector<HTMLInputElement>('input')!;
   const count = root.querySelector<HTMLElement>('.icon-count')!;

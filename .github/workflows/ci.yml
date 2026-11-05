@@ -21,6 +21,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run typecheck
+      - run: npm run lint
       - name: Check dist matches the source
         run: git diff --exit-code -- dist
       - run: npm run site:build

@@ -410,7 +410,7 @@ const buildTable = (t: Figure['table']) => {
   const wrap = document.createElement('div');
   wrap.className = 'chart-table';
   const table = document.createElement('table');
-  table.className = 'data-table';
+  table.className = 'oe-table oe-table-compact';
   const headRow = table.createTHead().insertRow();
   for (const h of t.head) {
     const th = document.createElement('th');
@@ -434,13 +434,13 @@ export const mountCharts = (host: HTMLElement) => {
     const head = document.createElement('div');
     head.className = 'chart-head';
     const titles = document.createElement('div');
-    const h4 = document.createElement('h4');
-    h4.textContent = f.title;
+    const title = document.createElement('h2');
+    title.textContent = f.title;
     const sub = document.createElement('p');
     sub.textContent = f.subtitle;
-    titles.append(h4, sub);
+    titles.append(title, sub);
     const toggle = document.createElement('button');
-    toggle.className = 'table-toggle';
+    toggle.className = 'oe-btn oe-btn-secondary oe-btn-sm';
     toggle.type = 'button';
     toggle.textContent = 'Show table';
     toggle.setAttribute('aria-expanded', 'false');

@@ -1,22 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="description" content="Color roles, chart palettes and sizing for every Oestergaard-AS app, generated from one brand color with HCT." />
     <title>Oestergaard design system</title>
-    <script>
-      try {
-        var saved = localStorage.getItem('oe-theme');
-        if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
-      } catch (e) {}
-    </script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <div id="app"></div>
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
-    <script type="module" src="./main.ts"></script>
+    <script type="module" src="./pages/home.ts"></script>
   </body>
 </html>
