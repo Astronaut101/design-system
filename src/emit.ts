@@ -37,13 +37,22 @@ const chartDecls = (m: Model) => {
 
 const elevationDecls = (m: Model) => Object.entries(m.elevation).map(([name, value]) => `--shadow-${name}: ${value};`);
 
-const colorSections = (m: Model): [string, string[]][] => [
-  ['Internal tonal ramps. The number is the HCT tone. Apps should use the tokens below.', rampDecls(m)],
+const rampSection = (m: Model): [string, string[]] => [
+  'Internal tonal ramps. The number is the HCT tone. Apps should use the tokens below.',
+  rampDecls(m),
+];
+
+// Firefox and WebKit resolve light-dark() where a custom property is declared, not where it's used.
+// Declaring these on every data-theme element is what lets part of a page force a mode there.
+const MODE_SCOPE = ':root, [data-theme]';
+
+const modeSections = (m: Model): [string, string[]][] => [
   ['Text and icons.', roleDecls(m, 'fg')],
   ['Backgrounds.', roleDecls(m, 'bg')],
   ['Borders.', roleDecls(m, 'border')],
   ['Focus ring.', roleDecls(m, 'focus')],
   ['Chart palettes.', chartDecls(m)],
+  ['Mode-aware shadows.', elevationDecls(m)],
 ];
 
 const block = (selector: string, sections: [string, string[]][], indent = '') =>
@@ -56,11 +65,12 @@ export const emitTokensCss = (m: Model) =>
   SCHEME_RULES +
   '\n' +
   block(':root', [
-    ...colorSections(m),
-    ['Mode-aware shadows.', elevationDecls(m)],
+    rampSection(m),
     ['Sizing: Tailwind v4 defaults, unchanged.', m.sizing.map((t) => `${t.name}: ${t.value};`)],
     ['Spacing steps for apps without Tailwind.', m.spaceSteps.map((s) => `--space-${String(s).replace('.', '-')}: calc(var(--spacing) * ${s});`)],
-  ]);
+  ]) +
+  '\n' +
+  block(MODE_SCOPE, modeSections(m));
 
 // fg-* becomes text-*, bg-* stays bg-*, and border-* stays border-*. Each family exists only in
 // its own Tailwind namespace, so utilities such as text-accent-emphasis are never generated.
@@ -94,7 +104,8 @@ export const emitTailwindCss = (m: Model) =>
   `/* Import after tailwindcss. Sizing stays on Tailwind's defaults. The stock color palette is
    removed, so every color in utilities comes from the system. */
 @layer theme {
-${block(':root', colorSections(m), '  ')}}
+${block(':root', [rampSection(m)], '  ')}
+${block(MODE_SCOPE, modeSections(m), '  ')}}
 
 @theme inline {
   --color-*: initial;

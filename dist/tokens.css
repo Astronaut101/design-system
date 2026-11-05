@@ -232,116 +232,6 @@
   --ramp-blue-tint-99: #fefbff;
   --ramp-blue-tint-100: #ffffff;
 
-  /* Text and icons. */
-  --fg-default: light-dark(var(--ramp-neutral-10), var(--ramp-neutral-94));
-  --fg-muted: light-dark(var(--ramp-neutral-40), var(--ramp-neutral-70));
-  --fg-disabled: light-dark(var(--ramp-neutral-70), var(--ramp-neutral-40));
-  --fg-link: light-dark(var(--ramp-teal-40), var(--ramp-teal-80));
-  --fg-link-hover: light-dark(var(--ramp-teal-30), var(--ramp-teal-85));
-  --fg-on-inverse: light-dark(var(--ramp-neutral-95), var(--ramp-neutral-10));
-  --fg-on-accent: light-dark(var(--ramp-teal-100), var(--ramp-teal-10));
-  --fg-accent: light-dark(var(--ramp-teal-40), var(--ramp-teal-80));
-  --fg-on-neutral: light-dark(var(--ramp-neutral-100), var(--ramp-neutral-10));
-  --fg-on-danger: light-dark(var(--ramp-red-100), var(--ramp-red-10));
-  --fg-danger: light-dark(var(--ramp-red-40), var(--ramp-red-80));
-  --fg-on-warning: light-dark(var(--ramp-amber-10), var(--ramp-amber-10));
-  --fg-warning: light-dark(var(--ramp-amber-40), var(--ramp-amber-80));
-  --fg-on-success: light-dark(var(--ramp-green-100), var(--ramp-green-10));
-  --fg-success: light-dark(var(--ramp-green-35), var(--ramp-green-80));
-  --fg-on-info: light-dark(var(--ramp-blue-100), var(--ramp-blue-10));
-  --fg-info: light-dark(var(--ramp-blue-40), var(--ramp-blue-80));
-
-  /* Backgrounds. */
-  --bg-page: light-dark(var(--ramp-neutral-98), var(--ramp-neutral-6));
-  --bg-surface: light-dark(var(--ramp-neutral-100), var(--ramp-neutral-10));
-  --bg-raised: light-dark(var(--ramp-neutral-100), var(--ramp-neutral-15));
-  --bg-sunken: light-dark(var(--ramp-neutral-95), var(--ramp-neutral-4));
-  --bg-hover: light-dark(#1a1c1c12, #edeeed12);
-  --bg-pressed: light-dark(#1a1c1c1c, #edeeed1c);
-  --bg-disabled: light-dark(var(--ramp-neutral-94), var(--ramp-neutral-17));
-  --bg-inverse: light-dark(var(--ramp-neutral-20), var(--ramp-neutral-90));
-  --bg-scrim: light-dark(#1a1c1c73, #0c0f0fa6);
-  --bg-accent-emphasis: light-dark(var(--ramp-teal-48), var(--ramp-teal-70));
-  --bg-accent-emphasis-hover: light-dark(var(--ramp-teal-44), var(--ramp-teal-75));
-  --bg-accent-emphasis-active: light-dark(var(--ramp-teal-40), var(--ramp-teal-80));
-  --bg-accent-muted: light-dark(var(--ramp-teal-tint-95), var(--ramp-teal-tint-20));
-  --bg-accent-muted-hover: light-dark(var(--ramp-teal-tint-92), var(--ramp-teal-tint-25));
-  --bg-neutral-emphasis: light-dark(var(--ramp-neutral-25), var(--ramp-neutral-85));
-  --bg-neutral-emphasis-hover: light-dark(var(--ramp-neutral-20), var(--ramp-neutral-90));
-  --bg-neutral-emphasis-active: light-dark(var(--ramp-neutral-15), var(--ramp-neutral-94));
-  --bg-neutral-muted: light-dark(var(--ramp-neutral-92), var(--ramp-neutral-22));
-  --bg-neutral-muted-hover: light-dark(var(--ramp-neutral-88), var(--ramp-neutral-25));
-  --bg-danger-emphasis: light-dark(var(--ramp-red-40), var(--ramp-red-70));
-  --bg-danger-emphasis-hover: light-dark(var(--ramp-red-35), var(--ramp-red-75));
-  --bg-danger-emphasis-active: light-dark(var(--ramp-red-30), var(--ramp-red-80));
-  --bg-danger-muted: light-dark(var(--ramp-red-tint-95), var(--ramp-red-tint-20));
-  --bg-danger-muted-hover: light-dark(var(--ramp-red-tint-92), var(--ramp-red-tint-25));
-  --bg-warning-emphasis: light-dark(var(--ramp-amber-80), var(--ramp-amber-80));
-  --bg-warning-emphasis-hover: light-dark(var(--ramp-amber-75), var(--ramp-amber-85));
-  --bg-warning-emphasis-active: light-dark(var(--ramp-amber-70), var(--ramp-amber-90));
-  --bg-warning-muted: light-dark(var(--ramp-amber-tint-95), var(--ramp-amber-tint-20));
-  --bg-warning-muted-hover: light-dark(var(--ramp-amber-tint-92), var(--ramp-amber-tint-25));
-  --bg-success-emphasis: light-dark(var(--ramp-green-35), var(--ramp-green-78));
-  --bg-success-emphasis-hover: light-dark(var(--ramp-green-30), var(--ramp-green-82));
-  --bg-success-emphasis-active: light-dark(var(--ramp-green-25), var(--ramp-green-86));
-  --bg-success-muted: light-dark(var(--ramp-green-tint-95), var(--ramp-green-tint-20));
-  --bg-success-muted-hover: light-dark(var(--ramp-green-tint-92), var(--ramp-green-tint-25));
-  --bg-info-emphasis: light-dark(var(--ramp-blue-40), var(--ramp-blue-62));
-  --bg-info-emphasis-hover: light-dark(var(--ramp-blue-35), var(--ramp-blue-67));
-  --bg-info-emphasis-active: light-dark(var(--ramp-blue-30), var(--ramp-blue-72));
-  --bg-info-muted: light-dark(var(--ramp-blue-tint-95), var(--ramp-blue-tint-20));
-  --bg-info-muted-hover: light-dark(var(--ramp-blue-tint-92), var(--ramp-blue-tint-25));
-
-  /* Borders. */
-  --border-default: light-dark(var(--ramp-neutral-90), var(--ramp-neutral-22));
-  --border-strong: light-dark(var(--ramp-neutral-55), var(--ramp-neutral-50));
-  --border-disabled: light-dark(var(--ramp-neutral-92), var(--ramp-neutral-20));
-  --border-accent-emphasis: light-dark(var(--ramp-teal-50), var(--ramp-teal-60));
-  --border-accent-muted: light-dark(var(--ramp-teal-80), var(--ramp-teal-35));
-  --border-danger-emphasis: light-dark(var(--ramp-red-50), var(--ramp-red-60));
-  --border-danger-muted: light-dark(var(--ramp-red-80), var(--ramp-red-35));
-  --border-warning-emphasis: light-dark(var(--ramp-amber-55), var(--ramp-amber-60));
-  --border-warning-muted: light-dark(var(--ramp-amber-85), var(--ramp-amber-35));
-  --border-success-emphasis: light-dark(var(--ramp-green-50), var(--ramp-green-60));
-  --border-success-muted: light-dark(var(--ramp-green-80), var(--ramp-green-35));
-  --border-info-emphasis: light-dark(var(--ramp-blue-50), var(--ramp-blue-60));
-  --border-info-muted: light-dark(var(--ramp-blue-80), var(--ramp-blue-35));
-
-  /* Focus ring. */
-  --focus: light-dark(var(--ramp-teal-48), var(--ramp-teal-80));
-
-  /* Chart palettes. */
-  --chart-1: light-dark(#009091, #00d0d2);
-  --chart-2: light-dark(#e86677, #c84d5f);
-  --chart-3: light-dark(#7949bb, #b989ff);
-  --chart-4: light-dark(#a28a00, #c1a400);
-  --chart-5: light-dark(#3193f4, #0079d4);
-  --chart-6: light-dark(#499735, #53a23e);
-  --chart-7: light-dark(#d86f07, #d86f07);
-  --chart-8: light-dark(#8e2c7b, #d065b6);
-  --chart-seq-1: light-dark(#c4eae9, #004343);
-  --chart-seq-2: light-dark(#72d6d7, #005c5d);
-  --chart-seq-3: light-dark(#52bbbb, #007778);
-  --chart-seq-4: light-dark(#309fa0, #1a9293);
-  --chart-seq-5: light-dark(#008586, #42adae);
-  --chart-seq-6: light-dark(#00696a, #61c8c9);
-  --chart-seq-7: light-dark(#004f50, #9fe0e0);
-  --chart-div-1: light-dark(#994700, #ffb68b);
-  --chart-div-2: light-dark(#d0660f, #f17f2c);
-  --chart-div-3: light-dark(#ff8d3f, #bf5a00);
-  --chart-div-4: light-dark(#ffc9aa, #873d00);
-  --chart-div-5: light-dark(#e8e8e7, #3a3c3c);
-  --chart-div-6: light-dark(#9fe0e0, #005c5d);
-  --chart-div-7: light-dark(#52bbbb, #008586);
-  --chart-div-8: light-dark(#1a9293, #42adae);
-  --chart-div-9: light-dark(#00696a, #72d6d7);
-  --chart-grid: light-dark(#e8e8e7, #2e3131);
-  --chart-axis: light-dark(#b8b9b8, #515352);
-
-  /* Mode-aware shadows. */
-  --shadow-raised: 0 1px 3px 0 light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.45)), 0 1px 2px -1px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.45));
-  --shadow-overlay: 0 10px 15px -3px light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.55)), 0 4px 6px -4px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.55));
-
   /* Sizing: Tailwind v4 defaults, unchanged. */
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -453,4 +343,116 @@
   --space-20: calc(var(--spacing) * 20);
   --space-24: calc(var(--spacing) * 24);
   --space-32: calc(var(--spacing) * 32);
+}
+
+:root, [data-theme] {
+  /* Text and icons. */
+  --fg-default: light-dark(var(--ramp-neutral-10), var(--ramp-neutral-94));
+  --fg-muted: light-dark(var(--ramp-neutral-40), var(--ramp-neutral-70));
+  --fg-disabled: light-dark(var(--ramp-neutral-70), var(--ramp-neutral-40));
+  --fg-link: light-dark(var(--ramp-teal-40), var(--ramp-teal-80));
+  --fg-link-hover: light-dark(var(--ramp-teal-30), var(--ramp-teal-85));
+  --fg-on-inverse: light-dark(var(--ramp-neutral-95), var(--ramp-neutral-10));
+  --fg-on-accent: light-dark(var(--ramp-teal-100), var(--ramp-teal-10));
+  --fg-accent: light-dark(var(--ramp-teal-40), var(--ramp-teal-80));
+  --fg-on-neutral: light-dark(var(--ramp-neutral-100), var(--ramp-neutral-10));
+  --fg-on-danger: light-dark(var(--ramp-red-100), var(--ramp-red-10));
+  --fg-danger: light-dark(var(--ramp-red-40), var(--ramp-red-80));
+  --fg-on-warning: light-dark(var(--ramp-amber-10), var(--ramp-amber-10));
+  --fg-warning: light-dark(var(--ramp-amber-40), var(--ramp-amber-80));
+  --fg-on-success: light-dark(var(--ramp-green-100), var(--ramp-green-10));
+  --fg-success: light-dark(var(--ramp-green-35), var(--ramp-green-80));
+  --fg-on-info: light-dark(var(--ramp-blue-100), var(--ramp-blue-10));
+  --fg-info: light-dark(var(--ramp-blue-40), var(--ramp-blue-80));
+
+  /* Backgrounds. */
+  --bg-page: light-dark(var(--ramp-neutral-98), var(--ramp-neutral-6));
+  --bg-surface: light-dark(var(--ramp-neutral-100), var(--ramp-neutral-10));
+  --bg-raised: light-dark(var(--ramp-neutral-100), var(--ramp-neutral-15));
+  --bg-sunken: light-dark(var(--ramp-neutral-95), var(--ramp-neutral-4));
+  --bg-hover: light-dark(#1a1c1c12, #edeeed12);
+  --bg-pressed: light-dark(#1a1c1c1c, #edeeed1c);
+  --bg-disabled: light-dark(var(--ramp-neutral-94), var(--ramp-neutral-17));
+  --bg-inverse: light-dark(var(--ramp-neutral-20), var(--ramp-neutral-90));
+  --bg-scrim: light-dark(#1a1c1c73, #0c0f0fa6);
+  --bg-accent-emphasis: light-dark(var(--ramp-teal-48), var(--ramp-teal-70));
+  --bg-accent-emphasis-hover: light-dark(var(--ramp-teal-44), var(--ramp-teal-75));
+  --bg-accent-emphasis-active: light-dark(var(--ramp-teal-40), var(--ramp-teal-80));
+  --bg-accent-muted: light-dark(var(--ramp-teal-tint-95), var(--ramp-teal-tint-20));
+  --bg-accent-muted-hover: light-dark(var(--ramp-teal-tint-92), var(--ramp-teal-tint-25));
+  --bg-neutral-emphasis: light-dark(var(--ramp-neutral-25), var(--ramp-neutral-85));
+  --bg-neutral-emphasis-hover: light-dark(var(--ramp-neutral-20), var(--ramp-neutral-90));
+  --bg-neutral-emphasis-active: light-dark(var(--ramp-neutral-15), var(--ramp-neutral-94));
+  --bg-neutral-muted: light-dark(var(--ramp-neutral-92), var(--ramp-neutral-22));
+  --bg-neutral-muted-hover: light-dark(var(--ramp-neutral-88), var(--ramp-neutral-25));
+  --bg-danger-emphasis: light-dark(var(--ramp-red-40), var(--ramp-red-70));
+  --bg-danger-emphasis-hover: light-dark(var(--ramp-red-35), var(--ramp-red-75));
+  --bg-danger-emphasis-active: light-dark(var(--ramp-red-30), var(--ramp-red-80));
+  --bg-danger-muted: light-dark(var(--ramp-red-tint-95), var(--ramp-red-tint-20));
+  --bg-danger-muted-hover: light-dark(var(--ramp-red-tint-92), var(--ramp-red-tint-25));
+  --bg-warning-emphasis: light-dark(var(--ramp-amber-80), var(--ramp-amber-80));
+  --bg-warning-emphasis-hover: light-dark(var(--ramp-amber-75), var(--ramp-amber-85));
+  --bg-warning-emphasis-active: light-dark(var(--ramp-amber-70), var(--ramp-amber-90));
+  --bg-warning-muted: light-dark(var(--ramp-amber-tint-95), var(--ramp-amber-tint-20));
+  --bg-warning-muted-hover: light-dark(var(--ramp-amber-tint-92), var(--ramp-amber-tint-25));
+  --bg-success-emphasis: light-dark(var(--ramp-green-35), var(--ramp-green-78));
+  --bg-success-emphasis-hover: light-dark(var(--ramp-green-30), var(--ramp-green-82));
+  --bg-success-emphasis-active: light-dark(var(--ramp-green-25), var(--ramp-green-86));
+  --bg-success-muted: light-dark(var(--ramp-green-tint-95), var(--ramp-green-tint-20));
+  --bg-success-muted-hover: light-dark(var(--ramp-green-tint-92), var(--ramp-green-tint-25));
+  --bg-info-emphasis: light-dark(var(--ramp-blue-40), var(--ramp-blue-62));
+  --bg-info-emphasis-hover: light-dark(var(--ramp-blue-35), var(--ramp-blue-67));
+  --bg-info-emphasis-active: light-dark(var(--ramp-blue-30), var(--ramp-blue-72));
+  --bg-info-muted: light-dark(var(--ramp-blue-tint-95), var(--ramp-blue-tint-20));
+  --bg-info-muted-hover: light-dark(var(--ramp-blue-tint-92), var(--ramp-blue-tint-25));
+
+  /* Borders. */
+  --border-default: light-dark(var(--ramp-neutral-90), var(--ramp-neutral-22));
+  --border-strong: light-dark(var(--ramp-neutral-55), var(--ramp-neutral-50));
+  --border-disabled: light-dark(var(--ramp-neutral-92), var(--ramp-neutral-20));
+  --border-accent-emphasis: light-dark(var(--ramp-teal-50), var(--ramp-teal-60));
+  --border-accent-muted: light-dark(var(--ramp-teal-80), var(--ramp-teal-35));
+  --border-danger-emphasis: light-dark(var(--ramp-red-50), var(--ramp-red-60));
+  --border-danger-muted: light-dark(var(--ramp-red-80), var(--ramp-red-35));
+  --border-warning-emphasis: light-dark(var(--ramp-amber-55), var(--ramp-amber-60));
+  --border-warning-muted: light-dark(var(--ramp-amber-85), var(--ramp-amber-35));
+  --border-success-emphasis: light-dark(var(--ramp-green-50), var(--ramp-green-60));
+  --border-success-muted: light-dark(var(--ramp-green-80), var(--ramp-green-35));
+  --border-info-emphasis: light-dark(var(--ramp-blue-50), var(--ramp-blue-60));
+  --border-info-muted: light-dark(var(--ramp-blue-80), var(--ramp-blue-35));
+
+  /* Focus ring. */
+  --focus: light-dark(var(--ramp-teal-48), var(--ramp-teal-80));
+
+  /* Chart palettes. */
+  --chart-1: light-dark(#009091, #00d0d2);
+  --chart-2: light-dark(#e86677, #c84d5f);
+  --chart-3: light-dark(#7949bb, #b989ff);
+  --chart-4: light-dark(#a28a00, #c1a400);
+  --chart-5: light-dark(#3193f4, #0079d4);
+  --chart-6: light-dark(#499735, #53a23e);
+  --chart-7: light-dark(#d86f07, #d86f07);
+  --chart-8: light-dark(#8e2c7b, #d065b6);
+  --chart-seq-1: light-dark(#c4eae9, #004343);
+  --chart-seq-2: light-dark(#72d6d7, #005c5d);
+  --chart-seq-3: light-dark(#52bbbb, #007778);
+  --chart-seq-4: light-dark(#309fa0, #1a9293);
+  --chart-seq-5: light-dark(#008586, #42adae);
+  --chart-seq-6: light-dark(#00696a, #61c8c9);
+  --chart-seq-7: light-dark(#004f50, #9fe0e0);
+  --chart-div-1: light-dark(#994700, #ffb68b);
+  --chart-div-2: light-dark(#d0660f, #f17f2c);
+  --chart-div-3: light-dark(#ff8d3f, #bf5a00);
+  --chart-div-4: light-dark(#ffc9aa, #873d00);
+  --chart-div-5: light-dark(#e8e8e7, #3a3c3c);
+  --chart-div-6: light-dark(#9fe0e0, #005c5d);
+  --chart-div-7: light-dark(#52bbbb, #008586);
+  --chart-div-8: light-dark(#1a9293, #42adae);
+  --chart-div-9: light-dark(#00696a, #72d6d7);
+  --chart-grid: light-dark(#e8e8e7, #2e3131);
+  --chart-axis: light-dark(#b8b9b8, #515352);
+
+  /* Mode-aware shadows. */
+  --shadow-raised: 0 1px 3px 0 light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.45)), 0 1px 2px -1px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.45));
+  --shadow-overlay: 0 10px 15px -3px light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.55)), 0 4px 6px -4px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.55));
 }

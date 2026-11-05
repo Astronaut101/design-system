@@ -9,7 +9,7 @@ import { ICON_NODES } from '../site/icons.ts';
 import { CHART_GATES, PAIRWISE_SLOTS, minSeparation, type Mode } from '../src/chart-gates.ts';
 import palette from '../src/chart-palette.json';
 import { composite, deltaE, oklch } from '../src/color-math.ts';
-import { emitDtcg, emitTailwindCss } from '../src/emit.ts';
+import { emitDtcg, emitTailwindCss, emitTokensCss } from '../src/emit.ts';
 import { toHct } from '../src/hct.ts';
 import { ICON_SIZES } from '../src/icons.ts';
 import { INTENT_NAMES, RAMP_STOPS, SEED, chartSurface } from '../src/spec.ts';
@@ -223,6 +223,21 @@ describe('icons', () => {
 
   it('keeps icon sizes on the spacing scale', () => {
     for (const step of Object.values(ICON_SIZES)) expect(SPACE_STEPS).toContain(step);
+  });
+});
+
+describe('data-theme scoping', () => {
+  // Firefox and WebKit fix light-dark() where it's declared, so a scope needs its own declarations.
+  it.each([
+    ['tokens.css', emitTokensCss],
+    ['tailwind.css', emitTailwindCss],
+  ])('redeclares every mode-aware token on data-theme elements in %s', (_file, emit) => {
+    const css = emit(model);
+    const scoped = css.match(/:root, \[data-theme\] \{([^}]*)\}/)?.[1] ?? '';
+    for (const role of model.roles) expect(scoped).toContain(`--${role.name}: light-dark(`);
+    for (const name of Object.keys(model.elevation)) expect(scoped).toContain(`--shadow-${name}:`);
+    expect(scoped).toContain('--chart-1: light-dark(');
+    expect(scoped).not.toContain('--ramp-neutral-98:');
   });
 });
 

@@ -230,7 +230,9 @@
     --ramp-blue-tint-98: #faf8ff;
     --ramp-blue-tint-99: #fefbff;
     --ramp-blue-tint-100: #ffffff;
+  }
 
+  :root, [data-theme] {
     /* Text and icons. */
     --fg-default: light-dark(var(--ramp-neutral-10), var(--ramp-neutral-94));
     --fg-muted: light-dark(var(--ramp-neutral-40), var(--ramp-neutral-70));
@@ -336,6 +338,10 @@
     --chart-div-9: light-dark(#00696a, #72d6d7);
     --chart-grid: light-dark(#e8e8e7, #2e3131);
     --chart-axis: light-dark(#b8b9b8, #515352);
+
+    /* Mode-aware shadows. */
+    --shadow-raised: 0 1px 3px 0 light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.45)), 0 1px 2px -1px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.45));
+    --shadow-overlay: 0 10px 15px -3px light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.55)), 0 4px 6px -4px light-dark(rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.55));
   }
 }
 
