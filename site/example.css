@@ -1,3 +1,0 @@
-/* All an app needs on top of the package: its page base and its own layout. */
-body { margin: 0; font-family: var(--font-sans); font-size: var(--text-base); line-height: var(--leading-relaxed); }
-.example-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(calc(var(--spacing) * 28), 1fr)); gap: calc(var(--spacing) * 6); margin: 0 0 calc(var(--spacing) * 8); }

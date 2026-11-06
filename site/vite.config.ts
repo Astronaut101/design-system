@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
-import { PAGES } from './nav.ts';
+import { PAGES, TEMPLATES } from './nav.ts';
 
 const entry = (path: string) => fileURLToPath(new URL(`${path}index.html`, import.meta.url));
 
@@ -43,7 +43,7 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {
-      input: Object.fromEntries([...PAGES.map((p) => [p.id, entry(p.path)]), ['layout-example', entry('layout/example/')]]),
+      input: Object.fromEntries([...PAGES.map((p) => [p.id, entry(p.path)]), ...TEMPLATES.map((t) => [t.id, entry(`layout/${t.id}/`)])]),
     },
   },
 });

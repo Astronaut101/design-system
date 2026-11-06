@@ -1,0 +1,191 @@
+<!doctype html>
+<!-- A list of records: search, filters, selection, bulk actions, pagination, and the empty states. -->
+<!-- <i data-lucide="plus"></i> stands for that Lucide icon. Use your framework's icon component. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orders · Northwind</title>
+    <link rel="stylesheet" href="../dist/tokens.css" />
+    <link rel="stylesheet" href="../dist/components.css" />
+    <style>
+      body { margin: 0; font-family: var(--font-sans); font-size: var(--text-base); line-height: var(--leading-relaxed); }
+    </style>
+  </head>
+  <body>
+    <a class="oe-skip-link" href="#main">Skip to content</a>
+    <div class="oe-shell">
+      <nav class="oe-sidenav" id="nav" popover aria-label="Pages">
+        <a class="oe-sidenav-brand" href="/"><i data-lucide="package"></i>Northwind</a>
+        <div class="oe-sidenav-body">
+          <ul class="oe-nav-list">
+            <li><a class="oe-nav-item" href="/" title="Overview"><i data-lucide="house"></i>Overview</a></li>
+            <li><a class="oe-nav-item" href="/orders" title="Orders" aria-current="page"><i data-lucide="package"></i>Orders<span class="oe-badge oe-badge-neutral">12</span></a></li>
+            <li><a class="oe-nav-item" href="#" title="Shipments"><i data-lucide="truck"></i>Shipments</a></li>
+            <li><a class="oe-nav-item" href="#" title="Invoices"><i data-lucide="file-text"></i>Invoices<span class="oe-badge oe-badge-neutral">3</span></a></li>
+          </ul>
+          <p class="oe-nav-heading">Team</p>
+          <ul class="oe-nav-list">
+            <li><a class="oe-nav-item" href="#" title="Customers"><i data-lucide="users"></i>Customers</a></li>
+            <li><a class="oe-nav-item" href="#" title="Reports"><i data-lucide="chart-column"></i>Reports</a></li>
+          </ul>
+        </div>
+        <div class="oe-sidenav-foot">
+          <a class="oe-nav-item" href="/settings" title="Settings"><i data-lucide="settings"></i>Settings</a>
+          <a class="oe-nav-item" href="/sign-in" title="Maja Holm"><span class="oe-avatar">MH</span>Maja Holm</a>
+        </div>
+      </nav>
+      <div class="oe-shell-main">
+        <header class="oe-topbar">
+          <button class="oe-btn oe-btn-ghost oe-btn-icon oe-shell-menu" type="button" popovertarget="nav" aria-label="Open navigation"><i data-lucide="menu"></i></button>
+          <button class="oe-btn oe-btn-ghost oe-btn-icon oe-shell-toggle" type="button" aria-expanded="true" aria-controls="nav" aria-label="Toggle sidebar" title="Toggle sidebar"><i data-lucide="panel-left"></i></button>
+          <nav class="oe-breadcrumb" aria-label="Breadcrumb">
+            <ol><li><a href="/">Northwind</a></li><li aria-current="page">Orders</li></ol>
+          </nav>
+          <div class="oe-topbar-actions">
+            <button class="oe-btn oe-btn-ghost oe-btn-icon" type="button" aria-label="Search" title="Search"><i data-lucide="search"></i></button>
+            <button class="oe-btn oe-btn-ghost oe-btn-icon" type="button" aria-label="Notifications" title="Notifications"><i data-lucide="bell"></i></button>
+          </div>
+        </header>
+        <main class="oe-page" id="main">
+          <header class="oe-page-head">
+            <div>
+              <h1 class="oe-page-title">Orders</h1>
+              <p class="oe-page-subtitle">128 orders</p>
+            </div>
+            <div class="oe-page-actions">
+              <button class="oe-btn oe-btn-secondary" type="button"><i data-lucide="download"></i>Export</button>
+              <a class="oe-btn oe-btn-primary" href="/orders/new"><i data-lucide="plus"></i>New order</a>
+            </div>
+          </header>
+          <div class="oe-card oe-card-flush">
+            <p class="oe-sr-only" role="status"></p>
+            <div class="oe-toolbar">
+              <label class="oe-input-group"><i data-lucide="search"></i><input class="oe-input" type="search" placeholder="Search orders…" aria-label="Search orders" /></label>
+              <select class="oe-input" aria-label="Filter by status">
+                <option>All statuses</option>
+                <option>Paid</option>
+                <option>Due soon</option>
+                <option>Overdue</option>
+              </select>
+              <span class="oe-badge oe-badge-neutral">Due this month<button class="oe-badge-remove" type="button" aria-label="Remove the filter Due this month"><i data-lucide="x"></i></button></span>
+              <button class="oe-btn oe-btn-quiet oe-btn-sm" type="button">Clear filters</button>
+            </div>
+            <!-- While rows are selected: show this in place of the filters, put the count in it and in the status above, and add oe-row-selected to those rows. Clear moves focus to the select-all box. -->
+            <div class="oe-toolbar oe-toolbar-selection" hidden>
+              <span>2 selected</span>
+              <button class="oe-btn oe-btn-quiet oe-btn-sm" type="button">Clear</button>
+              <div class="oe-toolbar-end">
+                <button class="oe-btn oe-btn-secondary oe-btn-sm" type="button"><i data-lucide="archive"></i>Archive</button>
+                <button class="oe-btn oe-btn-secondary oe-btn-sm" type="button"><i data-lucide="trash"></i>Delete</button>
+              </div>
+            </div>
+            <div class="oe-table-wrap">
+              <table class="oe-table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="oe-table-select oe-hide-narrow"><input class="oe-check" type="checkbox" aria-label="Select all orders" /></th>
+                    <th scope="col" aria-sort="descending"><button class="oe-table-sort" type="button">Order<i data-lucide="arrow-down"></i></button></th>
+                    <th scope="col"><button class="oe-table-sort" type="button">Customer<i data-lucide="arrow-up-down"></i></button></th>
+                    <th scope="col" class="oe-hide-narrow"><button class="oe-table-sort" type="button">Date<i data-lucide="arrow-up-down"></i></button></th>
+                    <th scope="col">Status</th>
+                    <th scope="col" class="oe-table-num">Amount</th>
+                    <th scope="col" class="oe-table-actions oe-hide-narrow"><span class="oe-sr-only">Actions</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="oe-table-select oe-hide-narrow"><input class="oe-check" type="checkbox" aria-label="Select order 2041" /></td>
+                    <td><a class="oe-table-link" href="/orders/2041">2041</a></td>
+                    <td class="oe-table-truncate">Nordic Freight</td>
+                    <td class="oe-hide-narrow">Nov 5</td>
+                    <td><span class="oe-badge oe-badge-success"><i data-lucide="circle-check"></i>Paid</span></td>
+                    <td class="oe-table-num">$12,400</td>
+                    <td class="oe-table-actions oe-table-reveal oe-hide-narrow"><button class="oe-btn oe-btn-quiet oe-btn-icon oe-btn-sm" type="button" aria-label="More for order 2041"><i data-lucide="ellipsis"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td class="oe-table-select oe-hide-narrow"><input class="oe-check" type="checkbox" aria-label="Select order 2040" /></td>
+                    <td><a class="oe-table-link" href="/orders/2041">2040</a></td>
+                    <td class="oe-table-truncate">Fjord Marine</td>
+                    <td class="oe-hide-narrow">Nov 4</td>
+                    <td><span class="oe-badge oe-badge-warning"><i data-lucide="triangle-exclamation-point"></i>Due soon</span></td>
+                    <td class="oe-table-num">$8,150</td>
+                    <td class="oe-table-actions oe-table-reveal oe-hide-narrow"><button class="oe-btn oe-btn-quiet oe-btn-icon oe-btn-sm" type="button" aria-label="More for order 2040"><i data-lucide="ellipsis"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td class="oe-table-select oe-hide-narrow"><input class="oe-check" type="checkbox" aria-label="Select order 2039" /></td>
+                    <td><a class="oe-table-link" href="/orders/2041">2039</a></td>
+                    <td class="oe-table-truncate">Havn Logistics</td>
+                    <td class="oe-hide-narrow">Oct 28</td>
+                    <td><span class="oe-badge oe-badge-danger"><i data-lucide="circle-x"></i>Overdue</span></td>
+                    <td class="oe-table-num">$3,920</td>
+                    <td class="oe-table-actions oe-table-reveal oe-hide-narrow"><button class="oe-btn oe-btn-quiet oe-btn-icon oe-btn-sm" type="button" aria-label="More for order 2039"><i data-lucide="ellipsis"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td class="oe-table-select oe-hide-narrow"><input class="oe-check" type="checkbox" aria-label="Select order 2038" /></td>
+                    <td><a class="oe-table-link" href="/orders/2041">2038</a></td>
+                    <td class="oe-table-truncate">Bakke Byg</td>
+                    <td class="oe-hide-narrow">Oct 27</td>
+                    <td><span class="oe-badge oe-badge-info"><i data-lucide="info"></i>Draft</span></td>
+                    <td class="oe-table-num">$1,780</td>
+                    <td class="oe-table-actions oe-table-reveal oe-hide-narrow"><button class="oe-btn oe-btn-quiet oe-btn-icon oe-btn-sm" type="button" aria-label="More for order 2038"><i data-lucide="ellipsis"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td class="oe-table-select oe-hide-narrow"><input class="oe-check" type="checkbox" aria-label="Select order 2037" /></td>
+                    <td><a class="oe-table-link" href="/orders/2041">2037</a></td>
+                    <td class="oe-table-truncate">Lund Transport</td>
+                    <td class="oe-hide-narrow">Oct 24</td>
+                    <td><span class="oe-badge oe-badge-success"><i data-lucide="circle-check"></i>Paid</span></td>
+                    <td class="oe-table-num">$6,300</td>
+                    <td class="oe-table-actions oe-table-reveal oe-hide-narrow"><button class="oe-btn oe-btn-quiet oe-btn-icon oe-btn-sm" type="button" aria-label="More for order 2037"><i data-lucide="ellipsis"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td class="oe-table-select oe-hide-narrow"><input class="oe-check" type="checkbox" aria-label="Select order 2036" /></td>
+                    <td><a class="oe-table-link" href="/orders/2041">2036</a></td>
+                    <td class="oe-table-truncate">Skov & Sønner</td>
+                    <td class="oe-hide-narrow">Oct 22</td>
+                    <td><span class="oe-badge oe-badge-success"><i data-lucide="circle-check"></i>Paid</span></td>
+                    <td class="oe-table-num">$2,640</td>
+                    <td class="oe-table-actions oe-table-reveal oe-hide-narrow"><button class="oe-btn oe-btn-quiet oe-btn-icon oe-btn-sm" type="button" aria-label="More for order 2036"><i data-lucide="ellipsis"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="oe-toolbar">
+              <span>1–6 of 128 orders</span>
+              <nav class="oe-pagination oe-toolbar-end" aria-label="Pages">
+                <a href="#" aria-label="Previous page"><i data-lucide="arrow-left"></i></a>
+                <a href="#" aria-current="page">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <span aria-disabled="true">…</span>
+                <a href="#">22</a>
+                <a href="#" aria-label="Next page"><i data-lucide="arrow-right"></i></a>
+              </nav>
+            </div>
+          </div>
+
+          <!-- Use this row in the tbody when filters match nothing. -->
+          <template id="no-results">
+            <tr><td class="oe-table-empty" colspan="7">No orders match these filters.</td></tr>
+          </template>
+
+          <!-- Use these rows in the tbody, with aria-busy="true" on the table, while orders load. -->
+          <template id="loading">
+            <tr style="height: 49px"><td class="oe-table-select oe-hide-narrow"></td><td><span class="oe-skeleton" style="width: 40px"></span></td><td><span class="oe-skeleton" style="width: 120px"></span></td><td class="oe-hide-narrow"><span class="oe-skeleton" style="width: 48px"></span></td><td><span class="oe-skeleton" style="width: 64px"></span></td><td class="oe-table-num"><span class="oe-skeleton" style="width: 56px; margin-left: auto"></span></td><td class="oe-table-actions oe-hide-narrow"></td></tr>
+          </template>
+
+          <!-- Use this in place of the card when there are no orders at all. -->
+          <template id="empty">
+            <div class="oe-empty">
+              <i data-lucide="package"></i>
+              <p class="oe-empty-title">No orders yet</p>
+              <p class="oe-empty-text">New orders show up here.</p>
+              <a class="oe-btn oe-btn-primary" href="/orders/new"><i data-lucide="plus"></i>New order</a>
+            </div>
+          </template>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

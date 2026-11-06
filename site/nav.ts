@@ -9,4 +9,14 @@ export const PAGES = [
   { id: 'sizing', label: 'Sizing', icon: 'ruler', path: 'sizing/' },
 ] as const;
 
+// The page templates in templates/, each with its own page under layout/.
+export const TEMPLATES = [
+  { id: 'data-table', label: 'Data table' },
+  { id: 'dashboard', label: 'Dashboard' },
+  { id: 'detail', label: 'Detail' },
+  { id: 'form', label: 'Form' },
+  { id: 'settings', label: 'Settings' },
+  { id: 'sign-in', label: 'Sign-in' },
+] as const;
+
 export type PageId = (typeof PAGES)[number]['id'];

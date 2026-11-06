@@ -6,9 +6,10 @@ Follow this when you write UI in an app that uses `@oestergaard/design-tokens`. 
 
 Use the first option that fits:
 
-1. A component class from the table below.
-2. A token: `var(--bg-surface)` in CSS, or `bg-surface` in Tailwind.
-3. Tailwind utilities or `--space-*` for layout and spacing.
+1. For a new page, a page template.
+2. A component class from the table below.
+3. A token: `var(--bg-surface)` in CSS, or `bg-surface` in Tailwind.
+4. Tailwind utilities or `--space-*` for layout and spacing.
 
 Never write a raw color, a `--ramp-*` variable or a dark-mode override. Tokens already change with the mode.
 
@@ -37,14 +38,14 @@ The classes set the look only. You add behavior and ARIA, such as arrow keys for
 
 | Component | Classes |
 | --- | --- |
-| Button | `oe-btn` with one of `oe-btn-primary`, `oe-btn-secondary`, `oe-btn-ghost`, `oe-btn-quiet`, `oe-btn-neutral`, `oe-btn-danger`. Ghost is accent colored and quiet is neutral, for low-priority actions. Add `oe-btn-sm` (28px) or `oe-btn-lg` (40px) to change the default 32px, and `oe-btn-icon` for a square icon button, which needs an `aria-label` |
+| Button | `oe-btn` with one of `oe-btn-primary`, `oe-btn-secondary`, `oe-btn-ghost`, `oe-btn-quiet`, `oe-btn-neutral`, `oe-btn-danger`. Ghost is accent colored and quiet is neutral, for low-priority actions. Add `oe-btn-sm` (28px) or `oe-btn-lg` (40px) to change the default 32px, `oe-btn-icon` for a square icon button, which needs an `aria-label`, and `oe-btn-block` to fill the width |
 | Button states | `aria-busy="true"` shows a spinner: keep the label and stop repeat clicks. `aria-pressed="true"` shows a toggled button |
 | Button group | `oe-btn-group` around `oe-btn oe-btn-secondary` buttons. With `aria-pressed`, it's a toggle group |
 | Field | `oe-field` around `oe-field-label`, an input and `oe-field-help` or `oe-field-error`. Add `oe-field-required` to the label and `required` to the input. Add `oe-field-inline` to put the label beside the input |
-| Form layout | `oe-form` around fields, `oe-form-row` for fields side by side, `oe-form-actions` for its buttons |
+| Form layout | `oe-form` around fields, `oe-form-row` for fields side by side, `oe-form-actions` for its buttons. On a long form, add `oe-form-actions-sticky` to keep them in view |
 | Group of options | `oe-fieldset` on a `<fieldset>`, with `oe-fieldset-legend` on its `<legend>` |
 | Input, select, textarea | `oe-input`, with `oe-input-sm` or `oe-input-lg` to match button sizes. Set `aria-invalid="true"` for errors. Add `oe-input-autogrow` to a textarea, and `oe-input-code` to a single one-time-code input with `autocomplete="one-time-code"` |
-| Input with icon | `oe-input-group` around an `svg` and an `oe-input`, with an optional `oe-kbd` key hint |
+| Input with icon | `oe-input-group` around an `svg` and an `oe-input`, with an optional `oe-kbd` key hint or a trailing `oe-close`, such as a show-password button |
 | Checkbox, radio | `oe-check` inside `oe-check-label` |
 | Switch | `oe-switch` on `<input type="checkbox" role="switch">`, inside `oe-check-label` |
 | Radio cards | `oe-radio-card` on a `<label>`, around an `oe-check` radio and `oe-radio-card-title` and `oe-radio-card-text` |
@@ -55,10 +56,10 @@ The classes set the look only. You add behavior and ARIA, such as arrow keys for
 | Alert | `oe-alert` with one of `oe-alert-accent`, `oe-alert-info`, `oe-alert-success`, `oe-alert-warning`, `oe-alert-danger`. Put the icon first, then one element of text, which can hold `oe-alert-title` and `oe-alert-actions`. An `oe-close` can come last |
 | Banner | `oe-banner` across the top of the page, with `oe-banner-accent`, `oe-banner-info`, `oe-banner-warning` or `oe-banner-danger`. Put the icon first, then one element of text |
 | Close button | `oe-close`, with an `aria-label` and an X icon |
-| Card | `oe-card`, with `oe-card-head` around `oe-card-title` and `oe-card-subtitle`, and `oe-card-foot` for buttons. A table directly inside lines up with the title. For a table running edge to edge, add `oe-card-flush`, which has no padding, and wrap anything else that needs padding in `oe-card-body` |
-| Stat | `oe-stat` around `oe-stat-label`, `oe-stat-value` and `oe-stat-delta`, with `oe-stat-delta-success` or `oe-stat-delta-danger`. It has a line above it and no box, so don't wrap each one in a card |
-| Table | `oe-table-wrap` around `oe-table`, which has no outer frame, with `oe-table-compact` or `oe-table-sticky`. Cells can use `oe-table-num`, `oe-table-empty`, `oe-table-actions`, `oe-table-select` and `oe-table-truncate`. Rows can use `oe-row-selected`. Sort buttons use `oe-table-sort`, with `aria-sort` on the `th` |
-| Toolbar | `oe-toolbar` directly above or below an `oe-table-wrap` or other content, with `oe-toolbar-end` for the right side |
+| Card | `oe-card`, with `oe-card-head` around `oe-card-title` and `oe-card-subtitle`, and `oe-card-foot` for buttons. A table directly inside lines up with the title. For a table running edge to edge, add `oe-card-flush`, which has no padding and gives the table's header a background, and wrap anything else that needs padding in `oe-card-body`. A full page of records goes in a flush card, with its toolbars and table directly inside |
+| Stat | `oe-stat` on a `<div>` around `oe-stat-label` on a `<dt>`, `oe-stat-value` on a `<dd>`, and `oe-stat-context` on a `<dd>` holding `oe-stat-delta` and what it's compared with. Delta colors say whether the change is good, not its direction: `oe-stat-delta-success`, `oe-stat-delta-danger`, or neither when it's neutral. It's already a card, so don't wrap it in one |
+| Table | `oe-table-wrap` around `oe-table`, which has no outer frame, with `oe-table-compact` for 40px rows or `oe-table-sticky`. Cells can use `oe-table-num`, `oe-table-empty`, `oe-table-actions`, `oe-table-select` and `oe-table-truncate`. Add `oe-table-reveal` to a repeated row action so it shows on hover and focus, and always on touch screens. Link a row's main cell with `oe-table-link`, with an optional `oe-list-subtitle` as a second line. Add `oe-hide-narrow` to columns that phones can do without, so the important ones fit without scrolling. Rows can use `oe-row-selected`. Sort buttons use `oe-table-sort`, with `aria-sort` on the `th`. Put totals in a `<tfoot>` |
+| Toolbar | `oe-toolbar` directly above or below an `oe-table-wrap` or other content, with `oe-toolbar-end` for the right side. Add `oe-toolbar-selection` to the toolbar that shows in place of the filters while rows are selected, so the rows don't move. Announce the count in a `role="status"` element that's always there, and when clearing moves focus off the toolbar, send it to the select-all box |
 | Pagination | `oe-pagination` around links, with `aria-current="page"` on the current one. Use `<span aria-disabled="true">…</span>` for a gap |
 | Tabs | `oe-tabs` around elements with `aria-selected="true"` or `aria-current="page"`. Inside `oe-topbar` they fill the bar's height and scroll rather than wrap |
 | Segmented control | `oe-segmented` around buttons with `aria-pressed` |
@@ -180,6 +181,7 @@ Put each thing where it goes:
 - Page head: the title on the left, and that page's main actions in `oe-page-actions` on the right.
 
 ```html
+<a class="oe-skip-link" href="#main">Skip to content</a>
 <div class="oe-shell">
   <nav class="oe-sidenav" id="nav" popover aria-label="Pages">
     <a class="oe-sidenav-brand" href="/"><!-- logo svg -->App name</a>
@@ -208,7 +210,7 @@ Put each thing where it goes:
       </nav>
       <div class="oe-topbar-actions"><!-- search, notifications --></div>
     </header>
-    <main class="oe-page">
+    <main class="oe-page" id="main">
       <header class="oe-page-head">
         <div>
           <h1 class="oe-page-title">Overview</h1>
@@ -223,7 +225,34 @@ Put each thing where it goes:
 
 From 64rem, the page is an inset panel and `oe-shell-main` scrolls rather than the document, so call `scrollTo` on that element. `oe-shell-toggle` closes the side nav to a rail of icons. Flip its `aria-expanded` between `true` and `false` on click, and the CSS does the rest. Keep that value in your app's state, and save it if it should survive a reload. In the rail, the brand needs a logo, every item needs an icon, and the `title` shows the name.
 
-Below 64rem, the document scrolls and the side nav is a drawer opened by `oe-shell-menu`, with no JavaScript. In a single-page app, call `hidePopover()` on it when the route changes. The breadcrumb shows only the current page on phones.
+Below 64rem, the document scrolls and the side nav is a drawer opened by `oe-shell-menu`, with no JavaScript. In a single-page app, call `hidePopover()` on it when the route changes. On phones, the breadcrumb shows only the current page, or a link back to the parent page when it has three or more levels.
+
+## Page templates
+
+Start a new page from the closest template in `node_modules/@oestergaard/design-tokens/templates/`. Copy its structure into your framework, keep its classes, and replace the sample content and routes. Leave out the parts your page doesn't need.
+
+| File | Use it for |
+| --- | --- |
+| `data-table.html` | A list of records: search, filters, selection, bulk actions, pagination and empty states |
+| `dashboard.html` | A summary: KPIs, chart panels and a table of recent records |
+| `detail.html` | One record: status, actions, tabs, and main and side columns |
+| `form.html` | Creating or editing a record: grouped sections, errors, and Save and Cancel at the end |
+| `settings.html` | Settings: section tabs, grouped options, saving and a danger zone |
+| `sign-in.html` | Signing in, which is the one page outside the shell |
+
+`<i data-lucide="plus"></i>` stands for that Lucide icon, so use your framework's icon component there. Comments in the files say when to show a part, and a `<template>` holds a state such as "no results" that isn't on screen.
+
+These layouts wrap by themselves as room runs out:
+
+| Layout | Classes |
+| --- | --- |
+| A page of forms or settings, which read better narrower | `oe-page-narrow` with `oe-page` |
+| Vertical spacing between a page's blocks | `oe-stack` |
+| Row of KPIs | `oe-stat-grid` on a `<dl>` around `oe-stat` |
+| Cards side by side | `oe-panels` |
+| Main and side columns | `oe-split` around the main column and `oe-split-side` |
+| Grouped options, with the heading beside them | `oe-section` around a `<div>` with `oe-section-title` and `oe-section-text`, and then one element holding the content |
+| A page outside the shell | `oe-auth` around `oe-card oe-auth-card`, with `oe-auth-brand` |
 
 ## Tokens
 

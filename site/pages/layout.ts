@@ -1,9 +1,11 @@
 import { mountPage } from '../frame.ts';
+import { TEMPLATES } from '../nav.ts';
 import { code, pageHead } from '../shared.ts';
 
 const WIDE = { width: 1120, height: 640 };
 
-const SHELL = `<div class="oe-shell">
+const SHELL = `<a class="oe-skip-link" href="#main">Skip to content</a>
+<div class="oe-shell">
   <nav class="oe-sidenav" id="nav" popover aria-label="Pages">
     <a class="oe-sidenav-brand" href="/"><!-- Logo -->Northwind</a>
     <div class="oe-sidenav-body">
@@ -31,7 +33,7 @@ const SHELL = `<div class="oe-shell">
       </nav>
       <div class="oe-topbar-actions"><!-- Search, notifications --></div>
     </header>
-    <main class="oe-page">
+    <main class="oe-page" id="main">
       <header class="oe-page-head">
         <div>
           <h1 class="oe-page-title">Overview</h1>
@@ -44,24 +46,32 @@ const SHELL = `<div class="oe-shell">
 </div>`;
 
 const layoutPage = () => `
-  ${pageHead('Layout', 'One app shell, from desktop to phone.')}
+  ${pageHead('Layout', 'One app shell and six page templates, from desktop to phone.')}
   <div class="stack">
+    <div class="size-grid">
+      ${TEMPLATES.map(
+        ({ id, label }) => `<a class="oe-card template-card" href="${id}/">
+        <h2 class="card-title">${label}</h2>
+        <div class="shell-preview shell-preview-scaled" inert><iframe src="${id}/" title="${label} template" width="${WIDE.width}" height="${WIDE.height}" loading="lazy"></iframe></div>
+      </a>`,
+      ).join('')}
+    </div>
     <div class="oe-card">
       <h2 class="card-title">Desktop</h2>
       <div class="shell-preview shell-preview-wide">
-        <iframe src="example/" title="Example app at desktop width" width="${WIDE.width}" height="${WIDE.height}" loading="lazy"></iframe>
+        <iframe src="dashboard/" title="Example app at desktop width" width="${WIDE.width}" height="${WIDE.height}" loading="lazy"></iframe>
       </div>
     </div>
     <div class="oe-card">
       <h2 class="card-title">Sidebar closed</h2>
       <div class="shell-preview shell-preview-wide">
-        <iframe src="example/?closed" title="Example app with the sidebar closed" width="${WIDE.width}" height="${WIDE.height}" loading="lazy"></iframe>
+        <iframe src="dashboard/?closed" title="Example app with the sidebar closed" width="${WIDE.width}" height="${WIDE.height}" loading="lazy"></iframe>
       </div>
     </div>
     <div class="oe-card">
       <h2 class="card-title">Phone</h2>
       <div class="shell-preview shell-preview-phone">
-        <iframe src="example/" title="Example app at phone width" height="640" loading="lazy"></iframe>
+        <iframe src="dashboard/" title="Example app at phone width" height="640" loading="lazy"></iframe>
       </div>
     </div>
     <div class="oe-card">
@@ -73,7 +83,7 @@ const layoutPage = () => `
 mountPage('layout', layoutPage());
 
 // The shell changes layout at the frame's own width, so the desktop frame stays wide and scales to fit.
-document.querySelectorAll<HTMLElement>('.shell-preview-wide').forEach((box) => {
+document.querySelectorAll<HTMLElement>('.shell-preview-wide, .shell-preview-scaled').forEach((box) => {
   const frame = box.querySelector('iframe')!;
   new ResizeObserver(() => {
     const scale = box.clientWidth / WIDE.width;

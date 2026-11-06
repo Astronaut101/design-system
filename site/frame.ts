@@ -79,7 +79,7 @@ export const mountPage = (id: PageId, main: string) => {
   const root = id === 'home' ? './' : '../';
   document.body.insertAdjacentHTML(
     'afterbegin',
-    `<a class="skip-link" href="#main">Skip to content</a>
+    `<a class="oe-skip-link" href="#main">Skip to content</a>
     <div class="oe-shell">
       <nav class="oe-sidenav" id="site-nav" popover aria-label="Pages">
         <a class="oe-sidenav-brand" href="${root}"><span class="brand-mark"></span><span class="brand-text">Oestergaard<small>Design system v${version}</small></span></a>

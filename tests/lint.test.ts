@@ -4,6 +4,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { buildLintData, isLintable, lintFiles } from '../lint/lint.js';
+import { ICON_NODES } from '../site/icons.ts';
+import { TEMPLATES } from '../site/nav.ts';
 import { buildModel } from '../src/tokens.ts';
 
 const read = (file: string) => readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
@@ -252,6 +254,33 @@ describe('the showcase', () => {
   it('passes oe-lint with no findings', () => {
     const root = new URL('../site', import.meta.url).pathname;
     expect(lintFiles(walk(root).map((path) => ({ path, text: readFileSync(path, 'utf8') })), data)).toEqual([]);
+  });
+});
+
+describe('the page templates', () => {
+  const dir = new URL('../templates/', import.meta.url).pathname;
+  const names = readdirSync(dir).map((file) => file.replace('.html', ''));
+  const text = (name: string) => readFileSync(join(dir, `${name}.html`), 'utf8');
+
+  it('are the set the showcase lists, each with its own page', () => {
+    expect(names.sort()).toEqual(TEMPLATES.map((t) => t.id).sort());
+    for (const name of names) expect(read(`site/layout/${name}/index.html`)).toContain(`data-template="${name}"`);
+  });
+
+  it.each(TEMPLATES.map((t) => t.id))('%s passes oe-lint with no findings', (name) => {
+    expect(lint(`${name}.html`, text(name))).toEqual([]);
+  });
+
+  it.each(TEMPLATES.map((t) => t.id))('%s only uses icons the showcase can draw', (name) => {
+    const icons = [...text(name).matchAll(/data-lucide="([^"]+)"/g)].map((m) => m[1]);
+    expect(icons.length).toBeGreaterThan(0);
+    for (const icon of icons) expect(ICON_NODES, icon).toHaveProperty([icon]);
+  });
+
+  it('are named in the guide and ship in the package', () => {
+    const guide = read('AGENT-GUIDE.md');
+    for (const name of names) expect(guide).toContain(`${name}.html`);
+    expect(JSON.parse(read('package.json')).files).toContain('templates');
   });
 });
 

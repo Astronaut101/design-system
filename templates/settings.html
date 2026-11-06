@@ -1,0 +1,135 @@
+<!doctype html>
+<!-- Settings: section tabs, grouped options, saving, and a danger zone. -->
+<!-- <i data-lucide="plus"></i> stands for that Lucide icon. Use your framework's icon component. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Settings · Northwind</title>
+    <link rel="stylesheet" href="../dist/tokens.css" />
+    <link rel="stylesheet" href="../dist/components.css" />
+    <style>
+      body { margin: 0; font-family: var(--font-sans); font-size: var(--text-base); line-height: var(--leading-relaxed); }
+    </style>
+  </head>
+  <body>
+    <a class="oe-skip-link" href="#main">Skip to content</a>
+    <div class="oe-shell">
+      <nav class="oe-sidenav" id="nav" popover aria-label="Pages">
+        <a class="oe-sidenav-brand" href="/"><i data-lucide="package"></i>Northwind</a>
+        <div class="oe-sidenav-body">
+          <ul class="oe-nav-list">
+            <li><a class="oe-nav-item" href="/" title="Overview"><i data-lucide="house"></i>Overview</a></li>
+            <li><a class="oe-nav-item" href="/orders" title="Orders"><i data-lucide="package"></i>Orders<span class="oe-badge oe-badge-neutral">12</span></a></li>
+            <li><a class="oe-nav-item" href="#" title="Shipments"><i data-lucide="truck"></i>Shipments</a></li>
+            <li><a class="oe-nav-item" href="#" title="Invoices"><i data-lucide="file-text"></i>Invoices<span class="oe-badge oe-badge-neutral">3</span></a></li>
+          </ul>
+          <p class="oe-nav-heading">Team</p>
+          <ul class="oe-nav-list">
+            <li><a class="oe-nav-item" href="#" title="Customers"><i data-lucide="users"></i>Customers</a></li>
+            <li><a class="oe-nav-item" href="#" title="Reports"><i data-lucide="chart-column"></i>Reports</a></li>
+          </ul>
+        </div>
+        <div class="oe-sidenav-foot">
+          <a class="oe-nav-item" href="/settings" title="Settings" aria-current="page"><i data-lucide="settings"></i>Settings</a>
+          <a class="oe-nav-item" href="/sign-in" title="Maja Holm"><span class="oe-avatar">MH</span>Maja Holm</a>
+        </div>
+      </nav>
+      <div class="oe-shell-main">
+        <header class="oe-topbar">
+          <button class="oe-btn oe-btn-ghost oe-btn-icon oe-shell-menu" type="button" popovertarget="nav" aria-label="Open navigation"><i data-lucide="menu"></i></button>
+          <button class="oe-btn oe-btn-ghost oe-btn-icon oe-shell-toggle" type="button" aria-expanded="true" aria-controls="nav" aria-label="Toggle sidebar" title="Toggle sidebar"><i data-lucide="panel-left"></i></button>
+          <nav class="oe-breadcrumb" aria-label="Breadcrumb">
+            <ol><li><a href="/">Northwind</a></li><li aria-current="page">Settings</li></ol>
+          </nav>
+          <div class="oe-topbar-actions">
+            <button class="oe-btn oe-btn-ghost oe-btn-icon" type="button" aria-label="Search" title="Search"><i data-lucide="search"></i></button>
+            <button class="oe-btn oe-btn-ghost oe-btn-icon" type="button" aria-label="Notifications" title="Notifications"><i data-lucide="bell"></i></button>
+          </div>
+        </header>
+        <main class="oe-page oe-page-narrow" id="main">
+          <header class="oe-page-head">
+            <div>
+              <h1 class="oe-page-title">Settings</h1>
+              <p class="oe-page-subtitle">Your account and notifications</p>
+            </div>
+          </header>
+          <div class="oe-stack">
+            <nav class="oe-tabs" aria-label="Settings sections">
+              <a href="#" aria-current="page">Account</a>
+              <a href="#">Team</a>
+              <a href="#">Billing</a>
+            </nav>
+            <section class="oe-section">
+              <div>
+                <h2 class="oe-section-title">Profile</h2>
+                <p class="oe-section-text">How your name appears to your team and customers.</p>
+              </div>
+              <form class="oe-form">
+                <div class="oe-toolbar">
+                  <span class="oe-avatar oe-avatar-xl">MH</span>
+                  <button class="oe-btn oe-btn-secondary" type="button"><i data-lucide="upload"></i>Change photo</button>
+                </div>
+                <div class="oe-form-row">
+                  <label class="oe-field"><span class="oe-field-label">First name</span><input class="oe-input" autocomplete="given-name" value="Maja" /></label>
+                  <label class="oe-field"><span class="oe-field-label">Last name</span><input class="oe-input" autocomplete="family-name" value="Holm" /></label>
+                </div>
+                <label class="oe-field">
+                  <span class="oe-field-label">Email</span>
+                  <input class="oe-input" type="email" autocomplete="email" value="maja@northwind.example" />
+                  <small class="oe-field-help">Used to sign in</small>
+                </label>
+                <div class="oe-form-actions"><button class="oe-btn oe-btn-primary" type="submit">Save</button></div>
+              </form>
+            </section>
+            <section class="oe-section">
+              <div>
+                <h2 class="oe-section-title">Notifications</h2>
+                <p class="oe-section-text">These save as soon as you change them.</p>
+              </div>
+              <ul class="oe-list">
+                <li>
+                  <div class="oe-list-item">
+                    <i data-lucide="package"></i>
+                    <span class="oe-list-text"><span class="oe-list-title">New orders</span><span class="oe-list-subtitle">When a customer places an order</span></span>
+                    <input class="oe-switch" type="checkbox" role="switch" aria-label="New orders" checked />
+                  </div>
+                </li>
+                <li>
+                  <div class="oe-list-item">
+                    <i data-lucide="file-text"></i>
+                    <span class="oe-list-text"><span class="oe-list-title">Overdue invoices</span><span class="oe-list-subtitle">When a payment is late</span></span>
+                    <input class="oe-switch" type="checkbox" role="switch" aria-label="Overdue invoices" checked />
+                  </div>
+                </li>
+                <li>
+                  <div class="oe-list-item">
+                    <i data-lucide="chart-column"></i>
+                    <span class="oe-list-text"><span class="oe-list-title">Weekly report</span><span class="oe-list-subtitle">Every Monday morning</span></span>
+                    <input class="oe-switch" type="checkbox" role="switch" aria-label="Weekly report" />
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <section class="oe-section">
+              <div>
+                <h2 class="oe-section-title">Delete account</h2>
+                <p class="oe-section-text">This removes your account and can't be undone.</p>
+              </div>
+              <div><button class="oe-btn oe-btn-danger" type="button" aria-haspopup="dialog" aria-controls="confirm-delete"><i data-lucide="trash"></i>Delete account</button></div>
+            </section>
+          </div>
+          <!-- Open with showModal(). Buttons in a method="dialog" form close it. -->
+          <dialog class="oe-dialog" id="confirm-delete" aria-labelledby="confirm-delete-title">
+            <h2 class="oe-dialog-title" id="confirm-delete-title">Delete your account?</h2>
+            <p>You'll lose your orders and reports. This can't be undone.</p>
+            <form class="oe-dialog-actions" method="dialog">
+              <button class="oe-btn oe-btn-secondary" value="cancel" autofocus>Cancel</button>
+              <button class="oe-btn oe-btn-danger" value="delete"><i data-lucide="trash"></i>Delete account</button>
+            </form>
+          </dialog>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

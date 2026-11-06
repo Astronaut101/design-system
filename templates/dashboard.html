@@ -1,0 +1,195 @@
+<!doctype html>
+<!-- A summary page: KPIs, chart panels and a table of recent records. -->
+<!-- <i data-lucide="plus"></i> stands for that Lucide icon. Use your framework's icon component. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Overview · Northwind</title>
+    <link rel="stylesheet" href="../dist/tokens.css" />
+    <link rel="stylesheet" href="../dist/components.css" />
+    <style>
+      body { margin: 0; font-family: var(--font-sans); font-size: var(--text-base); line-height: var(--leading-relaxed); }
+    </style>
+  </head>
+  <body>
+    <a class="oe-skip-link" href="#main">Skip to content</a>
+    <div class="oe-shell">
+      <nav class="oe-sidenav" id="nav" popover aria-label="Pages">
+        <a class="oe-sidenav-brand" href="/"><i data-lucide="package"></i>Northwind</a>
+        <div class="oe-sidenav-body">
+          <ul class="oe-nav-list">
+            <li><a class="oe-nav-item" href="/" title="Overview" aria-current="page"><i data-lucide="house"></i>Overview</a></li>
+            <li><a class="oe-nav-item" href="/orders" title="Orders"><i data-lucide="package"></i>Orders<span class="oe-badge oe-badge-neutral">12</span></a></li>
+            <li><a class="oe-nav-item" href="#" title="Shipments"><i data-lucide="truck"></i>Shipments</a></li>
+            <li><a class="oe-nav-item" href="#" title="Invoices"><i data-lucide="file-text"></i>Invoices<span class="oe-badge oe-badge-neutral">3</span></a></li>
+          </ul>
+          <p class="oe-nav-heading">Team</p>
+          <ul class="oe-nav-list">
+            <li><a class="oe-nav-item" href="#" title="Customers"><i data-lucide="users"></i>Customers</a></li>
+            <li><a class="oe-nav-item" href="#" title="Reports"><i data-lucide="chart-column"></i>Reports</a></li>
+          </ul>
+        </div>
+        <div class="oe-sidenav-foot">
+          <a class="oe-nav-item" href="/settings" title="Settings"><i data-lucide="settings"></i>Settings</a>
+          <a class="oe-nav-item" href="/sign-in" title="Maja Holm"><span class="oe-avatar">MH</span>Maja Holm</a>
+        </div>
+      </nav>
+      <div class="oe-shell-main">
+        <header class="oe-topbar">
+          <button class="oe-btn oe-btn-ghost oe-btn-icon oe-shell-menu" type="button" popovertarget="nav" aria-label="Open navigation"><i data-lucide="menu"></i></button>
+          <button class="oe-btn oe-btn-ghost oe-btn-icon oe-shell-toggle" type="button" aria-expanded="true" aria-controls="nav" aria-label="Toggle sidebar" title="Toggle sidebar"><i data-lucide="panel-left"></i></button>
+          <nav class="oe-breadcrumb" aria-label="Breadcrumb">
+            <ol><li><a href="/">Northwind</a></li><li aria-current="page">Overview</li></ol>
+          </nav>
+          <div class="oe-topbar-actions">
+            <button class="oe-btn oe-btn-ghost oe-btn-icon" type="button" aria-label="Search" title="Search"><i data-lucide="search"></i></button>
+            <button class="oe-btn oe-btn-ghost oe-btn-icon" type="button" aria-label="Notifications" title="Notifications"><i data-lucide="bell"></i></button>
+          </div>
+        </header>
+        <main class="oe-page" id="main">
+          <header class="oe-page-head">
+            <div>
+              <h1 class="oe-page-title">Overview</h1>
+              <p class="oe-page-subtitle">This month, compared with last month</p>
+            </div>
+            <div class="oe-page-actions">
+            <div class="oe-segmented" role="group" aria-label="Period">
+              <button type="button" aria-pressed="false">Week</button>
+              <button type="button" aria-pressed="true">Month</button>
+              <button type="button" aria-pressed="false">Quarter</button>
+            </div>
+            <button class="oe-btn oe-btn-secondary" type="button"><i data-lucide="download"></i>Export</button>
+          </div>
+        </header>
+          <div class="oe-stack">
+            <dl class="oe-stat-grid">
+            <div class="oe-stat"><dt class="oe-stat-label">Revenue</dt><dd class="oe-stat-value">$40.1K</dd><dd class="oe-stat-context"><span class="oe-stat-delta oe-stat-delta-success"><i data-lucide="arrow-up"></i><span class="oe-sr-only">Up </span>12%</span>vs last month</dd></div>
+            <div class="oe-stat"><dt class="oe-stat-label">Open orders</dt><dd class="oe-stat-value">128</dd><dd class="oe-stat-context"><span class="oe-stat-delta"><i data-lucide="arrow-up"></i><span class="oe-sr-only">Up </span>4</span>vs last month</dd></div>
+            <div class="oe-stat"><dt class="oe-stat-label">Overdue</dt><dd class="oe-stat-value">3</dd><dd class="oe-stat-context"><span class="oe-stat-delta oe-stat-delta-danger"><i data-lucide="arrow-up"></i><span class="oe-sr-only">Up </span>1</span>vs last month</dd></div>
+            <div class="oe-stat"><dt class="oe-stat-label">Paid on time</dt><dd class="oe-stat-value">96%</dd><dd class="oe-stat-context"><span class="oe-stat-delta oe-stat-delta-success"><i data-lucide="arrow-up"></i><span class="oe-sr-only">Up </span>2%</span>vs last month</dd></div>
+            </dl>
+            <div class="oe-panels">
+              <section class="oe-card">
+                <div class="oe-card-head">
+                  <div>
+                    <h2 class="oe-card-title">Revenue</h2>
+                    <p class="oe-card-subtitle">$40.1K this month</p>
+                  </div>
+                </div>
+                <!-- Replace with your chart. One series, so it needs no legend. Hovering a bar shows its value. -->
+                <svg viewBox="0 0 480 224" role="img" aria-label="Revenue by month, rising from $22.1K in January to $40.1K in November" font-size="15" fill="var(--fg-muted)">
+            <line x1="44" x2="480" y1="110.0" y2="110.0" stroke="var(--border-default)" />
+            <text x="0" y="115.0">$25K</text>
+            <line x1="44" x2="480" y1="24.0" y2="24.0" stroke="var(--border-default)" />
+            <text x="0" y="29.0">$50K</text>
+            <line x1="44" x2="480" y1="196" y2="196" stroke="var(--border-default)" />
+            <text x="0" y="201">$0</text>
+            <path fill="var(--chart-1)" d="M44 196V124.0a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4V196Z"><title>Jan: $22.1K</title></path>
+            <path fill="var(--chart-1)" d="M83 196V115.4a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4V196Z"><title>Feb: $24.6K</title></path>
+            <path fill="var(--chart-1)" d="M122 196V119.5a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4V196Z"><title>Mar: $23.4K</title></path>
+            <path fill="var(--chart-1)" d="M161 196V104.4a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4V196Z"><title>Apr: $27.8K</title></path>
+            <path fill="var(--chart-1)" d="M200 196V99.6a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4V196Z"><title>May: $29.2K</title></path>
+            <path fill="var(--chart-1)" d="M239 196V103.7a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4V196Z"><title>Jun: $28.0K</title></path>
+            <path fill="var(--chart-1)" d="M278 196V91.6a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4V196Z"><title>Jul: $31.5K</title></path>
+            <path fill="var(--chart-1)" d="M317 196V96.1a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4V196Z"><title>Aug: $30.2K</title></path>
+            <path fill="var(--chart-1)" d="M356 196V83.4a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4V196Z"><title>Sep: $33.9K</title></path>
+            <path fill="var(--chart-1)" d="M395 196V74.8a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4V196Z"><title>Oct: $36.4K</title></path>
+            <path fill="var(--chart-1)" d="M434 196V62.1a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4V196Z"><title>Nov: $40.1K</title></path>
+            <text x="56" y="218" text-anchor="middle">Jan</text>
+            <text x="95" y="218" text-anchor="middle">Feb</text>
+            <text x="134" y="218" text-anchor="middle">Mar</text>
+            <text x="173" y="218" text-anchor="middle">Apr</text>
+            <text x="212" y="218" text-anchor="middle">May</text>
+            <text x="251" y="218" text-anchor="middle">Jun</text>
+            <text x="290" y="218" text-anchor="middle">Jul</text>
+            <text x="329" y="218" text-anchor="middle">Aug</text>
+            <text x="368" y="218" text-anchor="middle">Sep</text>
+            <text x="407" y="218" text-anchor="middle">Oct</text>
+            <text x="446" y="218" text-anchor="middle">Nov</text>
+            <text x="458" y="51.1" text-anchor="end" fill="var(--fg-default)">$40.1K</text>
+          </svg>
+              </section>
+              <section class="oe-card">
+                <div class="oe-card-head">
+                  <div>
+                    <h2 class="oe-card-title">Top customers</h2>
+                    <p class="oe-card-subtitle">By revenue this month</p>
+                  </div>
+                </div>
+                <ul class="oe-list">
+                  <li>
+                    <div class="oe-list-item">
+                      <span class="oe-list-text"><span class="oe-list-title">Nordic Freight</span><progress class="oe-progress" value="124" max="124" aria-label="Nordic Freight: $12.4K"></progress></span>
+                      <span>$12.4K</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="oe-list-item">
+                      <span class="oe-list-text"><span class="oe-list-title">Fjord Marine</span><progress class="oe-progress" value="82" max="124" aria-label="Fjord Marine: $8.2K"></progress></span>
+                      <span>$8.2K</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="oe-list-item">
+                      <span class="oe-list-text"><span class="oe-list-title">Lund Transport</span><progress class="oe-progress" value="63" max="124" aria-label="Lund Transport: $6.3K"></progress></span>
+                      <span>$6.3K</span>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="oe-list-item">
+                      <span class="oe-list-text"><span class="oe-list-title">Havn Logistics</span><progress class="oe-progress" value="39" max="124" aria-label="Havn Logistics: $3.9K"></progress></span>
+                      <span>$3.9K</span>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+            </div>
+            <section class="oe-card oe-card-flush">
+              <div class="oe-card-head">
+                <div>
+                  <h2 class="oe-card-title">Recent orders</h2>
+                  <p class="oe-card-subtitle">Latest first</p>
+                </div>
+                <a class="oe-btn oe-btn-quiet" href="/orders">View all</a>
+              </div>
+              <div class="oe-table-wrap">
+                <table class="oe-table">
+                  <thead>
+                    <tr><th scope="col">Customer</th><th scope="col" class="oe-hide-narrow">Date</th><th scope="col">Status</th><th scope="col" class="oe-table-num">Amount</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><a class="oe-table-link" href="/orders/2041">Nordic Freight</a><span class="oe-list-subtitle">Order 2041</span></td>
+                  <td class="oe-hide-narrow">Nov 5</td>
+                      <td><span class="oe-badge oe-badge-success"><i data-lucide="circle-check"></i>Paid</span></td>
+                      <td class="oe-table-num">$12,400</td>
+                    </tr>
+                    <tr>
+                      <td><a class="oe-table-link" href="/orders/2041">Fjord Marine</a><span class="oe-list-subtitle">Order 2040</span></td>
+                  <td class="oe-hide-narrow">Nov 4</td>
+                      <td><span class="oe-badge oe-badge-warning"><i data-lucide="triangle-exclamation-point"></i>Due soon</span></td>
+                      <td class="oe-table-num">$8,150</td>
+                    </tr>
+                    <tr>
+                      <td><a class="oe-table-link" href="/orders/2041">Havn Logistics</a><span class="oe-list-subtitle">Order 2039</span></td>
+                  <td class="oe-hide-narrow">Oct 28</td>
+                      <td><span class="oe-badge oe-badge-danger"><i data-lucide="circle-x"></i>Overdue</span></td>
+                      <td class="oe-table-num">$3,920</td>
+                    </tr>
+                    <tr>
+                      <td><a class="oe-table-link" href="/orders/2041">Bakke Byg</a><span class="oe-list-subtitle">Order 2038</span></td>
+                  <td class="oe-hide-narrow">Oct 27</td>
+                      <td><span class="oe-badge oe-badge-info"><i data-lucide="info"></i>Draft</span></td>
+                      <td class="oe-table-num">$1,780</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

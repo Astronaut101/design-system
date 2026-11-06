@@ -20,13 +20,13 @@ npm run site:build     # static showcase in site/dist, for any static host
 See the [showcase](https://oestergaard-a-s.github.io/design-system/). The package isn't on npm. Install it from GitHub at a version tag:
 
 ```bash
-npm install github:Oestergaard-A-S/design-system#v0.2.0
+npm install github:Oestergaard-A-S/design-system#v0.3.0
 ```
 
 Apps without npm can link the CSS directly:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Oestergaard-A-S/design-system@v0.2.0/dist/tokens.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Oestergaard-A-S/design-system@v0.3.0/dist/tokens.css" />
 ```
 
 **Any framework:**
@@ -77,8 +77,8 @@ With Tailwind, import `tailwind.css` first instead of `tokens.css`.
 
 | Component | Classes |
 | --- | --- |
-| Button | `oe-btn` with `-primary`, `-secondary`, `-ghost`, `-quiet`, `-neutral` or `-danger`, plus `-sm`, `-lg` and `-icon`; `oe-btn-group`. Set `aria-busy` or `aria-pressed` for those states |
-| Field, form | `oe-field`, `oe-field-label`, `oe-field-required`, `oe-field-help`, `oe-field-error`, `oe-field-inline`; `oe-fieldset`, `oe-fieldset-legend`; `oe-form`, `oe-form-row`, `oe-form-actions` |
+| Button | `oe-btn` with `-primary`, `-secondary`, `-ghost`, `-quiet`, `-neutral` or `-danger`, plus `-sm`, `-lg`, `-icon` and `-block`; `oe-btn-group`. Set `aria-busy` or `aria-pressed` for those states |
+| Field, form | `oe-field`, `oe-field-label`, `oe-field-required`, `oe-field-help`, `oe-field-error`, `oe-field-inline`; `oe-fieldset`, `oe-fieldset-legend`; `oe-form`, `oe-form-row`, `oe-form-actions`, `oe-form-actions-sticky` |
 | Input, select, textarea | `oe-input` with `-sm`, `-lg`, `-autogrow`, `-code`. Set `aria-invalid="true"` for the error state |
 | Other inputs | `oe-slider`; `oe-radio-card`, `oe-radio-card-title`, `oe-radio-card-text`; `oe-dropzone` |
 | Checkbox, radio | `oe-check`, `oe-check-label` |
@@ -86,8 +86,8 @@ With Tailwind, import `tailwind.css` first instead of `tokens.css`.
 | Avatar | `oe-avatar` with `-sm`, `-lg`, `-xl` or `-neutral`; `oe-avatar-group` |
 | Alert, banner | `oe-alert` with the same intents, `oe-alert-title`, `oe-alert-actions`; `oe-banner` with `-accent`, `-info`, `-warning` or `-danger`. Put the icon first, then one element of text |
 | Close button | `oe-close` |
-| Card, stat | `oe-card` with `-flush`, `oe-card-head`, `oe-card-title`, `oe-card-subtitle`, `oe-card-body`, `oe-card-foot`; `oe-stat`, `oe-stat-label`, `oe-stat-value`, `oe-stat-delta` with `-success` or `-danger` |
-| Table | `oe-table-wrap`, `oe-table` with `-compact` or `-sticky`; `oe-table-num`, `oe-table-empty`, `oe-table-sort`, `oe-row-selected`. Set `aria-sort` on the sorted `th` |
+| Card, stat | `oe-card` with `-flush`, `oe-card-head`, `oe-card-title`, `oe-card-subtitle`, `oe-card-body`, `oe-card-foot`; `oe-stat`, `oe-stat-label`, `oe-stat-value`, `oe-stat-context`, `oe-stat-delta` with `-success` or `-danger` |
+| Table | `oe-table-wrap`, `oe-table` with `-compact` or `-sticky`; `oe-table-num`, `oe-table-empty`, `oe-table-sort`, `oe-table-link`, `oe-table-reveal`, `oe-row-selected`. Set `aria-sort` on the sorted `th` |
 | Tabs | `oe-tabs` around elements with `aria-selected="true"` or `aria-current="page"` |
 | Segmented control | `oe-segmented` around buttons with `aria-pressed` |
 | Dialog, drawer | `oe-dialog` with `-sm` or `-lg`, `oe-dialog-head`, `oe-dialog-title`, `oe-dialog-body`, `oe-dialog-actions`; `oe-drawer` with `-left`, `-top` or `-bottom`, on a `<dialog>` |
@@ -99,7 +99,8 @@ With Tailwind, import `tailwind.css` first instead of `tokens.css`.
 | Input with icon | `oe-input-group` |
 | Empty state | `oe-empty`, `oe-empty-title`, `oe-empty-text` |
 | Pagination, separator, accordion | `oe-pagination`; `oe-separator`; `oe-accordion` |
-| Toolbar | `oe-toolbar`, `oe-toolbar-end` |
+| Toolbar | `oe-toolbar`, `oe-toolbar-end`, `oe-toolbar-selection` |
+| Page layout | `oe-page-narrow`; `oe-skip-link`; `oe-hide-narrow`; `oe-stack`; `oe-stat-grid`; `oe-panels`; `oe-split`, `oe-split-side`; `oe-section`, `oe-section-title`, `oe-section-text`; `oe-auth`, `oe-auth-card`, `oe-auth-brand` |
 | Content | `oe-dl`; `oe-list`, `oe-list-item`, `oe-list-text`, `oe-list-title`, `oe-list-subtitle`; `oe-timeline`, `oe-timeline-item`, `oe-timeline-marker`, `oe-timeline-text`, `oe-timeline-time`; `oe-steps`, `oe-step`, `oe-step-done` |
 | Text | `oe-link`, `oe-code`, `oe-code-block`, `oe-prose`, `oe-sr-only` |
 | Date picker day | `oe-calendar-day`, for a date picker library |
@@ -110,6 +111,7 @@ With Tailwind, import `tailwind.css` first instead of `tokens.css`.
 - The classes only set the look. Add the behavior and ARIA roles in the app, such as arrow keys for `role="tab"`.
 - From 64rem, the page is an inset panel and `oe-shell-main` scrolls rather than the document. An `oe-shell-toggle` button closes the side nav to a rail of icons. Flip its `aria-expanded` between `true` and `false` on click, and the CSS does the rest.
 - Below 64rem the side nav becomes a drawer. Give `oe-sidenav` the `popover` attribute and open it from an `oe-shell-menu` button with `popovertarget`, which needs no JavaScript. In a single-page app, call `hidePopover()` on navigation. Set `--oe-sidenav-width` on `oe-shell` to change its width. The showcase's Layout page has the full markup.
+- `templates/` in the package has plain HTML for the pages most apps need: data table, dashboard, detail, form, settings and sign-in. The showcase's Layout page shows them, and the guide tells agents to start from them.
 - Menus, comboboxes, date pickers and data tables need JavaScript. [AGENT-GUIDE.md](AGENT-GUIDE.md) has recipes for putting these classes on Base UI, Bits UI, Reka UI and TanStack Table. They have been run in real React, Svelte and Vue apps.
 - Selected states and fills fall back to system colors in Windows high contrast mode, and hover styles only apply on devices that can hover.
 
@@ -205,7 +207,7 @@ The categorical chart palette is frozen in [src/chart-palette.json](src/chart-pa
 
 1. Set the new `version` in `package.json` and run `npm test`.
 2. Commit to `main` and wait for CI to pass.
-3. Tag the commit, such as `v0.2.0`, and push the tag. Apps move up by changing the tag they install.
+3. Tag the commit, such as `v0.3.0`, and push the tag. Apps move up by changing the tag they install.
 
 Every push to `main` that passes CI also updates the showcase.
 
@@ -272,6 +274,7 @@ iconSizes.sm; // 4, the spacing step: size-4 or --space-4
 | `src/emit.ts` | Writes CSS, Tailwind, JSON and JS |
 | `src/components.css` | The component classes |
 | `scripts/search-chart-palette.ts` | Finds the chart palette |
+| `templates/` | Page templates in plain HTML, shipped in the package for agents to copy |
 | `AGENT-GUIDE.md` | The guide for agents in apps. Tests keep its class and token names real |
 | `lint/`, `bin/` | The `oe-lint` command, in plain JavaScript with no dependencies |
 | `tests/` | Contrast, chart, Tailwind, component and lint checks |

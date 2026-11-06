@@ -1,0 +1,158 @@
+<!doctype html>
+<!-- Create or edit a record: grouped sections, validation errors, and Save and Cancel at the end. -->
+<!-- <i data-lucide="plus"></i> stands for that Lucide icon. Use your framework's icon component. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>New order · Northwind</title>
+    <link rel="stylesheet" href="../dist/tokens.css" />
+    <link rel="stylesheet" href="../dist/components.css" />
+    <style>
+      body { margin: 0; font-family: var(--font-sans); font-size: var(--text-base); line-height: var(--leading-relaxed); }
+    </style>
+  </head>
+  <body>
+    <a class="oe-skip-link" href="#main">Skip to content</a>
+    <div class="oe-shell">
+      <nav class="oe-sidenav" id="nav" popover aria-label="Pages">
+        <a class="oe-sidenav-brand" href="/"><i data-lucide="package"></i>Northwind</a>
+        <div class="oe-sidenav-body">
+          <ul class="oe-nav-list">
+            <li><a class="oe-nav-item" href="/" title="Overview"><i data-lucide="house"></i>Overview</a></li>
+            <li><a class="oe-nav-item" href="/orders" title="Orders" aria-current="page"><i data-lucide="package"></i>Orders<span class="oe-badge oe-badge-neutral">12</span></a></li>
+            <li><a class="oe-nav-item" href="#" title="Shipments"><i data-lucide="truck"></i>Shipments</a></li>
+            <li><a class="oe-nav-item" href="#" title="Invoices"><i data-lucide="file-text"></i>Invoices<span class="oe-badge oe-badge-neutral">3</span></a></li>
+          </ul>
+          <p class="oe-nav-heading">Team</p>
+          <ul class="oe-nav-list">
+            <li><a class="oe-nav-item" href="#" title="Customers"><i data-lucide="users"></i>Customers</a></li>
+            <li><a class="oe-nav-item" href="#" title="Reports"><i data-lucide="chart-column"></i>Reports</a></li>
+          </ul>
+        </div>
+        <div class="oe-sidenav-foot">
+          <a class="oe-nav-item" href="/settings" title="Settings"><i data-lucide="settings"></i>Settings</a>
+          <a class="oe-nav-item" href="/sign-in" title="Maja Holm"><span class="oe-avatar">MH</span>Maja Holm</a>
+        </div>
+      </nav>
+      <div class="oe-shell-main">
+        <header class="oe-topbar">
+          <button class="oe-btn oe-btn-ghost oe-btn-icon oe-shell-menu" type="button" popovertarget="nav" aria-label="Open navigation"><i data-lucide="menu"></i></button>
+          <button class="oe-btn oe-btn-ghost oe-btn-icon oe-shell-toggle" type="button" aria-expanded="true" aria-controls="nav" aria-label="Toggle sidebar" title="Toggle sidebar"><i data-lucide="panel-left"></i></button>
+          <nav class="oe-breadcrumb" aria-label="Breadcrumb">
+            <ol><li><a href="/">Northwind</a></li><li><a href="/orders">Orders</a></li><li aria-current="page">New order</li></ol>
+          </nav>
+          <div class="oe-topbar-actions">
+            <button class="oe-btn oe-btn-ghost oe-btn-icon" type="button" aria-label="Search" title="Search"><i data-lucide="search"></i></button>
+            <button class="oe-btn oe-btn-ghost oe-btn-icon" type="button" aria-label="Notifications" title="Notifications"><i data-lucide="bell"></i></button>
+          </div>
+        </header>
+        <main class="oe-page oe-page-narrow" id="main">
+          <header class="oe-page-head">
+            <div>
+              <h1 class="oe-page-title">New order</h1>
+              <p class="oe-page-subtitle">Create an order for an existing customer</p>
+            </div>
+          </header>
+          <form class="oe-form">
+            <!-- Show after a failed save, and move focus here. -->
+            <div class="oe-alert oe-alert-danger" role="alert">
+              <i data-lucide="circle-x"></i>
+              <p>Fix this field to create the order: <a class="oe-link" href="#email">Email</a></p>
+            </div>
+            <section class="oe-section">
+              <div>
+                <h2 class="oe-section-title">Customer</h2>
+                <p class="oe-section-text">Who the order and invoice are for.</p>
+              </div>
+              <div class="oe-form">
+                <label class="oe-field">
+                  <span class="oe-field-label oe-field-required">Customer</span>
+                  <!-- With many customers, use a combobox. See the guide. -->
+                  <select class="oe-input" required>
+                    <option>Nordic Freight</option>
+                    <option>Fjord Marine</option>
+                    <option>Havn Logistics</option>
+                  </select>
+                </label>
+                <div class="oe-form-row">
+                  <label class="oe-field"><span class="oe-field-label">Contact</span><input class="oe-input" autocomplete="name" value="Anna Berg" /></label>
+                  <label class="oe-field">
+                    <span class="oe-field-label oe-field-required">Email</span>
+                    <input class="oe-input" id="email" type="email" autocomplete="email" required value="anna.berg" aria-invalid="true" aria-describedby="email-error" />
+                    <small class="oe-field-error" id="email-error"><i data-lucide="circle-x"></i>Enter a valid email address</small>
+                  </label>
+                </div>
+              </div>
+            </section>
+            <section class="oe-section">
+            <div>
+              <h2 class="oe-section-title">Items</h2>
+              <p class="oe-section-text">What the customer is ordering.</p>
+            </div>
+            <div class="oe-form">
+              <div class="oe-table-wrap">
+                <table class="oe-table oe-table-compact">
+                  <colgroup><col /><col style="width: 22%" /><col style="width: 22%" /><col /></colgroup>
+                  <thead>
+                    <tr><th scope="col">Item</th><th scope="col">Quantity</th><th scope="col">Price</th><th scope="col" class="oe-table-actions"><span class="oe-sr-only">Remove</span></th></tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td><input class="oe-input oe-input-sm" aria-label="Item 1" value="Pallet racking, 2.4 m" /></td>
+                    <td><input class="oe-input oe-input-sm" type="number" min="1" aria-label="Quantity for item 1" value="40" /></td>
+                    <td><input class="oe-input oe-input-sm" inputmode="decimal" aria-label="Price for item 1" value="180" /></td>
+                    <td class="oe-table-actions"><button class="oe-close" type="button" aria-label="Remove item 1"><i data-lucide="x"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td><input class="oe-input oe-input-sm" aria-label="Item 2" value="Shelf decking" /></td>
+                    <td><input class="oe-input oe-input-sm" type="number" min="1" aria-label="Quantity for item 2" value="120" /></td>
+                    <td><input class="oe-input oe-input-sm" inputmode="decimal" aria-label="Price for item 2" value="28" /></td>
+                    <td class="oe-table-actions"><button class="oe-close" type="button" aria-label="Remove item 2"><i data-lucide="x"></i></button></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div><button class="oe-btn oe-btn-secondary oe-btn-sm" type="button"><i data-lucide="plus"></i>Add item</button></div>
+            </div>
+          </section>
+          <section class="oe-section">
+              <div>
+                <h2 class="oe-section-title">Delivery</h2>
+                <p class="oe-section-text">Where and when the order should arrive.</p>
+              </div>
+              <div class="oe-form">
+                <label class="oe-field"><span class="oe-field-label">Address</span><input class="oe-input" autocomplete="street-address" /></label>
+                <div class="oe-form-row">
+                  <label class="oe-field"><span class="oe-field-label">Postal code</span><input class="oe-input" autocomplete="postal-code" /></label>
+                  <label class="oe-field"><span class="oe-field-label">City</span><input class="oe-input" autocomplete="address-level2" /></label>
+                </div>
+                <label class="oe-field"><span class="oe-field-label">Delivery date</span><input class="oe-input" type="date" /></label>
+                <label class="oe-field">
+                  <span class="oe-field-label">Instructions</span>
+                  <textarea class="oe-input oe-input-autogrow" rows="3"></textarea>
+                  <small class="oe-field-help">Shown to the driver</small>
+                </label>
+              </div>
+            </section>
+            <section class="oe-section">
+              <div>
+                <h2 class="oe-section-title">Payment</h2>
+                <p class="oe-section-text">When the customer pays.</p>
+              </div>
+              <fieldset class="oe-fieldset">
+                <legend class="oe-sr-only">Payment terms</legend>
+                <label class="oe-radio-card"><input class="oe-check" type="radio" name="terms" checked /><span><span class="oe-radio-card-title">Net 30</span><span class="oe-radio-card-text">Invoice due in 30 days</span></span></label>
+                <label class="oe-radio-card"><input class="oe-check" type="radio" name="terms" /><span><span class="oe-radio-card-title">Prepaid</span><span class="oe-radio-card-text">Payment before shipping</span></span></label>
+              </fieldset>
+            </section>
+            <div class="oe-form-actions oe-form-actions-sticky">
+              <a class="oe-btn oe-btn-secondary" href="/orders">Cancel</a>
+              <button class="oe-btn oe-btn-primary" type="submit">Create order</button>
+            </div>
+          </form>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

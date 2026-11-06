@@ -1,0 +1,49 @@
+<!doctype html>
+<!-- Sign-in: the one page outside the shell. -->
+<!-- <i data-lucide="plus"></i> stands for that Lucide icon. Use your framework's icon component. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign in · Northwind</title>
+    <link rel="stylesheet" href="../dist/tokens.css" />
+    <link rel="stylesheet" href="../dist/components.css" />
+    <style>
+      body { margin: 0; font-family: var(--font-sans); font-size: var(--text-base); line-height: var(--leading-relaxed); }
+    </style>
+  </head>
+  <body>
+    <main class="oe-auth">
+      <div class="oe-card oe-auth-card">
+        <a class="oe-auth-brand" href="/"><i data-lucide="package"></i>Northwind</a>
+        <div class="oe-card-head">
+          <div>
+            <h1 class="oe-card-title">Sign in</h1>
+            <p class="oe-card-subtitle">Use your work email</p>
+          </div>
+        </div>
+        <form class="oe-form">
+          <!-- Remove hidden after a failed sign-in. -->
+          <div class="oe-alert oe-alert-danger" role="alert" hidden>
+            <i data-lucide="circle-x"></i>
+            <p>That email and password don't match.</p>
+          </div>
+          <label class="oe-field"><span class="oe-field-label">Email</span><input class="oe-input" type="email" autocomplete="username" required autofocus /></label>
+          <div class="oe-field">
+            <label class="oe-field-label" for="password">Password</label>
+            <div class="oe-input-group">
+            <input class="oe-input" id="password" type="password" autocomplete="current-password" required />
+            <!-- Flip the input between type="password" and type="text", and aria-pressed with it. -->
+            <button class="oe-close" type="button" aria-label="Show password" aria-pressed="false"><i data-lucide="eye"></i></button>
+          </div>
+            <small class="oe-field-help"><a class="oe-link" href="#">Forgot your password?</a></small>
+          </div>
+          <label class="oe-check-label"><input class="oe-check" type="checkbox" />Keep me signed in</label>
+          <!-- Set aria-busy="true" while signing in. -->
+          <button class="oe-btn oe-btn-primary oe-btn-block" type="submit">Sign in</button>
+        </form>
+        <div class="oe-card-foot"><a class="oe-btn oe-btn-secondary oe-btn-block" href="#">Use single sign-on</a></div>
+      </div>
+    </main>
+  </body>
+</html>

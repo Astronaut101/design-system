@@ -1,0 +1,121 @@
+<!doctype html>
+<!-- One record: status and actions, tabs, a main column and a side column. -->
+<!-- <i data-lucide="plus"></i> stands for that Lucide icon. Use your framework's icon component. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Order 2041 · Northwind</title>
+    <link rel="stylesheet" href="../dist/tokens.css" />
+    <link rel="stylesheet" href="../dist/components.css" />
+    <style>
+      body { margin: 0; font-family: var(--font-sans); font-size: var(--text-base); line-height: var(--leading-relaxed); }
+    </style>
+  </head>
+  <body>
+    <a class="oe-skip-link" href="#main">Skip to content</a>
+    <div class="oe-shell">
+      <nav class="oe-sidenav" id="nav" popover aria-label="Pages">
+        <a class="oe-sidenav-brand" href="/"><i data-lucide="package"></i>Northwind</a>
+        <div class="oe-sidenav-body">
+          <ul class="oe-nav-list">
+            <li><a class="oe-nav-item" href="/" title="Overview"><i data-lucide="house"></i>Overview</a></li>
+            <li><a class="oe-nav-item" href="/orders" title="Orders" aria-current="page"><i data-lucide="package"></i>Orders<span class="oe-badge oe-badge-neutral">12</span></a></li>
+            <li><a class="oe-nav-item" href="#" title="Shipments"><i data-lucide="truck"></i>Shipments</a></li>
+            <li><a class="oe-nav-item" href="#" title="Invoices"><i data-lucide="file-text"></i>Invoices<span class="oe-badge oe-badge-neutral">3</span></a></li>
+          </ul>
+          <p class="oe-nav-heading">Team</p>
+          <ul class="oe-nav-list">
+            <li><a class="oe-nav-item" href="#" title="Customers"><i data-lucide="users"></i>Customers</a></li>
+            <li><a class="oe-nav-item" href="#" title="Reports"><i data-lucide="chart-column"></i>Reports</a></li>
+          </ul>
+        </div>
+        <div class="oe-sidenav-foot">
+          <a class="oe-nav-item" href="/settings" title="Settings"><i data-lucide="settings"></i>Settings</a>
+          <a class="oe-nav-item" href="/sign-in" title="Maja Holm"><span class="oe-avatar">MH</span>Maja Holm</a>
+        </div>
+      </nav>
+      <div class="oe-shell-main">
+        <header class="oe-topbar">
+          <button class="oe-btn oe-btn-ghost oe-btn-icon oe-shell-menu" type="button" popovertarget="nav" aria-label="Open navigation"><i data-lucide="menu"></i></button>
+          <button class="oe-btn oe-btn-ghost oe-btn-icon oe-shell-toggle" type="button" aria-expanded="true" aria-controls="nav" aria-label="Toggle sidebar" title="Toggle sidebar"><i data-lucide="panel-left"></i></button>
+          <nav class="oe-breadcrumb" aria-label="Breadcrumb">
+            <ol><li><a href="/">Northwind</a></li><li><a href="/orders">Orders</a></li><li aria-current="page">Order 2041</li></ol>
+          </nav>
+          <div class="oe-topbar-actions">
+            <button class="oe-btn oe-btn-ghost oe-btn-icon" type="button" aria-label="Search" title="Search"><i data-lucide="search"></i></button>
+            <button class="oe-btn oe-btn-ghost oe-btn-icon" type="button" aria-label="Notifications" title="Notifications"><i data-lucide="bell"></i></button>
+          </div>
+        </header>
+        <main class="oe-page" id="main">
+          <header class="oe-page-head">
+            <div>
+              <h1 class="oe-page-title">Order 2041 <span class="oe-badge oe-badge-success"><i data-lucide="circle-check"></i>Paid</span></h1>
+              <p class="oe-page-subtitle">Nordic Freight, placed November 3, 2026</p>
+            </div>
+            <div class="oe-page-actions">
+              <button class="oe-btn oe-btn-secondary" type="button"><i data-lucide="copy"></i>Duplicate</button>
+              <a class="oe-btn oe-btn-primary" href="/orders/new"><i data-lucide="pencil"></i>Edit</a>
+              <button class="oe-btn oe-btn-quiet oe-btn-icon" type="button" aria-label="More actions"><i data-lucide="ellipsis"></i></button>
+            </div>
+          </header>
+          <div class="oe-stack">
+            <nav class="oe-tabs" aria-label="Order sections">
+              <a href="#" aria-current="page">Overview</a>
+              <a href="#">Shipments</a>
+              <a href="#">Documents</a>
+            </nav>
+            <div class="oe-split">
+              <div class="oe-stack">
+                <section class="oe-card oe-card-flush">
+                  <div class="oe-card-head"><h2 class="oe-card-title">Items</h2></div>
+                  <div class="oe-table-wrap">
+                    <table class="oe-table">
+                      <thead>
+                        <tr><th scope="col">Item</th><th scope="col" class="oe-table-num">Quantity</th><th scope="col" class="oe-table-num">Price</th><th scope="col" class="oe-table-num">Total</th></tr>
+                      </thead>
+                      <tbody>
+                      <tr><td>Pallet racking, 2.4 m</td><td class="oe-table-num">40</td><td class="oe-table-num">$180</td><td class="oe-table-num">$7,200</td></tr>
+                      <tr><td>Shelf decking</td><td class="oe-table-num">120</td><td class="oe-table-num">$28</td><td class="oe-table-num">$3,360</td></tr>
+                      <tr><td>Installation</td><td class="oe-table-num">1</td><td class="oe-table-num">$1,840</td><td class="oe-table-num">$1,840</td></tr>
+                      </tbody>
+                      <tfoot>
+                        <tr><th scope="row" colspan="3">Total</th><td class="oe-table-num">$12,400</td></tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </section>
+                <section class="oe-card">
+                  <div class="oe-card-head"><h2 class="oe-card-title">Delivery</h2></div>
+                  <dl class="oe-dl">
+                    <div><dt>Address</dt><dd>Havnegade 12, 8000 Aarhus</dd></div>
+                    <div><dt>Carrier</dt><dd>Lund Transport</dd></div>
+                  </dl>
+                </section>
+              </div>
+              <aside class="oe-split-side oe-stack">
+                <section class="oe-card">
+                  <div class="oe-card-head"><h2 class="oe-card-title">Details</h2></div>
+                  <dl class="oe-dl">
+                    <div><dt>Customer</dt><dd><a class="oe-link" href="#">Nordic Freight</a></dd></div>
+                    <div><dt>Contact</dt><dd>Anna Berg</dd></div>
+                    <div><dt>Terms</dt><dd>Net 30</dd></div>
+                    <div><dt>Due</dt><dd>December 3, 2026</dd></div>
+                  </dl>
+                </section>
+                <section class="oe-card">
+                  <div class="oe-card-head"><h2 class="oe-card-title">Activity</h2></div>
+                  <ol class="oe-timeline">
+                    <li class="oe-timeline-item"><span class="oe-timeline-marker"><i data-lucide="circle-check"></i></span><div class="oe-timeline-text">Paid in full<span class="oe-timeline-time">Today at 09:12</span></div></li>
+                    <li class="oe-timeline-item"><span class="oe-timeline-marker"><i data-lucide="truck"></i></span><div class="oe-timeline-text">Shipped from Aarhus<span class="oe-timeline-time">Yesterday at 16:40</span></div></li>
+                    <li class="oe-timeline-item"><span class="oe-timeline-marker"><i data-lucide="file-text"></i></span><div class="oe-timeline-text">Invoice sent<span class="oe-timeline-time">November 3 at 11:05</span></div></li>
+                  </ol>
+                </section>
+              </aside>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

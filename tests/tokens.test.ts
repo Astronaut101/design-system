@@ -265,7 +265,7 @@ describe('components.css', () => {
 
   it('lets the hidden attribute beat every display rule', () => {
     const covered = css.match(/:is\(([^)]*)\)\[hidden\]/)![1];
-    const shown = rules.filter((r) => /^\.oe-[\w-]+$/.test(r.selector) && /(?:^|[\s;])display:\s*(?!none)/.test(r.body));
+    const shown = rules.filter((r) => /^\.oe-[\w-]+$/.test(r.selector) && /(?:^|[\s;])display:\s*(?!\s|none)/.test(r.body));
     expect(shown.length).toBeGreaterThan(30);
     for (const { selector } of shown) expect(covered, selector).toMatch(new RegExp(`${selector.replace('.', '\\.')}(?![\\w-])`));
   });
@@ -276,11 +276,22 @@ describe('components.css', () => {
     for (const line of lines) expect(line).toContain('@media (hover: hover)');
   });
 
+  it('hides row actions only where hovering can bring them back', () => {
+    const lines = css.split('\n').filter((line) => line.includes('.oe-table-reveal'));
+    expect(lines.length).toBeGreaterThan(0);
+    for (const line of lines) expect(line).toContain('@media (hover: hover)');
+  });
+
   it('shows selected states in forced colors mode', () => {
     const forced = css.slice(css.indexOf('@media (forced-colors: active)'));
-    for (const name of ['.oe-nav-item[aria-current="page"]', '.oe-segmented > [aria-pressed="true"]', '.oe-pagination > [aria-current="page"]', '.oe-row-selected', '.oe-switch:checked']) {
+    for (const name of ['.oe-nav-item[aria-current="page"]', '.oe-segmented > [aria-pressed="true"]', '.oe-pagination > [aria-current="page"]', '.oe-row-selected > td', '.oe-nav-item[aria-current="page"] > .oe-badge', '.oe-row-selected .oe-badge', '.oe-switch:checked']) {
       expect(forced, name).toContain(name);
     }
+  });
+
+  it('keeps selected rows readable, since forced colors draws a light plate behind adjusted text', () => {
+    const forced = css.slice(css.indexOf('@media (forced-colors: active)'));
+    expect(forced).toMatch(/\.oe-row-selected > td \{ forced-color-adjust: none;/);
   });
 
   it('positions scrolling containers, so screen reader text inside them cannot widen the page', () => {
@@ -358,8 +369,8 @@ describe('showcase pages', () => {
     expect(ICON_NODES).toHaveProperty([icon]);
   });
 
-  it('keeps the example app free of site styles', () => {
-    const example = readFileSync(new URL('../site/pages/layout-example.ts', import.meta.url), 'utf8');
+  it('keeps the page templates free of site styles', () => {
+    const example = readFileSync(new URL('../site/pages/template.ts', import.meta.url), 'utf8');
     expect(example).not.toContain('site.css');
     expect(example).not.toContain('frame.ts');
   });

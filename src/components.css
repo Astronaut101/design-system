@@ -16,7 +16,7 @@
 
 @layer components {
   /* The display rules below would otherwise beat the hidden attribute. */
-  :is(.oe-btn, .oe-badge, .oe-alert, .oe-field, .oe-field-error, .oe-check-label, .oe-stat-label, .oe-stat-value, .oe-stat-delta, .oe-tabs, .oe-segmented, .oe-dialog-actions, .oe-menu-item, .oe-toast, .oe-toaster, .oe-close, .oe-btn-group, .oe-avatar-group, .oe-card-head, .oe-card-foot, .oe-dialog-head, .oe-alert-actions, .oe-form, .oe-form-row, .oe-form-actions, .oe-fieldset, .oe-radio-card, .oe-dropzone, .oe-dl, .oe-list-item, .oe-timeline-item, .oe-steps, .oe-step, .oe-banner, .oe-toolbar, .oe-sidenav, .oe-skeleton, .oe-progress, .oe-spinner, .oe-kbd, .oe-input-group, .oe-empty, .oe-pagination, .oe-avatar, .oe-shell, .oe-shell-main, .oe-topbar, .oe-topbar-actions, .oe-breadcrumb ol, .oe-sidenav-brand, .oe-sidenav-foot, .oe-nav-list, .oe-nav-item, .oe-page-head, .oe-input-select, .oe-slider, .oe-radio-card-title, .oe-radio-card-text, .oe-badge-remove, .oe-table-sort, .oe-toolbar-end, .oe-list-title, .oe-list-subtitle, .oe-timeline-marker, .oe-timeline-time, .oe-calendar-day, .oe-page-actions, .oe-shell-menu, .oe-shell-toggle)[hidden],
+  :is(.oe-btn, .oe-badge, .oe-alert, .oe-field, .oe-field-error, .oe-check-label, .oe-stat-label, .oe-stat-value, .oe-stat-delta, .oe-tabs, .oe-segmented, .oe-dialog-actions, .oe-menu-item, .oe-toast, .oe-toaster, .oe-close, .oe-btn-group, .oe-avatar-group, .oe-card-head, .oe-card-foot, .oe-dialog-head, .oe-alert-actions, .oe-form, .oe-form-row, .oe-form-actions, .oe-fieldset, .oe-radio-card, .oe-dropzone, .oe-dl, .oe-list-item, .oe-timeline-item, .oe-steps, .oe-step, .oe-banner, .oe-toolbar, .oe-sidenav, .oe-skeleton, .oe-progress, .oe-spinner, .oe-kbd, .oe-input-group, .oe-empty, .oe-pagination, .oe-avatar, .oe-shell, .oe-shell-main, .oe-topbar, .oe-topbar-actions, .oe-breadcrumb ol, .oe-sidenav-brand, .oe-sidenav-foot, .oe-nav-list, .oe-nav-item, .oe-page-head, .oe-input-select, .oe-slider, .oe-radio-card-title, .oe-radio-card-text, .oe-badge-remove, .oe-table-sort, .oe-toolbar-end, .oe-list-title, .oe-list-subtitle, .oe-timeline-marker, .oe-timeline-time, .oe-calendar-day, .oe-page-actions, .oe-shell-menu, .oe-shell-toggle, .oe-stack, .oe-stat-grid, .oe-panels, .oe-split, .oe-section, .oe-auth, .oe-auth-brand, .oe-table-link, .oe-skip-link, .oe-stat-context)[hidden],
   .oe-tabs > [hidden],
   .oe-segmented > [hidden],
   .oe-pagination > [hidden] {
@@ -24,7 +24,7 @@
   }
 
   /* Hover and press ease in, on only the properties that change. */
-  :is(.oe-btn, .oe-input, .oe-table-sort, .oe-tabs > *, .oe-segmented > *, .oe-menu-item, .oe-nav-item, .oe-breadcrumb a, .oe-pagination > *, .oe-accordion > summary, .oe-close, .oe-badge-remove, .oe-link, .oe-radio-card, .oe-dropzone, a.oe-list-item, .oe-calendar-day) {
+  :is(.oe-btn, .oe-input, .oe-table-sort, .oe-tabs > *, .oe-segmented > *, .oe-menu-item, .oe-nav-item, .oe-breadcrumb a, .oe-pagination > *, .oe-accordion > summary, .oe-close, .oe-badge-remove, .oe-link, .oe-table-link, .oe-radio-card, .oe-dropzone, a.oe-list-item, .oe-calendar-day) {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     transition: color 150ms var(--ease-out), background-color 150ms var(--ease-out), border-color 150ms var(--ease-out);
@@ -45,6 +45,8 @@
   .oe-close:focus-visible,
   .oe-badge-remove:focus-visible,
   .oe-link:focus-visible,
+  .oe-table-link:focus-visible,
+  .oe-skip-link:focus-visible,
   .oe-slider:focus-visible,
   .oe-calendar-day:focus-visible,
   .oe-radio-card:has(:focus-visible),
@@ -90,6 +92,7 @@
   .oe-btn-ghost { background: transparent; color: var(--fg-accent); }
   @media (hover: hover) { .oe-btn-ghost:hover { background: var(--bg-accent-muted); } }
   .oe-btn-ghost:active { background: var(--bg-accent-muted-hover); }
+  .oe-btn-block { width: 100%; }
   .oe-btn-quiet { background: transparent; color: var(--fg-muted); }
   @media (hover: hover) { .oe-btn-quiet:hover { background: var(--bg-hover); color: var(--fg-default); } }
   .oe-btn-quiet:active { background: var(--bg-pressed); color: var(--fg-default); }
@@ -148,8 +151,18 @@
   .oe-fieldset { display: grid; gap: calc(var(--spacing) * 1); min-width: 0; margin: 0; padding: 0; border: 0; font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
   .oe-fieldset-legend { margin-bottom: calc(var(--spacing) * 1); padding: 0; font-weight: var(--font-weight-medium); }
   .oe-form { display: grid; gap: calc(var(--spacing) * 5); min-width: 0; }
-  .oe-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(calc(var(--spacing) * 48), 100%), 1fr)); gap: calc(var(--spacing) * 4); }
+  .oe-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(calc(var(--spacing) * 48), 100%), 1fr)); gap: calc(var(--spacing) * 4); align-items: start; }
   .oe-form-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: calc(var(--spacing) * 2); }
+  /* Keeps Save in view on a long form, and stops the bar covering the field that has focus. */
+  .oe-form-actions-sticky {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    padding-block: calc(var(--spacing) * 3) max(calc(var(--spacing) * 3), env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--border-default);
+    background: var(--bg-surface);
+  }
+  :is(:root, .oe-shell-main):has(.oe-form-actions-sticky) { scroll-padding-bottom: calc(var(--spacing) * 20); }
   .oe-field-help { color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
   .oe-field-error { display: flex; gap: var(--spacing); color: var(--fg-danger); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
   .oe-field-error > svg { flex: none; width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); margin-top: 0.15em; }
@@ -170,10 +183,12 @@
   .oe-input[aria-invalid="true"] { border-color: var(--border-danger-emphasis); }
   .oe-input:disabled { background-color: var(--bg-disabled); color: var(--fg-disabled); border-color: var(--border-disabled); cursor: not-allowed; }
   textarea.oe-input { resize: vertical; }
+  /* Safari's clear button makes search fields two pixels taller, so min-height alone sets the size. */
+  input.oe-input[type="search"] { height: 0; }
   .oe-input-sm { min-height: calc(var(--spacing) * 7); padding-inline: calc(var(--spacing) * 2); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
   .oe-input-lg { min-height: calc(var(--spacing) * 10); padding: calc(var(--spacing) * 1.75) calc(var(--spacing) * 3); font-size: var(--text-base); line-height: var(--text-base--line-height); }
   /* Grows with its text where browsers support it, and stays resizable where they don't. */
-  .oe-input-autogrow { max-height: calc(var(--spacing) * 60); field-sizing: content; }
+  .oe-input-autogrow { min-height: calc(var(--spacing) * 20); max-height: calc(var(--spacing) * 60); field-sizing: content; }
   .oe-input-code { max-width: calc(var(--spacing) * 48); font-family: var(--font-mono); letter-spacing: 0.4em; text-align: center; }
   input[type="file"].oe-input { padding: calc(var(--spacing) * 0.5); cursor: pointer; }
   .oe-input::file-selector-button {
@@ -337,12 +352,15 @@
   .oe-stat {
     box-sizing: border-box;
     min-width: 0;
-    padding-top: calc(var(--spacing) * 3);
-    border-top: 1px solid var(--border-default);
+    padding: calc(var(--spacing) * 4);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    background: var(--bg-surface);
     color: var(--fg-default);
   }
-  .oe-stat-label { display: block; margin: 0; overflow: hidden; color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--text-xs--line-height); white-space: nowrap; text-overflow: ellipsis; }
-  .oe-stat-value { display: block; margin: calc(var(--spacing) * 1) 0; font-size: var(--text-2xl); font-weight: var(--font-weight-semibold); font-variant-numeric: tabular-nums; letter-spacing: var(--tracking-tight); line-height: var(--text-2xl--line-height); }
+  .oe-stat-label { display: block; margin: 0; overflow: hidden; color: var(--fg-muted); font-size: var(--text-sm); line-height: var(--text-sm--line-height); white-space: nowrap; text-overflow: ellipsis; }
+  .oe-stat-value { display: block; margin: calc(var(--spacing) * 0.5) 0 calc(var(--spacing) * 1.5); font-size: var(--text-2xl); font-weight: var(--font-weight-semibold); font-variant-numeric: tabular-nums; letter-spacing: var(--tracking-tight); line-height: var(--text-2xl--line-height); }
+  .oe-stat-context { display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--spacing); margin: 0; color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
   .oe-stat-delta { display: inline-flex; align-items: center; gap: var(--spacing); color: var(--fg-muted); font-size: var(--text-xs); font-variant-numeric: tabular-nums; line-height: var(--text-xs--line-height); }
   .oe-stat-delta > svg { flex: none; width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); }
   .oe-stat-delta-success { color: var(--fg-success); }
@@ -373,11 +391,19 @@
   .oe-table .oe-table-num { font-variant-numeric: tabular-nums; text-align: right; }
   .oe-table .oe-table-actions { width: 1%; text-align: right; white-space: nowrap; }
   .oe-table .oe-table-select { width: 1%; line-height: 1; }
+  /* Actions that wait for their row. Only where hovering exists, so touch screens always show them. */
+  @media (hover: hover) { .oe-table .oe-table-reveal > * { opacity: 0; } }
+  @media (hover: hover) { .oe-table tr:is(:hover, :has(:focus-visible, [aria-expanded="true"])) > .oe-table-reveal > * { opacity: 1; } }
+  .oe-table-link { border-radius: var(--radius-xs); color: inherit; font-weight: var(--font-weight-medium); text-decoration: none; }
+  @media (hover: hover) { .oe-table-link:hover { color: var(--fg-link-hover); text-decoration: underline; text-underline-offset: 0.15em; } }
   .oe-table .oe-table-truncate { max-width: calc(var(--spacing) * 60); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .oe-table td.oe-table-empty { padding-block: calc(var(--spacing) * 8); color: var(--fg-muted); text-align: center; }
-  .oe-table-compact { font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
-  .oe-table-compact th,
-  .oe-table-compact td { padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2); }
+  /* Row headers and totals read as cells, with the line above them that rows have. */
+  .oe-table :is(tbody, tfoot) th { padding-block: calc(var(--spacing) * 2.5); border-top: 1px solid var(--border-default); border-bottom: 0; color: inherit; }
+  .oe-table tfoot :is(th, td) { font-weight: var(--font-weight-semibold); }
+  /* Compact keeps the text size and evens out rows, with or without a button in them. */
+  .oe-table-compact th { padding-block: calc(var(--spacing) * 1.5); }
+  .oe-table-compact :is(tbody, tfoot) :is(th, td) { box-sizing: border-box; height: calc(var(--spacing) * 10); padding-block: var(--spacing); }
   /* Collapsed borders scroll away with the rows, so a sticky header draws its own line. */
   .oe-table-sticky th { position: sticky; top: 0; z-index: 1; background: var(--bg-surface); box-shadow: inset 0 -1px 0 var(--border-default); }
   .oe-table-sort {
@@ -399,19 +425,29 @@
   /* Toolbar, above or below a table or any other content */
   .oe-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--spacing) * 2); min-width: 0; font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
   .oe-toolbar-end { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--spacing) * 2); margin-left: auto; }
-  .oe-toolbar:has(+ .oe-table-wrap) { margin-bottom: calc(var(--spacing) * 3); }
+  .oe-toolbar:where(:has(+ .oe-table-wrap), :has(+ .oe-toolbar[hidden] + .oe-table-wrap)) { margin-bottom: calc(var(--spacing) * 3); }
   .oe-table-wrap + .oe-toolbar { margin-top: calc(var(--spacing) * 3); color: var(--fg-muted); }
-  /* A table in a card lines its text up with the card's title, and the foot's border closes it. */
-  .oe-card > .oe-table-wrap { margin-inline: calc(var(--spacing) * -1); }
+  .oe-toolbar > .oe-input { width: auto; max-width: 100%; }
+  .oe-toolbar + .oe-toolbar { margin-top: calc(var(--spacing) * 2); }
+  .oe-toolbar[hidden] + .oe-toolbar { margin-top: 0; }
+  /* Takes the place of the filters, at their height, so the rows below stay still. */
+  .oe-toolbar-selection { min-height: calc(var(--spacing) * 8); color: var(--fg-default); font-weight: var(--font-weight-medium); }
+  /* A table lines its text up with the title above it, and a card's foot border closes it. */
+  :is(.oe-card, .oe-page, .oe-stack) > .oe-table-wrap { margin-inline: calc(var(--spacing) * -1); }
   .oe-card-head:has(+ .oe-table-wrap) { margin-bottom: calc(var(--spacing) * 2); }
   .oe-table-wrap + .oe-card-foot { margin-top: 0; }
+  :is(.oe-card, .oe-section) > .oe-list { margin-inline: calc(var(--spacing) * -1); }
+  .oe-list-text > .oe-progress { margin-top: var(--spacing); }
   /* A flush card has no padding, so its parts bring their own and tables run edge to edge. */
   .oe-card-flush { padding: 0; overflow: hidden; }
-  .oe-card-flush > .oe-card-head { margin: 0; padding: calc(var(--spacing) * 4) calc(var(--spacing) * 5); border-bottom: 1px solid var(--border-default); }
+  .oe-card-flush > .oe-card-head { margin: 0; padding: calc(var(--spacing) * 5) calc(var(--spacing) * 5) calc(var(--spacing) * 4); border-bottom: 1px solid var(--border-default); }
   .oe-card-flush > .oe-card-body { padding: calc(var(--spacing) * 5); }
   .oe-card-flush > .oe-card-foot { margin: 0; padding: calc(var(--spacing) * 3) calc(var(--spacing) * 5); }
   .oe-card-flush > .oe-toolbar { margin: 0; padding: calc(var(--spacing) * 3) calc(var(--spacing) * 5); }
   .oe-card-flush > .oe-table-wrap { margin-inline: 0; }
+  .oe-card-flush > .oe-toolbar ~ .oe-table-wrap { border-top: 1px solid var(--border-default); }
+  .oe-card-flush > .oe-table-wrap + .oe-toolbar { border-top: 1px solid var(--border-default); }
+  .oe-card-flush > .oe-table-wrap .oe-table thead th { background: var(--bg-sunken); }
   .oe-card-flush > .oe-table-wrap .oe-table :is(th, td):first-child { padding-left: calc(var(--spacing) * 5); }
   .oe-card-flush > .oe-table-wrap .oe-table :is(th, td):last-child { padding-right: calc(var(--spacing) * 5); }
 
@@ -758,6 +794,9 @@
   .oe-input-group > .oe-input { padding-left: calc(var(--spacing) * 8.5); }
   .oe-input-group > .oe-kbd { position: absolute; top: 50%; right: calc(var(--spacing) * 2); pointer-events: none; translate: 0 -50%; }
   .oe-input-group:has(> .oe-kbd) > .oe-input { padding-right: calc(var(--spacing) * 12); }
+  .oe-input-group > .oe-close { position: absolute; top: 50%; right: var(--spacing); translate: 0 -50%; }
+  .oe-input-group:has(> .oe-close) > .oe-input { padding-right: calc(var(--spacing) * 9); }
+  .oe-input-group:not(:has(> svg)) > .oe-input { padding-left: calc(var(--spacing) * 2.5); }
 
   /* Empty state */
   .oe-empty {
@@ -904,6 +943,8 @@
   .oe-dl > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: calc(var(--spacing) * 4); padding-block: calc(var(--spacing) * 3); border-top: 1px solid var(--border-default); }
   .oe-dl dt { color: var(--fg-muted); }
   .oe-dl dd { margin: 0; min-width: 0; }
+  .oe-card-head + .oe-dl > :first-child { padding-top: 0; border-top: 0; }
+  .oe-card > .oe-dl > :last-child { padding-bottom: 0; }
   .oe-list { margin: 0; padding: 0; list-style: none; font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
   .oe-list > * + * { border-top: 1px solid var(--border-default); }
   .oe-list-item { box-sizing: border-box; display: flex; align-items: center; gap: calc(var(--spacing) * 3); min-width: 0; padding: calc(var(--spacing) * 3) var(--spacing); color: inherit; text-decoration: none; }
@@ -1105,6 +1146,26 @@
   .oe-page-actions { display: flex; flex-wrap: wrap; gap: calc(var(--spacing) * 2); }
   .oe-page-title { margin: 0; font-size: var(--text-2xl); font-weight: var(--font-weight-semibold); letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); text-wrap: balance; }
   .oe-page-subtitle { margin: calc(var(--spacing) * 1) 0 0; color: var(--fg-muted); font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-page-narrow { max-width: var(--container-4xl); }
+  .oe-skip-link { position: absolute; top: calc(var(--spacing) * -12); left: calc(var(--spacing) * 4); z-index: 30; padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4); border-radius: var(--radius-md); background: var(--bg-raised); color: var(--fg-default); font-size: var(--text-sm); }
+  .oe-skip-link:focus { top: calc(var(--spacing) * 2); }
+  /* Page layouts. Each wraps by itself as room runs out, so they also work in a narrow panel. */
+  .oe-stack { display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--spacing) * 6); }
+  .oe-stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--spacing) * 40)), 1fr)); gap: calc(var(--spacing) * 4); margin: 0; }
+  .oe-panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--spacing) * 80)), 1fr)); gap: calc(var(--spacing) * 4); }
+  .oe-split { display: flex; flex-wrap: wrap; align-items: flex-start; gap: calc(var(--spacing) * 6); }
+  .oe-split > * { flex: 999 1 calc(var(--spacing) * 120); min-width: 0; }
+  .oe-split > .oe-split-side { flex: 1 1 calc(var(--spacing) * 72); }
+  .oe-section { display: flex; flex-wrap: wrap; gap: calc(var(--spacing) * 4) calc(var(--spacing) * 8); }
+  .oe-section > :first-child { flex: 1 1 calc(var(--spacing) * 56); min-width: 0; }
+  .oe-section > :last-child { flex: 2 1 calc(var(--spacing) * 96); min-width: 0; }
+  .oe-section + .oe-section { padding-top: calc(var(--spacing) * 6); border-top: 1px solid var(--border-default); }
+  .oe-section-title { margin: 0; font-size: var(--text-base); font-weight: var(--font-weight-semibold); line-height: var(--text-base--line-height); }
+  .oe-section-text { margin: calc(var(--spacing) * 1) 0 0; color: var(--fg-muted); font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-auth { box-sizing: border-box; display: grid; place-items: center; min-height: 100dvh; padding: calc(var(--spacing) * 6) calc(var(--spacing) * 4); background: var(--bg-page); color: var(--fg-default); }
+  .oe-auth-card { width: 100%; max-width: calc(var(--spacing) * 96); }
+  .oe-auth-brand { display: flex; align-items: center; gap: calc(var(--spacing) * 2); margin-bottom: calc(var(--spacing) * 6); color: inherit; font-size: var(--text-sm); font-weight: var(--font-weight-semibold); text-decoration: none; }
+  .oe-auth-brand > svg { flex: none; width: calc(var(--spacing) * 5); height: calc(var(--spacing) * 5); color: var(--fg-accent); }
   @media (width >= 64rem) {
     .oe-shell {
       grid-template-columns: var(--oe-sidenav-width) minmax(0, 1fr);
@@ -1165,6 +1226,13 @@
     .oe-field-inline > .oe-field-label { padding-top: 0; }
     .oe-field-inline > :not(.oe-field-label) { grid-column: auto; }
     .oe-dl > div { grid-template-columns: minmax(0, 1fr); gap: var(--spacing); }
+    .oe-hide-narrow { display: none; }
+    .oe-table :is(th, td) { padding-inline: calc(var(--spacing) * 1.5); }
+    /* A truncated cell takes what the other columns leave, so the table fits without scrolling. */
+    .oe-table .oe-table-truncate { width: 100%; max-width: 0; }
+    .oe-card-flush > :is(.oe-card-head, .oe-card-body, .oe-card-foot, .oe-toolbar) { padding-inline: calc(var(--spacing) * 3); }
+    .oe-card-flush > .oe-table-wrap .oe-table :is(th, td):first-child { padding-left: calc(var(--spacing) * 3); }
+    .oe-card-flush > .oe-table-wrap .oe-table :is(th, td):last-child { padding-right: calc(var(--spacing) * 3); }
     .oe-steps { flex-direction: column; }
     .oe-step:not(:last-child)::after { content: none; }
     .oe-toaster { left: calc(var(--spacing) * 4); align-items: stretch; max-width: none; }
@@ -1175,11 +1243,18 @@
     }
     .oe-breadcrumb li:not(:last-child) { display: none; }
     .oe-breadcrumb li + li::before { content: none; }
+    /* Deep in an app, the page has its own title, so the bar shows the way back instead. */
+    .oe-breadcrumb ol:has(> :nth-child(3)) > :last-child { display: none; }
+    .oe-breadcrumb ol:has(> :nth-child(3)) > :nth-last-child(2) { display: flex; }
+    .oe-breadcrumb ol:has(> :nth-child(3)) > :nth-last-child(2)::before { content: "‹"; content: "‹" / ""; }
+    .oe-breadcrumb ol:has(> :nth-child(3)) a { color: var(--fg-default); }
   }
   /* Touch: 44px targets. Small controls keep their size and reach further with an invisible area. */
   @media (pointer: coarse) {
     .oe-btn, .oe-input, .oe-nav-item, .oe-menu-item, .oe-tabs > *, .oe-segmented > *, .oe-check-label { min-height: calc(var(--spacing) * 11); }
     .oe-pagination > *, .oe-accordion > summary, .oe-close, .oe-calendar-day { min-height: calc(var(--spacing) * 11); }
+    .oe-table-link { display: inline-block; margin-block: calc(var(--spacing) * -3); padding-block: calc(var(--spacing) * 3); }
+    .oe-toolbar-selection { min-height: calc(var(--spacing) * 11); }
     .oe-close, .oe-calendar-day { width: calc(var(--spacing) * 11); }
     .oe-badge-remove::after { inset: calc(var(--spacing) * -3.5); }
     .oe-slider { min-height: calc(var(--spacing) * 11); }
@@ -1193,7 +1268,7 @@
     .oe-table-sort::after { content: ""; position: absolute; inset: calc(var(--spacing) * -3) 0; }
   }
   @media (prefers-reduced-motion: reduce) {
-    :is(.oe-btn, .oe-input, .oe-table-sort, .oe-tabs > *, .oe-segmented > *, .oe-menu-item, .oe-nav-item, .oe-breadcrumb a, .oe-pagination > *, .oe-accordion > summary, .oe-close, .oe-badge-remove, .oe-link, .oe-radio-card, .oe-dropzone, a.oe-list-item, .oe-calendar-day),
+    :is(.oe-btn, .oe-input, .oe-table-sort, .oe-tabs > *, .oe-segmented > *, .oe-menu-item, .oe-nav-item, .oe-breadcrumb a, .oe-pagination > *, .oe-accordion > summary, .oe-close, .oe-badge-remove, .oe-link, .oe-table-link, .oe-radio-card, .oe-dropzone, a.oe-list-item, .oe-calendar-day),
     dialog.oe-dialog, dialog.oe-dialog::backdrop, .oe-drawer, .oe-drawer::backdrop, .oe-popover[popover], .oe-menu[popover], .oe-toaster > .oe-toast, .oe-switch, .oe-accordion > summary::after, .oe-shell, .oe-sidenav, .oe-nav-heading { transition: none; }
     .oe-skeleton { animation: none; }
   }
@@ -1201,7 +1276,6 @@
      needs a system color instead, and anything that relied on a fill or shadow needs a border. */
   @media (forced-colors: active) {
     :is(.oe-nav-item[aria-current="page"], .oe-pagination > [aria-current="page"], .oe-segmented > [aria-pressed="true"], .oe-btn[aria-pressed="true"], .oe-menu-item[data-highlighted], .oe-menu-item[data-selected]:not([data-selected="false"]), .oe-calendar-day:is([data-selected], [data-selected] > *), .oe-step[aria-current="step"]::before) { forced-color-adjust: none; background: Highlight; color: HighlightText; }
-    .oe-row-selected > td { forced-color-adjust: none; background: Highlight; color: HighlightText; }
     .oe-radio-card:has(:checked) { border: 2px solid Highlight; }
     .oe-switch { forced-color-adjust: none; border: 1px solid CanvasText; background-color: Canvas; background-image: radial-gradient(closest-side, CanvasText 96%, transparent); }
     .oe-switch:checked { background-color: Highlight; background-image: radial-gradient(closest-side, HighlightText 96%, transparent); }
@@ -1210,5 +1284,10 @@
     .oe-progress { appearance: auto; }
     .oe-skeleton, .oe-badge, .oe-toast, .oe-tooltip, .oe-dialog, .oe-drawer, .oe-popover, .oe-avatar, .oe-timeline-marker { border: 1px solid CanvasText; }
     .oe-tabs > [aria-selected="true"], .oe-tabs > [aria-current="page"] { border-bottom-color: Highlight; }
+    .oe-table .oe-row-selected > td { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+    .oe-row-selected .oe-btn { border-color: HighlightText; background: Highlight; color: HighlightText; }
+    @media (hover: hover) { .oe-table tbody .oe-row-selected:hover > td { background: Highlight; color: HighlightText; } }
+    .oe-nav-item[aria-current="page"] > .oe-badge,
+    .oe-row-selected .oe-badge { border-color: HighlightText; background: Highlight; color: HighlightText; }
   }
 }

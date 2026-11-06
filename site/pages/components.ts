@@ -131,11 +131,13 @@ const componentsPage = () => `
           </div>
         </div>
       </div>
-      <div class="oe-card demo wide">
+      <div class="wide">
         <h2 class="card-title">Table</h2>
-        <div class="oe-toolbar">
-          <label class="oe-input-group">${lucideSvg('search')}<input class="oe-input" placeholder="Search orders…" aria-label="Search orders" /></label>
-          <div class="oe-toolbar-end"><button class="oe-btn oe-btn-primary" type="button">${lucideSvg('plus')}New order</button></div>
+        <div class="oe-card oe-card-flush">
+        <div class="oe-toolbar oe-toolbar-selection">
+          <span>1 selected</span>
+          <button class="oe-btn oe-btn-quiet oe-btn-sm" type="button">Clear</button>
+          <div class="oe-toolbar-end"><button class="oe-btn oe-btn-secondary oe-btn-sm" type="button">${lucideSvg('archive')}Archive</button><button class="oe-btn oe-btn-secondary oe-btn-sm" type="button">${lucideSvg('trash')}Delete</button></div>
         </div>
         <div class="oe-table-wrap">
           <table class="oe-table">
@@ -147,7 +149,7 @@ const componentsPage = () => `
               <th scope="col" class="oe-table-num">Amount</th>
               <th scope="col" class="oe-table-actions"><span class="oe-sr-only">Actions</span></th>
             </tr></thead>
-            <tbody>${TABLE_ROWS.map(([id, who, intent, label, amount, selected]) => `<tr${selected ? ' class="oe-row-selected"' : ''}><td class="oe-table-select"><input class="oe-check" type="checkbox" aria-label="Select order ${id}"${selected ? ' checked' : ''} /></td><td class="num">${id}</td><td>${who}</td><td>${statusBadge(intent, label)}</td><td class="oe-table-num">${amount}</td><td class="oe-table-actions"><button class="oe-btn oe-btn-ghost oe-btn-icon oe-btn-sm" type="button" aria-label="More for order ${id}">${lucideSvg('ellipsis')}</button></td></tr>`).join('')}</tbody>
+            <tbody>${TABLE_ROWS.map(([id, who, intent, label, amount, selected]) => `<tr${selected ? ' class="oe-row-selected"' : ''}><td class="oe-table-select"><input class="oe-check" type="checkbox" aria-label="Select order ${id}"${selected ? ' checked' : ''} /></td><td class="num">${id}</td><td>${who}</td><td>${statusBadge(intent, label)}</td><td class="oe-table-num">${amount}</td><td class="oe-table-actions oe-table-reveal"><button class="oe-btn oe-btn-quiet oe-btn-icon oe-btn-sm" type="button" aria-label="More for order ${id}">${lucideSvg('ellipsis')}</button></td></tr>`).join('')}</tbody>
           </table>
         </div>
         <div class="oe-toolbar">
@@ -155,6 +157,7 @@ const componentsPage = () => `
           <nav class="oe-pagination oe-toolbar-end" aria-label="Table pages">
             <a href="#" aria-label="Previous page">${lucideSvg('arrow-left')}</a><a href="#" aria-current="page">1</a><a href="#">2</a><a href="#">3</a><span aria-disabled="true">…</span><a href="#">16</a><a href="#" aria-label="Next page">${lucideSvg('arrow-right')}</a>
           </nav>
+        </div>
         </div>
       </div>
       <div class="oe-card oe-card-flush wide">
@@ -174,12 +177,12 @@ const componentsPage = () => `
         </div>
         <div class="oe-card-foot"><button class="oe-btn oe-btn-quiet" type="button">View all</button></div>
       </div>
-      <div class="oe-card demo">
+      <div class="wide">
         <h2 class="card-title">Stats</h2>
-        <dl class="tiles">
-          <div class="oe-stat"><dt class="oe-stat-label">Revenue</dt><dd class="oe-stat-value">$40.1K</dd><small class="oe-stat-delta oe-stat-delta-success">${lucideSvg('arrow-up')}+12%</small></div>
-          <div class="oe-stat"><dt class="oe-stat-label">Open orders</dt><dd class="oe-stat-value">128</dd><small class="oe-stat-delta">${lucideSvg('minus')}0</small></div>
-          <div class="oe-stat"><dt class="oe-stat-label">Overdue</dt><dd class="oe-stat-value">3</dd><small class="oe-stat-delta oe-stat-delta-danger">${lucideSvg('arrow-up')}+1</small></div>
+        <dl class="oe-stat-grid">
+          <div class="oe-stat"><dt class="oe-stat-label">Revenue</dt><dd class="oe-stat-value">$40.1K</dd><dd class="oe-stat-context"><span class="oe-stat-delta oe-stat-delta-success">${lucideSvg('arrow-up')}<span class="oe-sr-only">Up </span>12%</span>vs last month</dd></div>
+          <div class="oe-stat"><dt class="oe-stat-label">Open orders</dt><dd class="oe-stat-value">128</dd><dd class="oe-stat-context"><span class="oe-stat-delta">${lucideSvg('minus')}0</span>vs last month</dd></div>
+          <div class="oe-stat"><dt class="oe-stat-label">Overdue</dt><dd class="oe-stat-value">3</dd><dd class="oe-stat-context"><span class="oe-stat-delta oe-stat-delta-danger">${lucideSvg('arrow-up')}<span class="oe-sr-only">Up </span>1</span>vs last month</dd></div>
         </dl>
       </div>
       <div class="oe-card demo">
