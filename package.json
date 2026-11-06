@@ -1,6 +1,6 @@
 {
   "name": "@oestergaard/design-tokens",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Oestergaard-AS design tokens: HCT-derived color roles and Tailwind-standard sizing for every framework.",
   "private": true,
   "repository": "github:Oestergaard-A-S/design-system",
@@ -12,6 +12,7 @@
     "dist",
     "bin",
     "lint",
+    "templates",
     "AGENT-GUIDE.md"
   ],
   "exports": {
@@ -30,7 +31,7 @@
     "palette:search": "tsx scripts/search-chart-palette.ts",
     "test": "npm run build && vitest run",
     "typecheck": "tsc --noEmit",
-    "lint": "node bin/oe-lint.js site",
+    "lint": "node bin/oe-lint.js site templates",
     "dev": "npm run build && vite --config site/vite.config.ts",
     "site:build": "npm run build && vite build --config site/vite.config.ts",
     "site:preview": "vite preview --config site/vite.config.ts"
