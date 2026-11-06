@@ -1,0 +1,414 @@
+<!doctype html>
+<!-- Copy the structure into your app. Replace fictional content and routes. -->
+<!-- Applications own data-route actions, filtering, stories, chat and saved state. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chat/report workspace · Northwind</title>
+    <link rel="stylesheet" href="../dist/tokens.css" />
+    <link rel="stylesheet" href="../dist/components.css" />
+    <style>
+      @layer base {
+        body {
+          margin: 0;
+          background: var(--bg-page);
+          color: var(--fg-default);
+          font-family: var(--font-sans);
+          font-size: var(--text-base);
+          line-height: var(--leading-relaxed);
+        }
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+        h1,
+        h2,
+        h3,
+        p {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="oe-skip-link" href="#main">Skip to content</a>
+    <div class="oe-shell">
+      <nav class="oe-sidenav" id="nav" popover aria-label="Workspace">
+        <a class="oe-sidenav-brand" href="/chat"
+          ><i data-lucide="sparkles"></i>Northwind assistant</a
+        >
+        <div class="oe-sidenav-body">
+          <ul class="oe-nav-list">
+            <li>
+              <a class="oe-nav-item" href="/chat" title="New conversation"
+                ><i data-lucide="plus"></i>New conversation</a
+              >
+            </li>
+            <li>
+              <a
+                class="oe-nav-item"
+                href="/workspace"
+                title="Weekly capacity"
+                aria-current="page"
+                ><i data-lucide="chart-column"></i>Weekly capacity</a
+              >
+            </li>
+            <li>
+              <a class="oe-nav-item" href="/apps" title="App catalog"
+                ><i data-lucide="package"></i>App catalog</a
+              >
+            </li>
+          </ul>
+          <p class="oe-nav-heading">Recent work</p>
+          <ul class="oe-nav-list">
+            <li>
+              <a class="oe-nav-item" href="/workspace" title="Planning overview"
+                ><i data-lucide="file-text"></i>Planning overview</a
+              >
+            </li>
+            <li>
+              <a class="oe-nav-item" href="/workspace" title="Workshop load"
+                ><i data-lucide="users"></i>Workshop load</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="oe-sidenav-foot">
+          <span class="oe-nav-item"
+            ><span class="oe-avatar">MH</span>Maja Holm</span
+          >
+        </div>
+      </nav>
+      <div class="oe-shell-main">
+        <header class="oe-topbar">
+          <button
+            class="oe-btn oe-btn-quiet oe-btn-icon oe-shell-menu"
+            type="button"
+            popovertarget="nav"
+            aria-label="Open navigation"
+          >
+            <i data-lucide="menu"></i></button
+          ><button
+            class="oe-btn oe-btn-quiet oe-btn-icon oe-shell-toggle"
+            type="button"
+            aria-expanded="true"
+            aria-controls="nav"
+            aria-label="Toggle sidebar"
+          >
+            <i data-lucide="panel-left"></i>
+          </button>
+          <nav class="oe-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/chat">Assistant</a></li>
+              <li aria-current="page">Weekly capacity</li>
+            </ol>
+          </nav>
+          <div class="oe-topbar-actions">
+            <span class="oe-badge oe-badge-neutral">Private workspace</span>
+          </div>
+        </header>
+        <main class="oe-page" id="main">
+          <header class="oe-page-head">
+            <div>
+              <p class="oe-eyebrow">Planning review</p>
+              <h1 class="oe-page-title">Weekly capacity</h1>
+              <p class="oe-page-subtitle">
+                A conversation and a report, side by side.
+              </p>
+            </div>
+            <div class="oe-page-actions">
+              <button
+                class="oe-btn oe-btn-secondary"
+                type="button"
+                data-route="/chat"
+              >
+                <i data-lucide="plus"></i>New conversation</button
+              ><button
+                class="oe-btn oe-btn-primary"
+                type="button"
+                data-save-report
+              >
+                <i data-lucide="save"></i>Save report
+              </button>
+            </div>
+          </header>
+          <p class="oe-field-help" data-report-status role="status"></p>
+          <div
+            class="oe-segmented oe-show-narrow"
+            role="group"
+            aria-label="Workspace view"
+          >
+            <button
+              type="button"
+              data-workspace-pane="chat"
+              aria-pressed="true"
+            >
+              Conversation</button
+            ><button
+              type="button"
+              data-workspace-pane="report"
+              aria-pressed="false"
+            >
+              Report
+            </button>
+          </div>
+          <div
+            class="oe-chat-workspace oe-chat-workspace-studio"
+            data-mobile-pane="chat"
+          >
+            <div
+              class="oe-card oe-card-flush oe-chat oe-chat-panel"
+              data-chat-demo
+            >
+              <div class="oe-toolbar">
+                <strong>Planning assistant</strong
+                ><span class="oe-badge oe-badge-success oe-toolbar-end"
+                  >Ready</span
+                >
+              </div>
+              <div
+                class="oe-chat-thread"
+                role="log"
+                aria-label="Conversation"
+                aria-live="polite"
+                tabindex="0"
+                data-chat-thread
+              >
+                <p class="oe-chat-system">
+                  <i data-lucide="info"></i>Today · Planning review
+                </p>
+                <article class="oe-chat-message" data-author="user">
+                  <div class="oe-chat-meta">
+                    <span class="oe-avatar oe-avatar-sm">MH</span>Maja
+                    <time datetime="2026-11-06T08:00:00Z">08:00 UTC</time>
+                  </div>
+                  <div class="oe-chat-bubble">
+                    Where is next week’s load highest?
+                  </div>
+                </article>
+                <article class="oe-chat-message" data-author="assistant">
+                  <div class="oe-chat-meta">
+                    <span class="oe-avatar oe-avatar-sm"
+                      ><i data-lucide="sparkles"></i></span
+                    >Northwind assistant
+                    <time datetime="2026-11-06T08:00:04Z">08:00 UTC</time>
+                  </div>
+                  <details class="oe-chat-tools">
+                    <summary>2 tool calls · completed in 1.2s</summary>
+                    <details>
+                      <summary>✓ Read capacity · 0.5s</summary>
+                      <pre class="oe-code-block"><code>Assembly: 82%
+Finishing: 64%</code></pre>
+                    </details>
+                    <p data-status="complete">✓ Build report · 0.7s</p>
+                  </details>
+                  <div class="oe-chat-bubble">
+                    Assembly has the highest load at 82%. Start with the work
+                    due early next week and check capacity before assigning more
+                    jobs.
+                  </div>
+                  <button
+                    class="oe-btn oe-btn-quiet oe-btn-sm"
+                    type="button"
+                    data-copy-response
+                  >
+                    <i data-lucide="copy"></i>Copy response
+                  </button>
+                </article>
+              </div>
+              <button
+                class="oe-btn oe-btn-secondary oe-chat-scroll"
+                type="button"
+                data-chat-scroll
+                hidden
+              >
+                Latest messages ↓
+              </button>
+              <form
+                class="oe-chat-composer"
+                data-chat-composer
+                aria-label="Message composer"
+              >
+                <label class="oe-field"
+                  ><span class="oe-field-label">Message the assistant</span
+                  ><textarea
+                    data-chat-input
+                    rows="3"
+                    placeholder="Ask about capacity, late jobs or next week’s load…"
+                    aria-describedby="composer-help"
+                  ></textarea>
+                </label>
+                <div class="oe-tokenizer-tokens" data-chat-tokens></div>
+                <details data-attachments>
+                  <summary>Context and attachments</summary>
+                  <div class="oe-chat-attachment">
+                    <i data-lucide="file-text"></i
+                    ><span>capacity-notes.txt · Sample attachment</span
+                    ><button
+                      class="oe-btn oe-btn-quiet oe-btn-icon"
+                      type="button"
+                      data-remove-attachment
+                      aria-label="Remove capacity-notes.txt"
+                    >
+                      <i data-lucide="x"></i>
+                    </button>
+                  </div>
+                </details>
+                <div class="oe-chat-actions">
+                  <button
+                    class="oe-btn oe-btn-quiet"
+                    type="button"
+                    data-mention
+                  >
+                    @ Capacity</button
+                  ><button
+                    class="oe-btn oe-btn-quiet oe-btn-icon"
+                    type="button"
+                    data-dictation
+                    aria-pressed="false"
+                    aria-label="Simulate dictation"
+                  >
+                    <i data-lucide="mic"></i></button
+                  ><button
+                    class="oe-btn oe-btn-primary"
+                    type="submit"
+                    data-send
+                    disabled
+                  >
+                    <i data-lucide="arrow-up"></i>Send
+                  </button>
+                </div>
+                <small class="oe-field-help" id="composer-help"
+                  >Enter to send · Shift+Enter for a new line</small
+                >
+                <p class="oe-field-help" data-chat-status role="status"></p>
+              </form>
+            </div>
+            <aside
+              class="oe-card oe-resource-card"
+              aria-label="Sample capacity report"
+            >
+              <div class="oe-card-head">
+                <div>
+                  <p class="oe-eyebrow">Report preview</p>
+                  <h2 class="oe-card-title">Weekly capacity</h2>
+                  <p class="oe-card-subtitle">Week 46 · All work centers</p>
+                </div>
+                <span class="oe-badge oe-badge-info">Sample data</span>
+              </div>
+              <dl class="oe-stat-grid">
+                <div class="oe-stat">
+                  <dt class="oe-stat-label">Assembly load</dt>
+                  <dd class="oe-stat-value">82%</dd>
+                  <dd class="oe-stat-context">Highest planned load</dd>
+                </div>
+                <div class="oe-stat">
+                  <dt class="oe-stat-label">Available hours</dt>
+                  <dd class="oe-stat-value">144</dd>
+                  <dd class="oe-stat-context">Across all work centers</dd>
+                </div>
+              </dl>
+              <div class="oe-stack">
+                <div class="oe-section-head">
+                  <h3 class="oe-section-title">Load by work center</h3>
+                  <span class="oe-field-help">Share of capacity</span>
+                </div>
+                <div class="oe-capacity-rows">
+                  <div>
+                    <label class="oe-section-head" for="load-Assembly"
+                      ><span>Assembly</span><strong>82%</strong></label
+                    ><progress
+                      class="oe-progress"
+                      id="load-Assembly"
+                      value="82"
+                      max="100"
+                    >
+                      82%
+                    </progress>
+                  </div>
+                  <div>
+                    <label class="oe-section-head" for="load-Finishing"
+                      ><span>Finishing</span><strong>64%</strong></label
+                    ><progress
+                      class="oe-progress"
+                      id="load-Finishing"
+                      value="64"
+                      max="100"
+                    >
+                      64%
+                    </progress>
+                  </div>
+                  <div>
+                    <label class="oe-section-head" for="load-Packing"
+                      ><span>Packing</span><strong>48%</strong></label
+                    ><progress
+                      class="oe-progress"
+                      id="load-Packing"
+                      value="48"
+                      max="100"
+                    >
+                      48%
+                    </progress>
+                  </div>
+                </div>
+                <div class="oe-table-wrap">
+                  <table class="oe-table oe-table-compact">
+                    <caption class="oe-sr-only">
+                      Work center load
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Work center</th>
+                        <th scope="col" class="oe-table-num">Load</th>
+                        <th scope="col" class="oe-table-num">
+                          Available hours
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Assembly</th>
+                        <td class="oe-table-num">82%</td>
+                        <td class="oe-table-num">84</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Finishing</th>
+                        <td class="oe-table-num">64%</td>
+                        <td class="oe-table-num">36</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Packing</th>
+                        <td class="oe-table-num">48%</td>
+                        <td class="oe-table-num">24</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="oe-alert oe-alert-info">
+                <i data-lucide="info"></i>
+                <div>
+                  <p class="oe-alert-title">Start with Assembly</p>
+                  <p>
+                    Review work due early next week before adding more jobs.
+                  </p>
+                </div>
+              </div>
+              <div class="oe-card-foot">
+                <button
+                  class="oe-btn oe-btn-secondary"
+                  type="button"
+                  data-report-question
+                >
+                  Ask a follow-up
+                </button>
+              </div>
+            </aside>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

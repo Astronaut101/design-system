@@ -3,32 +3,54 @@
 import '../../dist/tokens.css';
 import '../../dist/components.css';
 import { lucideSvg } from '../shared.ts';
+import { templateSource } from '../template-source.ts';
+import type { TemplateId } from '../nav.ts';
+import { mountCatalog } from '../samples/forms.ts';
+import { mountChat } from '../samples/chat.ts';
+import { mountComparison } from '../samples/shared.ts';
+import { DEMO_ROUTES } from '../demo-navigation.ts';
+import { mountTemplateActions } from '../samples/template-actions.ts';
 
-const FILES = import.meta.glob<string>('../../templates/*.html', { query: '?raw', import: 'default', eager: true });
-
-// The templates link to the routes a real app would have, so here those lead to each other.
-const ROUTES: Record<string, string> = {
-  '/': 'dashboard',
-  '/orders': 'data-table',
-  '/orders/new': 'form',
-  '/orders/2041': 'detail',
-  '/settings': 'settings',
-  '/sign-in': 'sign-in',
-};
-
-const doc = new DOMParser().parseFromString(FILES[`../../templates/${document.body.dataset.template}.html`], 'text/html');
+const doc = new DOMParser().parseFromString(templateSource(document.body.dataset.template as TemplateId), 'text/html');
 document.head.append(...doc.head.querySelectorAll('style'));
 doc.querySelectorAll<HTMLElement>('[data-lucide]').forEach((icon) => {
   icon.outerHTML = lucideSvg(icon.dataset.lucide!);
 });
 doc.querySelectorAll('a[href]').forEach((link) => {
   const href = link.getAttribute('href')!;
-  if (href.startsWith('#')) return;
-  link.setAttribute('href', ROUTES[href] ? `../${ROUTES[href]}/` : '#');
+  if (href.startsWith('#') || /^(https?:|mailto:)/.test(href)) return;
+  link.setAttribute('href', DEMO_ROUTES[href] ? `../${DEMO_ROUTES[href]}/` : '#');
 });
 // A preview on the Layout page mustn't pull focus, and the page's scroll position, into its frame.
 if (window !== window.parent) doc.querySelectorAll('[autofocus]').forEach((field) => field.removeAttribute('autofocus'));
+// Shell examples stay isolated from the showcase document and its own navigation.
+const shellMode = new URLSearchParams(location.search).get('shell');
+if (shellMode && ['content', 'top', 'side', 'combined', 'banner'].includes(shellMode)) {
+  if (shellMode === 'content' || shellMode === 'top') {
+    doc.querySelector('.oe-sidenav')?.remove();
+    doc.querySelector('.oe-shell')?.removeAttribute('class');
+    doc.querySelector('.oe-shell-main')?.removeAttribute('class');
+    doc.querySelector('.oe-page')?.setAttribute('class', 'oe-portal');
+    doc.querySelectorAll('.oe-shell-toggle, .oe-shell-menu').forEach(node => node.remove());
+    if (shellMode === 'content') doc.querySelector('.oe-topbar')?.remove();
+    else {
+      const top = doc.querySelector('.oe-topbar')!;
+      top.className = 'oe-topnav';
+      top.innerHTML = '<a class="oe-topnav-brand" href="../dashboard/">Northwind</a><nav class="oe-topnav-links" aria-label="Product"><a class="oe-link" href="../dashboard/">Overview</a><a class="oe-link" href="../data-table/">Orders</a></nav>';
+    }
+  }
+  if (shellMode === 'side') {
+    const menu = doc.querySelector('.oe-shell-menu')!;
+    doc.querySelector('main')!.prepend(menu);
+    doc.querySelector('.oe-topbar')?.remove();
+  }
+  if (shellMode === 'banner') doc.querySelector('main')!.insertAdjacentHTML('afterbegin', `<div class="oe-banner oe-banner-info">${lucideSvg('info')}<p>Planning data refreshes every hour.</p></div>`);
+}
 document.body.prepend(...doc.body.children);
+mountCatalog(document);
+mountChat(document);
+mountComparison(document);
+mountTemplateActions(document);
 
 const toggle = document.querySelector<HTMLButtonElement>('.oe-shell-toggle');
 if (location.search.includes('closed')) toggle?.setAttribute('aria-expanded', 'false');
@@ -43,7 +65,10 @@ document.addEventListener('click', (e) => {
   const target = e.target as HTMLElement;
   if (target.closest('a[href="#"]')) e.preventDefault();
   const opener = target.closest('[aria-haspopup="dialog"]');
-  if (opener) document.querySelector<HTMLDialogElement>(`#${opener.getAttribute('aria-controls')}`)!.showModal();
+  if (opener) {
+    const dialog = document.getElementById(opener.getAttribute('aria-controls')!) as HTMLDialogElement | null;
+    if (dialog && !dialog.open) dialog.showModal();
+  }
   const reveal = target.closest('.oe-input-group > .oe-close');
   if (reveal) {
     const input = reveal.parentElement!.querySelector('input')!;
@@ -86,4 +111,11 @@ addEventListener('storage', (e) => {
   if (e.key !== 'oe-theme') return;
   if (e.newValue) document.documentElement.dataset.theme = e.newValue;
   else delete document.documentElement.dataset.theme;
+});
+
+// Escape from a local preview must also reach the outer native dialog.
+addEventListener('keydown', event => {
+  if (event.key === 'Escape' && window !== window.parent && !document.querySelector('dialog[open], [popover]:popover-open')) {
+    parent.postMessage('oe-preview-escape', location.origin);
+  }
 });

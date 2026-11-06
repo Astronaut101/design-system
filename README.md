@@ -13,7 +13,10 @@ npm test               # build, then check contrast, chart palettes, Tailwind ou
 npm run typecheck
 npm run lint           # run oe-lint on the showcase
 npm run site:build     # static showcase in site/dist, for any static host
+npm run test:browser   # build and test the showcase with Playwright Chromium
 ```
+
+Install browser test binaries once with `npx playwright install chromium`. Browser tests serve the built site under `/design-system/`, matching a project deployment on GitHub Pages.
 
 ## Using it
 
@@ -111,11 +114,49 @@ With Tailwind, import `tailwind.css` first instead of `tokens.css`.
 - The classes only set the look. Add the behavior and ARIA roles in the app, such as arrow keys for `role="tab"`.
 - From 64rem, the page is an inset panel and `oe-shell-main` scrolls rather than the document. An `oe-shell-toggle` button closes the side nav to a rail of icons. Flip its `aria-expanded` between `true` and `false` on click, and the CSS does the rest.
 - Below 64rem the side nav becomes a drawer. Give `oe-sidenav` the `popover` attribute and open it from an `oe-shell-menu` button with `popovertarget`, which needs no JavaScript. In a single-page app, call `hidePopover()` on navigation. Set `--oe-sidenav-width` on `oe-shell` to change its width. The showcase's Layout page has the full markup.
-- `templates/` in the package has plain HTML for the pages most apps need: data table, dashboard, detail, form, settings and sign-in. The showcase's Layout page shows them, and the guide tells agents to start from them.
+- `templates/` in the package has plain HTML for the pages most apps need: data table, dashboard, detail, form, settings, sign-in, news hub, app catalog, chat landing, chat/report workspace and comparison. The showcase's Layout page shows them, and the guide tells agents to start from them.
 - Menus, comboboxes, date pickers and data tables need JavaScript. [AGENT-GUIDE.md](AGENT-GUIDE.md) has recipes for putting these classes on Base UI, Bits UI, Reka UI and TanStack Table. They have been run in real React, Svelte and Vue apps.
 - Selected states and fills fall back to system colors in Windows high contrast mode, and hover styles only apply on devices that can hover.
 
 The classes are in the `components` CSS layer, so Tailwind utilities override them. Styles outside a layer always beat layered ones, so an app's own reset, such as `button { color: inherit }`, breaks them unless it's in a layer too: `@layer base { ... }`. Tailwind's reset already is.
+
+
+## Extended patterns
+
+These remain CSS-only. Use the Components showcase for working examples and copyable HTML. Browse compact previews by category or search, then open a focused live example with copyable markup. A sample's URL fragment opens its detail view. The showcase uses local fixtures, simulated chat and no microphone capture.
+
+| Pattern | Classes and behavior |
+| --- | --- |
+| Product navigation | `oe-topnav`, `oe-topnav-brand`, `oe-topnav-links`; `oe-mega-menu` and `oe-nav-feature` compose rich navigation panels with existing popover and list styles. Use disclosure buttons and native popovers for navigation links; links stay in normal Tab order. App route changes remain your responsibility. |
+| Outline | `oe-outline`, links with `aria-current="location"`, and `data-level="2"` for nested headings. Track the actual scrolling container, respect reduced motion and keep target headings below sticky headers. |
+| Breadcrumb variants | Keep `oe-breadcrumb` and add `oe-breadcrumb-supporting`, `oe-breadcrumb-chevron`, `oe-breadcrumb-arrow` or `oe-breadcrumb-dot`. Use an ordered list in a named nav, with `aria-current="page"` on the current item. A native select can switch sibling destinations. |
+| Tokenizer | `oe-tokenizer`, `oe-tokenizer-tokens`, existing badges and remove buttons. Give the input a visible label; announce selection counts and limits. The wrapper accepts `aria-disabled="true"` or `aria-invalid="true"`; apply the corresponding state and error description to the input too. Apps own selection, search, duplicate prevention and validation. A native datalist supplies suggestions in the demo. |
+| Structured search | `oe-power-search` groups keyword input, field/operator/value controls and removable filter badges. Apps own filter evaluation and announce result counts; include clear-all and no-results states. |
+| Rich context | `oe-hover-trigger`, `oe-hover-card`, and `oe-timestamp`. Open context on keyboard focus as well as hover; allow pointer travel into the panel, support tap and Escape, and keep it inside the viewport. Use a tooltip only for noninteractive descriptions. Exact-time panels may contain copy buttons; use an accessible popover for those. Format semantic `<time datetime="…">` values with Intl and IANA zone names. |
+| Code panels | `oe-code-panel`, `oe-code-head`, `oe-code-line`, `oe-code-number`, `oe-code-scroll`, `oe-syntax-keyword`, `oe-syntax-string`, `oe-syntax-comment`. Add `data-highlighted` to a highlighted line. Apps pre-tokenize and escape code, manage copying and omit gutters from copied text. Keep line numbers `aria-hidden`, provide filenames/language labels and name scroll regions. No syntax-highlighting runtime ships in the package. |
+| Comparison | `oe-comparison` on an existing table, `oe-comparison-group` on group rows, `data-best` on highlighted cells and `data-highlight="false"` to turn emphasis off. Keep the table inside `oe-table-wrap`, use real row/column headers and identify best values in text too. The first column stays pinned while scrolling. |
+| Content sites | `oe-portal` constrains content width, `oe-feature` gives a featured/main and side column, and `oe-catalog` arranges responsive cards. A catalog card's `data-pinned="true"` moves it first visually; apps own pin state. Keep keyboard and reading order in mind if persisting or sorting cards. |
+| Chat composition | `oe-chat`, `oe-chat-workspace`, `oe-chat-thread`, `oe-chat-message`, `oe-chat-bubble`, `oe-chat-meta`, `oe-chat-composer`, `oe-chat-actions`, `oe-chat-system`, `oe-chat-tools`, `oe-chat-attachment`, `oe-chat-scroll`. Set `data-author="user"` for user alignment; set tool status with `data-status="pending"`, `"running"`, `"complete"` or `"error"` and include a visible status label. Reuse badges for context tokens, details for attachment drawers/results, timestamps for metadata, and ordinary buttons for send/stop, dictation and scrolling. |
+
+Chat applications own drafts, stable token values, attachment handling, speech APIs, streaming and cancellation. Label textarea inputs, disable empty sends, preserve Shift+Enter and IME composition, and expose generation status separately from the message log. Auto-scroll only when the reader is already near the latest message; otherwise offer the scroll button. A simulated dictation demo is not a speech implementation.
+
+Toast applications own their queue and timers. Pause expiry while the toast is hovered or contains focus, keep optional actions reachable, and announce updates politely. Tooltip and hover-card behavior also belongs to the application; the classes only provide surfaces.
+
+
+### Resource and assistant layouts
+
+The news hub, app catalog, chat landing, report workspace and comparison templates use buttons for calls to action. Keep ordinary route navigation in named nav landmarks; connect `data-route` buttons to your application's router. The showcase routes those buttons to its local template pages. Story and app-detail buttons open native dialogs; save, follow-up and comparison choices provide immediate local feedback.
+
+| Layout helpers | Classes |
+| --- | --- |
+| Content hierarchy | `oe-eyebrow`, `oe-section-head`, `oe-feature-title` |
+| Resource cards | `oe-resource-card`, `oe-resource-meta`, `oe-resource-icon`, `oe-resource-option`, alongside existing card head/body/foot classes |
+| Featured illustration | `oe-feature-art`, `oe-feature-document`, `oe-feature-document-stat` for a decorative document illustration composed from tokens |
+| Catalog filters | `oe-catalog-toolbar` keeps search prominent beside related filters and stacks on phones; `oe-catalog-comfortable` gives resource cards a wider reading measure |
+| Assistant start | `oe-chat-start`, `oe-chat-start-head`, `oe-chat-prompts`, `oe-prompt-card`, `oe-prompt-title`, `oe-prompt-text`. Prompt cards are native buttons with a title and supporting description. |
+| Report workspace | Add `oe-chat-workspace-studio` to the chat workspace, `oe-chat-panel` to a flush chat card, and `oe-capacity-rows` around labeled progress rows. Keep the report's table available alongside its visual summary. `oe-show-narrow` exposes a segmented mobile switcher; set `data-mobile-pane="chat"` or `"report"` on the studio to choose the visible phone panel without affecting the desktop split view. |
+
+The component library presents compact, inert previews with search and category filters. Selecting a component opens its live example and usage markup in a focused view inside the same OE app shell. Component fragments remain shareable; All components and browser Back restore browsing position. Category sections can still collapse independently. Template previews offer viewport controls, Copy HTML and an Open full page button.
 
 ## Agents and the lint check
 

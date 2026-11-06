@@ -238,9 +238,16 @@ Start a new page from the closest template in `node_modules/@oestergaard/design-
 | `detail.html` | One record: status, actions, tabs, and main and side columns |
 | `form.html` | Creating or editing a record: grouped sections, errors, and Save and Cancel at the end |
 | `settings.html` | Settings: section tabs, grouped options, saving and a danger zone |
-| `sign-in.html` | Signing in, which is the one page outside the shell |
+| `sign-in.html` | A focused sign-in page outside the shell |
+| `news-hub.html` | A news and resources hub with product navigation, a featured story and quick links |
+| `app-catalog.html` | Searchable app cards with category/source filters, owners and pin controls |
+| `chat-landing.html` | An assistant landing page with suggested prompts, a composer and recent work |
+| `chat-workspace.html` | Conversation and report panels, with message/tool-call examples and a composer |
+| `comparison.html` | A candidate comparison matrix with grouped criteria and pinned row labels |
 
 `<i data-lucide="plus"></i>` stands for that Lucide icon, so use your framework's icon component there. Comments in the files say when to show a part, and a `<template>` holds a state such as "no results" that isn't on screen.
+
+All eleven templates have standalone previews in the Layout showcase. Select a card for its description, desktop/phone preview, Copy HTML and Open full page buttons. The HTML ships without showcase JavaScript; implement its documented state and actions in your application.
 
 These layouts wrap by themselves as room runs out:
 
@@ -253,6 +260,44 @@ These layouts wrap by themselves as room runs out:
 | Main and side columns | `oe-split` around the main column and `oe-split-side` |
 | Grouped options, with the heading beside them | `oe-section` around a `<div>` with `oe-section-title` and `oe-section-text`, and then one element holding the content |
 | A page outside the shell | `oe-auth` around `oe-card oe-auth-card`, with `oe-auth-brand` |
+
+
+## Extended patterns
+
+These remain CSS-only. Use the Components showcase for working examples and copyable HTML. Browse compact previews by category or search, then open a focused live example with copyable markup. A sample's URL fragment opens its detail view. The showcase uses local fixtures, simulated chat and no microphone capture.
+
+| Pattern | Classes and behavior |
+| --- | --- |
+| Product navigation | `oe-topnav`, `oe-topnav-brand`, `oe-topnav-links`; `oe-mega-menu` and `oe-nav-feature` compose rich navigation panels with existing popover and list styles. Use disclosure buttons and native popovers for navigation links; links stay in normal Tab order. App route changes remain your responsibility. |
+| Outline | `oe-outline`, links with `aria-current="location"`, and `data-level="2"` for nested headings. Track the actual scrolling container, respect reduced motion and keep target headings below sticky headers. |
+| Breadcrumb variants | Keep `oe-breadcrumb` and add `oe-breadcrumb-supporting`, `oe-breadcrumb-chevron`, `oe-breadcrumb-arrow` or `oe-breadcrumb-dot`. Use an ordered list in a named nav, with `aria-current="page"` on the current item. A native select can switch sibling destinations. |
+| Tokenizer | `oe-tokenizer`, `oe-tokenizer-tokens`, existing badges and remove buttons. Give the input a visible label; announce selection counts and limits. The wrapper accepts `aria-disabled="true"` or `aria-invalid="true"`; apply the corresponding state and error description to the input too. Apps own selection, search, duplicate prevention and validation. A native datalist supplies suggestions in the demo. |
+| Structured search | `oe-power-search` groups keyword input, field/operator/value controls and removable filter badges. Apps own filter evaluation and announce result counts; include clear-all and no-results states. |
+| Rich context | `oe-hover-trigger`, `oe-hover-card`, and `oe-timestamp`. Open context on keyboard focus as well as hover; allow pointer travel into the panel, support tap and Escape, and keep it inside the viewport. Use a tooltip only for noninteractive descriptions. Exact-time panels may contain copy buttons; use an accessible popover for those. Format semantic `<time datetime="…">` values with Intl and IANA zone names. |
+| Code panels | `oe-code-panel`, `oe-code-head`, `oe-code-line`, `oe-code-number`, `oe-code-scroll`, `oe-syntax-keyword`, `oe-syntax-string`, `oe-syntax-comment`. Add `data-highlighted` to a highlighted line. Apps pre-tokenize and escape code, manage copying and omit gutters from copied text. Keep line numbers `aria-hidden`, provide filenames/language labels and name scroll regions. No syntax-highlighting runtime ships in the package. |
+| Comparison | `oe-comparison` on an existing table, `oe-comparison-group` on group rows, `data-best` on highlighted cells and `data-highlight="false"` to turn emphasis off. Keep the table inside `oe-table-wrap`, use real row/column headers and identify best values in text too. The first column stays pinned while scrolling. |
+| Content sites | `oe-portal` constrains content width, `oe-feature` gives a featured/main and side column, and `oe-catalog` arranges responsive cards. A catalog card's `data-pinned="true"` moves it first visually; apps own pin state. Keep keyboard and reading order in mind if persisting or sorting cards. |
+| Chat composition | `oe-chat`, `oe-chat-workspace`, `oe-chat-thread`, `oe-chat-message`, `oe-chat-bubble`, `oe-chat-meta`, `oe-chat-composer`, `oe-chat-actions`, `oe-chat-system`, `oe-chat-tools`, `oe-chat-attachment`, `oe-chat-scroll`. Set `data-author="user"` for user alignment; set tool status with `data-status="pending"`, `"running"`, `"complete"` or `"error"` and include a visible status label. Reuse badges for context tokens, details for attachment drawers/results, timestamps for metadata, and ordinary buttons for send/stop, dictation and scrolling. |
+
+Chat applications own drafts, stable token values, attachment handling, speech APIs, streaming and cancellation. Label textarea inputs, disable empty sends, preserve Shift+Enter and IME composition, and expose generation status separately from the message log. Auto-scroll only when the reader is already near the latest message; otherwise offer the scroll button. A simulated dictation demo is not a speech implementation.
+
+Toast applications own their queue and timers. Pause expiry while the toast is hovered or contains focus, keep optional actions reachable, and announce updates politely. Tooltip and hover-card behavior also belongs to the application; the classes only provide surfaces.
+
+
+### Resource and assistant layouts
+
+The news hub, app catalog, chat landing, report workspace and comparison templates use buttons for calls to action. Keep ordinary route navigation in named nav landmarks; connect `data-route` buttons to your application's router. The showcase routes those buttons to its local template pages. Story and app-detail buttons open native dialogs; save, follow-up and comparison choices provide immediate local feedback.
+
+| Layout helpers | Classes |
+| --- | --- |
+| Content hierarchy | `oe-eyebrow`, `oe-section-head`, `oe-feature-title` |
+| Resource cards | `oe-resource-card`, `oe-resource-meta`, `oe-resource-icon`, `oe-resource-option`, alongside existing card head/body/foot classes |
+| Featured illustration | `oe-feature-art`, `oe-feature-document`, `oe-feature-document-stat` for a decorative document illustration composed from tokens |
+| Catalog filters | `oe-catalog-toolbar` keeps search prominent beside related filters and stacks on phones; `oe-catalog-comfortable` gives resource cards a wider reading measure |
+| Assistant start | `oe-chat-start`, `oe-chat-start-head`, `oe-chat-prompts`, `oe-prompt-card`, `oe-prompt-title`, `oe-prompt-text`. Prompt cards are native buttons with a title and supporting description. |
+| Report workspace | Add `oe-chat-workspace-studio` to the chat workspace, `oe-chat-panel` to a flush chat card, and `oe-capacity-rows` around labeled progress rows. Keep the report's table available alongside its visual summary. `oe-show-narrow` exposes a segmented mobile switcher; set `data-mobile-pane="chat"` or `"report"` on the studio to choose the visible phone panel without affecting the desktop split view. |
+
+The component library presents compact, inert previews with search and category filters. Selecting a component opens its live example and usage markup in a focused view inside the same OE app shell. Component fragments remain shareable; All components and browser Back restore browsing position. Category sections can still collapse independently. Template previews offer viewport controls, Copy HTML and an Open full page button.
 
 ## Tokens
 

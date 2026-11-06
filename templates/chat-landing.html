@@ -1,0 +1,285 @@
+<!doctype html>
+<!-- Copy the structure into your app. Replace fictional content and routes. -->
+<!-- Applications own data-route actions, filtering, stories, chat and saved state. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chat landing · Northwind</title>
+    <link rel="stylesheet" href="../dist/tokens.css" />
+    <link rel="stylesheet" href="../dist/components.css" />
+    <style>
+      @layer base {
+        body {
+          margin: 0;
+          background: var(--bg-page);
+          color: var(--fg-default);
+          font-family: var(--font-sans);
+          font-size: var(--text-base);
+          line-height: var(--leading-relaxed);
+        }
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+        h1,
+        h2,
+        h3,
+        p {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="oe-skip-link" href="#main">Skip to content</a>
+    <div class="oe-shell">
+      <nav class="oe-sidenav" id="nav" popover aria-label="Workspace">
+        <a class="oe-sidenav-brand" href="/chat"
+          ><i data-lucide="sparkles"></i>Northwind assistant</a
+        >
+        <div class="oe-sidenav-body">
+          <ul class="oe-nav-list">
+            <li>
+              <a
+                class="oe-nav-item"
+                href="/chat"
+                title="New conversation"
+                aria-current="page"
+                ><i data-lucide="plus"></i>New conversation</a
+              >
+            </li>
+            <li>
+              <a class="oe-nav-item" href="/workspace" title="Weekly capacity"
+                ><i data-lucide="chart-column"></i>Weekly capacity</a
+              >
+            </li>
+            <li>
+              <a class="oe-nav-item" href="/apps" title="App catalog"
+                ><i data-lucide="package"></i>App catalog</a
+              >
+            </li>
+          </ul>
+          <p class="oe-nav-heading">Recent work</p>
+          <ul class="oe-nav-list">
+            <li>
+              <a class="oe-nav-item" href="/workspace" title="Planning overview"
+                ><i data-lucide="file-text"></i>Planning overview</a
+              >
+            </li>
+            <li>
+              <a class="oe-nav-item" href="/workspace" title="Workshop load"
+                ><i data-lucide="users"></i>Workshop load</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="oe-sidenav-foot">
+          <span class="oe-nav-item"
+            ><span class="oe-avatar">MH</span>Maja Holm</span
+          >
+        </div>
+      </nav>
+      <div class="oe-shell-main">
+        <header class="oe-topbar">
+          <button
+            class="oe-btn oe-btn-quiet oe-btn-icon oe-shell-menu"
+            type="button"
+            popovertarget="nav"
+            aria-label="Open navigation"
+          >
+            <i data-lucide="menu"></i></button
+          ><button
+            class="oe-btn oe-btn-quiet oe-btn-icon oe-shell-toggle"
+            type="button"
+            aria-expanded="true"
+            aria-controls="nav"
+            aria-label="Toggle sidebar"
+          >
+            <i data-lucide="panel-left"></i>
+          </button>
+          <nav class="oe-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/chat">Assistant</a></li>
+              <li aria-current="page">New conversation</li>
+            </ol>
+          </nav>
+          <div class="oe-topbar-actions">
+            <span class="oe-badge oe-badge-neutral">Private workspace</span>
+          </div>
+        </header>
+        <main class="oe-page" id="main">
+          <div
+            class="oe-chat-start"
+            data-chat-demo
+            data-landing
+            data-workspace-route="/workspace"
+          >
+            <header class="oe-chat-start-head">
+              <span class="oe-resource-icon"
+                ><i data-lucide="sparkles"></i
+              ></span>
+              <p class="oe-eyebrow">Your planning partner</p>
+              <h1 class="oe-page-title">What do you need to decide?</h1>
+              <p class="oe-page-subtitle">
+                Start with a question. Build a clear view of the work ahead.
+              </p>
+            </header>
+            <form
+              class="oe-chat-composer"
+              data-chat-composer
+              aria-label="Message composer"
+            >
+              <label class="oe-field"
+                ><span class="oe-field-label">Message the assistant</span
+                ><textarea
+                  data-chat-input
+                  rows="3"
+                  placeholder="Ask about capacity, late jobs or next week’s load…"
+                  aria-describedby="composer-help"
+                ></textarea>
+              </label>
+              <div class="oe-tokenizer-tokens" data-chat-tokens></div>
+              <details data-attachments>
+                <summary>Context and attachments</summary>
+                <div class="oe-chat-attachment">
+                  <i data-lucide="file-text"></i
+                  ><span>capacity-notes.txt · Sample attachment</span
+                  ><button
+                    class="oe-btn oe-btn-quiet oe-btn-icon"
+                    type="button"
+                    data-remove-attachment
+                    aria-label="Remove capacity-notes.txt"
+                  >
+                    <i data-lucide="x"></i>
+                  </button>
+                </div>
+              </details>
+              <div class="oe-chat-actions">
+                <button class="oe-btn oe-btn-quiet" type="button" data-mention>
+                  @ Capacity</button
+                ><button
+                  class="oe-btn oe-btn-quiet oe-btn-icon"
+                  type="button"
+                  data-dictation
+                  aria-pressed="false"
+                  aria-label="Simulate dictation"
+                >
+                  <i data-lucide="mic"></i></button
+                ><button
+                  class="oe-btn oe-btn-primary"
+                  type="submit"
+                  data-send
+                  disabled
+                >
+                  <i data-lucide="arrow-up"></i>Send
+                </button>
+              </div>
+              <small class="oe-field-help" id="composer-help"
+                >Enter to send · Shift+Enter for a new line</small
+              >
+              <p class="oe-field-help" data-chat-status role="status"></p>
+            </form>
+            <div class="oe-stack">
+              <div class="oe-section-head">
+                <h2 class="oe-section-title">Start with a question</h2>
+                <p class="oe-field-help">Choose one to make it your own.</p>
+              </div>
+              <div class="oe-chat-prompts">
+                <button
+                  class="oe-prompt-card"
+                  type="button"
+                  data-prompt
+                  data-prompt-text="Which jobs are at risk?"
+                  aria-label="Which jobs are at risk?"
+                >
+                  <i data-lucide="file-text"></i
+                  ><span class="oe-prompt-title">Jobs at risk</span
+                  ><span class="oe-prompt-text"
+                    >See what could miss its due date.</span
+                  ></button
+                ><button
+                  class="oe-prompt-card"
+                  type="button"
+                  data-prompt
+                  data-prompt-text="Show next week’s capacity"
+                  aria-label="Show next week’s capacity"
+                >
+                  <i data-lucide="chart-column"></i
+                  ><span class="oe-prompt-title">Next week’s capacity</span
+                  ><span class="oe-prompt-text"
+                    >Find the load across work centers.</span
+                  ></button
+                ><button
+                  class="oe-prompt-card"
+                  type="button"
+                  data-prompt
+                  data-prompt-text="Where are the bottlenecks?"
+                  aria-label="Where are the bottlenecks?"
+                >
+                  <i data-lucide="users"></i
+                  ><span class="oe-prompt-title">Bottlenecks</span
+                  ><span class="oe-prompt-text"
+                    >Understand where work is waiting.</span
+                  >
+                </button>
+              </div>
+            </div>
+            <div class="oe-stack">
+              <div class="oe-section-head">
+                <h2 class="oe-section-title">Pick up where you left off</h2>
+              </div>
+              <div class="oe-catalog">
+                <article class="oe-card oe-resource-card">
+                  <div class="oe-resource-option">
+                    <span class="oe-resource-icon"
+                      ><i data-lucide="chart-column"></i
+                    ></span>
+                    <div>
+                      <h3 class="oe-card-title">Weekly capacity</h3>
+                      <p class="oe-card-subtitle">Week 46 · Updated today</p>
+                    </div>
+                  </div>
+                  <div class="oe-card-foot">
+                    <button
+                      class="oe-btn oe-btn-secondary"
+                      type="button"
+                      data-route="/workspace"
+                      aria-label="Continue Weekly capacity"
+                    >
+                      Continue <i data-lucide="arrow-right"></i>
+                    </button>
+                  </div>
+                </article>
+                <article class="oe-card oe-resource-card">
+                  <div class="oe-resource-option">
+                    <span class="oe-resource-icon"
+                      ><i data-lucide="chart-column"></i
+                    ></span>
+                    <div>
+                      <h3 class="oe-card-title">Planning overview</h3>
+                      <p class="oe-card-subtitle">
+                        Operations · Updated yesterday
+                      </p>
+                    </div>
+                  </div>
+                  <div class="oe-card-foot">
+                    <button
+                      class="oe-btn oe-btn-secondary"
+                      type="button"
+                      data-route="/workspace"
+                      aria-label="Continue Planning overview"
+                    >
+                      Continue <i data-lucide="arrow-right"></i>
+                    </button>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

@@ -16,12 +16,14 @@
 
 @layer components {
   /* The display rules below would otherwise beat the hidden attribute. */
-  :is(.oe-btn, .oe-badge, .oe-alert, .oe-field, .oe-field-error, .oe-check-label, .oe-stat-label, .oe-stat-value, .oe-stat-delta, .oe-tabs, .oe-segmented, .oe-dialog-actions, .oe-menu-item, .oe-toast, .oe-toaster, .oe-close, .oe-btn-group, .oe-avatar-group, .oe-card-head, .oe-card-foot, .oe-dialog-head, .oe-alert-actions, .oe-form, .oe-form-row, .oe-form-actions, .oe-fieldset, .oe-radio-card, .oe-dropzone, .oe-dl, .oe-list-item, .oe-timeline-item, .oe-steps, .oe-step, .oe-banner, .oe-toolbar, .oe-sidenav, .oe-skeleton, .oe-progress, .oe-spinner, .oe-kbd, .oe-input-group, .oe-empty, .oe-pagination, .oe-avatar, .oe-shell, .oe-shell-main, .oe-topbar, .oe-topbar-actions, .oe-breadcrumb ol, .oe-sidenav-brand, .oe-sidenav-foot, .oe-nav-list, .oe-nav-item, .oe-page-head, .oe-input-select, .oe-slider, .oe-radio-card-title, .oe-radio-card-text, .oe-badge-remove, .oe-table-sort, .oe-toolbar-end, .oe-list-title, .oe-list-subtitle, .oe-timeline-marker, .oe-timeline-time, .oe-calendar-day, .oe-page-actions, .oe-shell-menu, .oe-shell-toggle, .oe-stack, .oe-stat-grid, .oe-panels, .oe-split, .oe-section, .oe-auth, .oe-auth-brand, .oe-table-link, .oe-skip-link, .oe-stat-context)[hidden],
+  :is(.oe-btn, .oe-badge, .oe-alert, .oe-field, .oe-field-error, .oe-check-label, .oe-stat-label, .oe-stat-value, .oe-stat-delta, .oe-tabs, .oe-segmented, .oe-dialog-actions, .oe-menu-item, .oe-toast, .oe-toaster, .oe-close, .oe-btn-group, .oe-avatar-group, .oe-card-head, .oe-card-foot, .oe-dialog-head, .oe-alert-actions, .oe-form, .oe-form-row, .oe-form-actions, .oe-fieldset, .oe-radio-card, .oe-dropzone, .oe-dl, .oe-list-item, .oe-timeline-item, .oe-steps, .oe-step, .oe-banner, .oe-toolbar, .oe-sidenav, .oe-skeleton, .oe-progress, .oe-spinner, .oe-kbd, .oe-input-group, .oe-empty, .oe-pagination, .oe-avatar, .oe-shell, .oe-shell-main, .oe-topbar, .oe-topbar-actions, .oe-breadcrumb ol, .oe-sidenav-brand, .oe-sidenav-foot, .oe-nav-list, .oe-nav-item, .oe-page-head, .oe-input-select, .oe-slider, .oe-radio-card-title, .oe-radio-card-text, .oe-badge-remove, .oe-table-sort, .oe-toolbar-end, .oe-list-title, .oe-list-subtitle, .oe-timeline-marker, .oe-timeline-time, .oe-calendar-day, .oe-page-actions, .oe-shell-menu, .oe-shell-toggle, .oe-stack, .oe-stat-grid, .oe-panels, .oe-split, .oe-section, .oe-auth, .oe-auth-brand, .oe-table-link, .oe-skip-link, .oe-stat-context, .oe-topnav, .oe-topnav-brand, .oe-topnav-links, .oe-mega-menu, .oe-outline, .oe-tokenizer, .oe-tokenizer-tokens, .oe-power-search, .oe-code-panel, .oe-code-head, .oe-catalog, .oe-feature, .oe-chat, .oe-chat-workspace, .oe-chat-thread, .oe-chat-message, .oe-chat-meta, .oe-chat-composer, .oe-chat-actions, .oe-chat-system, .oe-chat-tools, .oe-chat-attachment, .oe-code-line, .oe-code-number, .oe-section-head, .oe-resource-card, .oe-resource-meta, .oe-resource-icon, .oe-resource-option, .oe-feature-art, .oe-feature-document-stat, .oe-catalog-toolbar, .oe-chat-start, .oe-chat-prompts, .oe-prompt-card, .oe-capacity-rows, .oe-show-narrow)[hidden],
   .oe-tabs > [hidden],
   .oe-segmented > [hidden],
   .oe-pagination > [hidden] {
     display: none;
   }
+
+
 
   /* Hover and press ease in, on only the properties that change. */
   :is(.oe-btn, .oe-input, .oe-table-sort, .oe-tabs > *, .oe-segmented > *, .oe-menu-item, .oe-nav-item, .oe-breadcrumb a, .oe-pagination > *, .oe-accordion > summary, .oe-close, .oe-badge-remove, .oe-link, .oe-table-link, .oe-radio-card, .oe-dropzone, a.oe-list-item, .oe-calendar-day) {
@@ -1289,5 +1291,165 @@
     @media (hover: hover) { .oe-table tbody .oe-row-selected:hover > td { background: Highlight; color: HighlightText; } }
     .oe-nav-item[aria-current="page"] > .oe-badge,
     .oe-row-selected .oe-badge { border-color: HighlightText; background: Highlight; color: HighlightText; }
+  }
+}
+
+@layer components {
+  /* Product navigation complements the existing application side navigation. */
+  .oe-topnav { display: flex; align-items: center; flex-wrap: wrap; gap: calc(var(--spacing) * 4); padding: calc(var(--spacing) * 3) calc(var(--spacing) * 5); border-bottom: 1px solid var(--border-default); background: var(--bg-surface); color: var(--fg-default); }
+  .oe-topnav-brand { display: inline-flex; align-items: center; gap: calc(var(--spacing) * 2); color: var(--fg-default); font-weight: var(--font-weight-semibold); text-decoration: none; }
+  .oe-topnav-brand > svg { width: calc(var(--spacing) * 5); height: calc(var(--spacing) * 5); }
+  .oe-topnav-links { display: flex; align-items: center; flex-wrap: wrap; gap: calc(var(--spacing) * 2); margin-left: auto; }
+  .oe-topnav a[aria-current="page"] { color: var(--fg-accent); font-weight: var(--font-weight-semibold); }
+  .oe-mega-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--spacing) * 44)), 1fr)); gap: calc(var(--spacing) * 4); width: min(calc(100vw - var(--spacing) * 8), var(--container-3xl)); }
+  .oe-nav-feature { padding: calc(var(--spacing) * 4); border: 1px solid var(--border-accent-muted); border-radius: var(--radius-md); background: var(--bg-accent-muted); color: var(--fg-default); }
+  .oe-outline { display: grid; gap: var(--spacing); border-left: 1px solid var(--border-default); font-size: var(--text-sm); }
+  .oe-outline a { padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 3); border-left: 2px solid transparent; color: var(--fg-muted); text-decoration: none; }
+  .oe-outline [aria-current="location"] { border-left-color: var(--border-accent-emphasis); color: var(--fg-accent); font-weight: var(--font-weight-medium); }
+  .oe-outline [data-level="2"] { padding-left: calc(var(--spacing) * 6); }
+  .oe-breadcrumb-supporting { font-size: var(--text-xs); }
+  .oe-breadcrumb-chevron li + li::before { content: "›"; content: "›" / ""; }
+  .oe-breadcrumb-arrow li + li::before { content: "→"; content: "→" / ""; }
+  .oe-breadcrumb-dot li + li::before { content: "·"; content: "·" / ""; }
+  .oe-breadcrumb svg { width: 1em; height: 1em; vertical-align: middle; }
+  .oe-breadcrumb button { font: inherit; }
+
+  /* Chips and structured filters. Applications own the selection state. */
+  .oe-tokenizer { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--spacing) * 2); padding: calc(var(--spacing) * 2); border: 1px solid var(--border-strong); border-radius: var(--radius-md); background: var(--bg-surface); color: var(--fg-default); }
+  .oe-tokenizer:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .oe-tokenizer[aria-invalid="true"] { border-color: var(--border-danger-emphasis); }
+  .oe-tokenizer[aria-disabled="true"] { background: var(--bg-disabled); color: var(--fg-disabled); }
+  .oe-tokenizer-tokens { display: flex; flex-wrap: wrap; gap: var(--spacing); }
+  .oe-tokenizer > input { flex: 1; min-width: calc(var(--spacing) * 28); width: 0; padding: var(--spacing); border: 0; background: transparent; color: inherit; font: inherit; }
+  .oe-power-search { display: grid; gap: calc(var(--spacing) * 3); }
+  .oe-hover-card { box-sizing: border-box; width: min(calc(100vw - var(--spacing) * 8), calc(var(--spacing) * 76)); padding: calc(var(--spacing) * 4); border: 1px solid var(--border-default); border-radius: var(--radius-lg); background: var(--bg-raised); color: var(--fg-default); box-shadow: var(--shadow-overlay); font-size: var(--text-sm); }
+  .oe-hover-trigger { text-decoration: underline dashed; text-underline-offset: 0.2em; }
+  .oe-timestamp { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* Code is pre-tokenized by the consuming app; copying excludes gutters. */
+  .oe-code-panel { display: grid; overflow: hidden; border: 1px solid var(--border-default); border-radius: var(--radius-lg); background: var(--bg-sunken); color: var(--fg-default); }
+  .oe-code-head { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: calc(var(--spacing) * 2); padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3); border-bottom: 1px solid var(--border-default); font-size: var(--text-xs); }
+  .oe-code-panel > pre { margin: 0; padding: calc(var(--spacing) * 3); overflow: auto; max-height: calc(var(--spacing) * 64); font-family: var(--font-mono); font-size: var(--text-xs); line-height: var(--leading-relaxed); tab-size: 2; }
+  .oe-code-scroll { max-height: calc(var(--spacing) * 48); overflow: auto; }
+  .oe-code-line { display: block; min-width: max-content; }
+  .oe-code-line[data-highlighted] { background: var(--bg-accent-muted); color: var(--fg-default); }
+  .oe-code-number { display: inline-block; width: 3ch; margin-right: 2ch; color: var(--fg-muted); user-select: none; }
+  .oe-syntax-keyword { color: var(--fg-accent); }
+  .oe-syntax-string { color: var(--fg-success); }
+  .oe-syntax-comment { color: var(--fg-muted); }
+
+  .oe-comparison { min-width: calc(var(--spacing) * 144); }
+  .oe-comparison :is(th, td):first-child { position: sticky; left: 0; z-index: 1; background: var(--bg-surface); color: var(--fg-default); min-width: calc(var(--spacing) * 40); }
+  .oe-comparison .oe-comparison-group th { background: var(--bg-sunken); color: var(--fg-default); }
+  .oe-comparison [data-best] { background: var(--bg-accent-muted); color: var(--fg-default); font-weight: var(--font-weight-semibold); }
+  .oe-comparison[data-highlight="false"] [data-best] { background: transparent; font-weight: var(--font-weight-normal); }
+
+  /* Content sites can use product navigation without an inset application shell. */
+  .oe-portal { box-sizing: border-box; width: min(100%, var(--container-6xl)); margin-inline: auto; padding: calc(var(--spacing) * 6); color: var(--fg-default); }
+  .oe-feature { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: calc(var(--spacing) * 6); }
+  .oe-catalog { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--spacing) * 64)), 1fr)); gap: calc(var(--spacing) * 4); }
+  .oe-catalog > [data-pinned="true"] { order: -1; }
+
+  /* Chat parts share ordinary text, badges, code and button classes. */
+  .oe-chat { display: flex; flex-direction: column; min-width: 0; gap: calc(var(--spacing) * 4); color: var(--fg-default); }
+  .oe-chat-workspace { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: calc(var(--spacing) * 6); min-width: 0; }
+  .oe-chat-thread { position: relative; display: flex; flex-direction: column; gap: calc(var(--spacing) * 5); overflow: auto; max-height: calc(var(--spacing) * 104); padding: calc(var(--spacing) * 3); scroll-padding-block: calc(var(--spacing) * 3); }
+  .oe-chat-message { display: grid; gap: calc(var(--spacing) * 2); max-width: 75ch; overflow-wrap: anywhere; }
+  .oe-chat-message[data-author="user"] { align-self: flex-end; }
+  .oe-chat-bubble { padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4); border-radius: var(--radius-lg); background: var(--bg-sunken); color: var(--fg-default); }
+  .oe-chat-message[data-author="user"] .oe-chat-bubble { background: var(--bg-accent-muted); color: var(--fg-default); }
+  .oe-chat-meta { display: flex; align-items: center; flex-wrap: wrap; gap: calc(var(--spacing) * 2); color: var(--fg-muted); font-size: var(--text-xs); }
+  .oe-chat-composer { display: grid; gap: calc(var(--spacing) * 2); padding: calc(var(--spacing) * 3); border: 1px solid var(--border-strong); border-radius: var(--radius-lg); background: var(--bg-surface); color: var(--fg-default); box-shadow: var(--shadow-raised); }
+  .oe-chat-composer:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .oe-chat-composer textarea { box-sizing: border-box; width: 100%; min-height: calc(var(--spacing) * 20); resize: vertical; border: 0; background: transparent; color: var(--fg-default); font: inherit; }
+  .oe-chat-actions { display: flex; align-items: center; flex-wrap: wrap; gap: calc(var(--spacing) * 2); }
+  .oe-chat-actions > :last-child { margin-left: auto; }
+  .oe-chat-system { display: flex; align-items: center; justify-content: center; gap: calc(var(--spacing) * 2); color: var(--fg-muted); font-size: var(--text-xs); }
+  .oe-chat-tools { display: grid; gap: calc(var(--spacing) * 2); padding: calc(var(--spacing) * 3); border: 1px solid var(--border-default); border-radius: var(--radius-md); font-size: var(--text-sm); }
+  .oe-chat-tools summary { cursor: pointer; }
+  .oe-chat-tools [data-status="error"] { color: var(--fg-danger); }
+  .oe-chat-attachment { display: flex; align-items: center; gap: calc(var(--spacing) * 2); padding: calc(var(--spacing) * 2); border: 1px solid var(--border-default); border-radius: var(--radius-md); font-size: var(--text-sm); }
+  .oe-chat-scroll { align-self: center; }
+  :is(.oe-topnav a, .oe-outline a, .oe-hover-trigger, .oe-chat-tools summary, .oe-chat-composer textarea):focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  @media (hover: hover) { .oe-outline a:hover { background: var(--bg-hover); color: var(--fg-default); } }
+  @media (max-width: 48rem) {
+    .oe-feature, .oe-chat-workspace { grid-template-columns: minmax(0, 1fr); }
+    .oe-portal { padding: calc(var(--spacing) * 4); }
+    .oe-topnav-links { margin-left: 0; width: 100%; }
+    :is(.oe-breadcrumb-chevron, .oe-breadcrumb-arrow, .oe-breadcrumb-dot) li + li::before { content: none; }
+    :is(.oe-breadcrumb-chevron, .oe-breadcrumb-arrow, .oe-breadcrumb-dot) ol:has(> :nth-child(3)) > :nth-last-child(2)::before { content: "‹"; content: "‹" / ""; }
+  }
+  @media (pointer: coarse) {
+    .oe-outline a, .oe-topnav a, .oe-chat-tools summary { min-height: calc(var(--spacing) * 11); }
+  }
+  @media (forced-colors: active) {
+    .oe-tokenizer, .oe-hover-card, .oe-code-panel, .oe-chat-composer, .oe-chat-bubble, .oe-chat-tools { border: 1px solid CanvasText; }
+    .oe-comparison [data-best] { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+    .oe-comparison[data-highlight="false"] [data-best] { forced-color-adjust: auto; background: Canvas; color: CanvasText; }
+    .oe-outline [aria-current="location"] { border-color: Highlight; }
+  }
+}
+
+@layer components {
+  /* Reusable resource and decision layouts; actions use the existing button variants. */
+  .oe-eyebrow { margin: 0 0 calc(var(--spacing) * 2); color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--text-xs--line-height); font-weight: var(--font-weight-semibold); letter-spacing: var(--tracking-wider); text-transform: uppercase; }
+  .oe-section-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: calc(var(--spacing) * 3); }
+  .oe-resource-card { display: flex; flex-direction: column; gap: calc(var(--spacing) * 4); min-width: 0; }
+  .oe-resource-card > .oe-card-foot { margin-top: auto; justify-content: space-between; }
+  .oe-resource-meta { display: flex; align-items: center; flex-wrap: wrap; gap: calc(var(--spacing) * 2); color: var(--fg-muted); font-size: var(--text-xs); }
+  .oe-resource-meta .oe-field-help { display: block; }
+  .oe-resource-icon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: calc(var(--spacing) * 11); height: calc(var(--spacing) * 11); border: 1px solid var(--border-accent-muted); border-radius: var(--radius-lg); background: var(--bg-accent-muted); color: var(--fg-accent); }
+  .oe-resource-icon > svg { width: calc(var(--spacing) * 5); height: calc(var(--spacing) * 5); }
+  .oe-resource-option { display: flex; align-items: flex-start; gap: calc(var(--spacing) * 3); }
+  .oe-feature-title { margin: 0; font-size: var(--text-3xl); letter-spacing: var(--tracking-tight); font-weight: var(--font-weight-semibold); line-height: var(--leading-tight); text-wrap: balance; }
+  .oe-feature-art { display: grid; place-items: center; min-height: calc(var(--spacing) * 48); padding: calc(var(--spacing) * 6); overflow: hidden; background: var(--bg-accent-muted); color: var(--fg-accent); }
+  .oe-feature-document { width: min(100%, calc(var(--spacing) * 72)); padding: calc(var(--spacing) * 4); border: 1px solid var(--border-default); border-radius: var(--radius-lg); background: var(--bg-surface); color: var(--fg-default); box-shadow: var(--shadow-raised); rotate: -3deg; }
+  .oe-feature-document > svg { width: calc(var(--spacing) * 6); height: calc(var(--spacing) * 6); color: var(--fg-accent); }
+  .oe-feature-document > span { display: block; height: calc(var(--spacing) * 1.5); margin-block: calc(var(--spacing) * 2); border-radius: var(--radius-xs); background: var(--bg-neutral-muted); }
+  .oe-feature-document > span:nth-of-type(2) { width: 75%; }
+  .oe-feature-document-stat { display: flex; align-items: center; gap: calc(var(--spacing) * 2); margin-top: calc(var(--spacing) * 4); font-size: var(--text-sm); font-weight: var(--font-weight-medium); }
+  .oe-feature-document-stat svg { width: calc(var(--spacing) * 5); height: calc(var(--spacing) * 5); color: var(--fg-accent); }
+  .oe-catalog-toolbar { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); gap: calc(var(--spacing) * 4); align-items: end; }
+  .oe-chat-start { display: grid; gap: calc(var(--spacing) * 8); width: min(100%, var(--container-3xl)); margin-inline: auto; padding-block: calc(var(--spacing) * 6); }
+  .oe-chat-start-head { text-align: center; }
+  .oe-chat-start-head > .oe-resource-icon { margin-bottom: calc(var(--spacing) * 4); }
+  .oe-chat-start-head h1 { font-size: var(--text-3xl); }
+  .oe-chat-prompts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(var(--spacing) * 3); }
+  .oe-prompt-card { display: grid; align-content: start; gap: calc(var(--spacing) * 2); min-height: calc(var(--spacing) * 30); padding: calc(var(--spacing) * 4); border: 1px solid var(--border-default); border-radius: var(--radius-lg); background: var(--bg-surface); color: var(--fg-default); font: inherit; font-size: var(--text-sm); text-align: left; cursor: pointer; }
+  .oe-prompt-card > svg { width: calc(var(--spacing) * 5); height: calc(var(--spacing) * 5); color: var(--fg-accent); }
+  .oe-prompt-title { font-weight: var(--font-weight-medium); }
+  .oe-prompt-text { color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
+  .oe-prompt-card:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .oe-chat-workspace-studio { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: start; }
+  .oe-chat-panel { overflow: hidden; }
+  .oe-chat-panel > .oe-chat-thread { max-height: calc(var(--spacing) * 88); padding-inline: calc(var(--spacing) * 4); }
+  .oe-chat-panel > .oe-chat-composer { margin: 0 calc(var(--spacing) * 4) calc(var(--spacing) * 4); }
+  .oe-chat-meta > .oe-avatar > svg { width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); }
+  .oe-capacity-rows { display: grid; gap: calc(var(--spacing) * 4); font-size: var(--text-sm); }
+  .oe-capacity-rows progress { margin-top: calc(var(--spacing) * 2); }
+  @media (hover: hover) { .oe-prompt-card:hover { background: var(--bg-hover); border-color: var(--border-strong); } }
+  @media (max-width: 48rem) {
+    .oe-catalog-toolbar, .oe-chat-prompts, .oe-chat-workspace-studio { grid-template-columns: minmax(0, 1fr); }
+    .oe-chat-start { padding-block: calc(var(--spacing) * 2); }
+    .oe-feature-title, .oe-chat-start-head h1 { font-size: var(--text-2xl); }
+    .oe-prompt-card { min-height: calc(var(--spacing) * 20); }
+    .oe-feature-art { min-height: calc(var(--spacing) * 40); }
+  }
+  @media (forced-colors: active) {
+    .oe-prompt-card, .oe-resource-icon, .oe-feature-document { border: 1px solid CanvasText; }
+  }
+}
+
+@layer components {
+  .oe-topnav-links > .oe-nav-item { width: auto; }
+  .oe-resource-option > div { flex: 1; min-width: 0; }
+  .oe-feature > .oe-resource-card { align-self: start; }
+  .oe-catalog-comfortable { grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--spacing) * 80)), 1fr)); }
+  .oe-show-narrow { display: none; }
+  .oe-segmented.oe-show-narrow { margin-bottom: calc(var(--spacing) * 4); }
+  @media (max-width: 48rem) {
+    .oe-show-narrow { display: inline-flex; }
+    .oe-chat-workspace-studio[data-mobile-pane="chat"] > aside,
+    .oe-chat-workspace-studio[data-mobile-pane="report"] > .oe-chat-panel { display: none; }
   }
 }

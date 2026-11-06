@@ -1,0 +1,447 @@
+<!doctype html>
+<!-- Copy the structure into your app. Replace fictional content and routes. -->
+<!-- Applications own data-route actions, filtering, stories, chat and saved state. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>App catalog · Northwind</title>
+    <link rel="stylesheet" href="../dist/tokens.css" />
+    <link rel="stylesheet" href="../dist/components.css" />
+    <style>
+      @layer base {
+        body {
+          margin: 0;
+          background: var(--bg-page);
+          color: var(--fg-default);
+          font-family: var(--font-sans);
+          font-size: var(--text-base);
+          line-height: var(--leading-relaxed);
+        }
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+        h1,
+        h2,
+        h3,
+        p {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="oe-skip-link" href="#main">Skip to content</a>
+    <header class="oe-topnav">
+      <a class="oe-topnav-brand" href="/news"
+        ><i data-lucide="sparkles"></i>Northwind</a
+      >
+      <nav class="oe-topnav-links" aria-label="Primary">
+        <a class="oe-nav-item" href="/news">Knowledge hub</a
+        ><a class="oe-nav-item" href="/apps" aria-current="page">App catalog</a
+        ><a class="oe-nav-item" href="/chat">Assistant</a>
+      </nav>
+    </header>
+    <main class="oe-portal oe-stack" id="main" data-catalog-demo>
+      <header class="oe-page-head">
+        <div>
+          <p class="oe-eyebrow">Your workspace</p>
+          <h1 class="oe-page-title">App catalog</h1>
+          <p class="oe-page-subtitle">
+            One place to find the tools your team uses.
+          </p>
+        </div>
+        <div class="oe-page-actions">
+          <button
+            class="oe-btn oe-btn-secondary"
+            type="button"
+            data-route="/compare"
+          >
+            Compare tools <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      </header>
+      <div class="oe-card">
+        <div class="oe-catalog-toolbar">
+          <label class="oe-field"
+            ><span class="oe-field-label">Search apps</span
+            ><span class="oe-input-group"
+              ><i data-lucide="search"></i
+              ><input
+                class="oe-input"
+                type="search"
+                data-catalog-search
+                placeholder="Name, purpose or owner…" /></span></label
+          ><label class="oe-field"
+            ><span class="oe-field-label">Category</span
+            ><select class="oe-input" data-catalog-category>
+              <option>All categories</option>
+              <option>Operations</option>
+              <option>Finance</option>
+              <option>People</option>
+            </select></label
+          ><label class="oe-field"
+            ><span class="oe-field-label">Source</span
+            ><select class="oe-input" data-catalog-source>
+              <option>All sources</option>
+              <option>Web app</option>
+              <option>Tool</option>
+              <option>Report</option>
+            </select></label
+          >
+        </div>
+      </div>
+      <div class="oe-section-head">
+        <div>
+          <h2 class="oe-section-title" data-catalog-heading>
+            All applications
+          </h2>
+          <p class="oe-section-text" role="status" data-catalog-count>6 apps</p>
+        </div>
+        <div class="oe-page-actions">
+          <button
+            class="oe-btn oe-btn-secondary"
+            type="button"
+            data-pinned-only
+            aria-pressed="false"
+          >
+            <i data-lucide="pin"></i>Pinned only</button
+          ><button class="oe-btn oe-btn-quiet" type="button" data-catalog-clear>
+            Clear filters
+          </button>
+        </div>
+      </div>
+      <div class="oe-catalog oe-catalog-comfortable">
+        <article
+          class="oe-card oe-resource-card"
+          data-catalog-card
+          data-app-key="planning"
+          data-name="Capacity planner"
+          data-category="Operations"
+          data-source="Web app"
+          data-owner="Maja Holm"
+          data-pinned="false"
+        >
+          <div class="oe-card-head">
+            <span class="oe-resource-icon"
+              ><i data-lucide="chart-column"></i></span
+            ><button
+              class="oe-btn oe-btn-quiet oe-btn-icon"
+              type="button"
+              data-pin
+              aria-pressed="false"
+              aria-label="Pin Capacity planner"
+            >
+              <i data-lucide="pin"></i>
+            </button>
+          </div>
+          <div>
+            <p class="oe-eyebrow">Web app</p>
+            <h3 class="oe-card-title">Capacity planner</h3>
+          </div>
+          <p class="oe-card-subtitle" data-app-description>
+            Review workloads and make room for the work that matters.
+          </p>
+          <div class="oe-resource-meta">
+            <span class="oe-avatar oe-avatar-sm">MH</span
+            ><span>Maja Holm<span class="oe-field-help">App owner</span></span>
+          </div>
+          <div class="oe-card-foot">
+            <span class="oe-badge oe-badge-neutral">Operations</span
+            ><button
+              class="oe-btn oe-btn-secondary"
+              type="button"
+              data-app-open
+              aria-haspopup="dialog"
+              aria-controls="app-dialog"
+              aria-label="View details for Capacity planner"
+            >
+              View details <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+        </article>
+        <article
+          class="oe-card oe-resource-card"
+          data-catalog-card
+          data-app-key="handbook"
+          data-name="Team handbook"
+          data-category="People"
+          data-source="Tool"
+          data-owner="Emil Lund"
+          data-pinned="false"
+        >
+          <div class="oe-card-head">
+            <span class="oe-resource-icon"><i data-lucide="file-text"></i></span
+            ><button
+              class="oe-btn oe-btn-quiet oe-btn-icon"
+              type="button"
+              data-pin
+              aria-pressed="false"
+              aria-label="Pin Team handbook"
+            >
+              <i data-lucide="pin"></i>
+            </button>
+          </div>
+          <div>
+            <p class="oe-eyebrow">Tool</p>
+            <h3 class="oe-card-title">Team handbook</h3>
+          </div>
+          <p class="oe-card-subtitle" data-app-description>
+            Find the guidance you need, from onboarding to daily routines.
+          </p>
+          <div class="oe-resource-meta">
+            <span class="oe-avatar oe-avatar-sm">EL</span
+            ><span>Emil Lund<span class="oe-field-help">App owner</span></span>
+          </div>
+          <div class="oe-card-foot">
+            <span class="oe-badge oe-badge-neutral">People</span
+            ><button
+              class="oe-btn oe-btn-secondary"
+              type="button"
+              data-app-open
+              aria-haspopup="dialog"
+              aria-controls="app-dialog"
+              aria-label="View details for Team handbook"
+            >
+              View details <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+        </article>
+        <article
+          class="oe-card oe-resource-card"
+          data-catalog-card
+          data-app-key="finance"
+          data-name="Finance overview"
+          data-category="Finance"
+          data-source="Report"
+          data-owner="Sofia Berg"
+          data-pinned="false"
+        >
+          <div class="oe-card-head">
+            <span class="oe-resource-icon"
+              ><i data-lucide="chart-column"></i></span
+            ><button
+              class="oe-btn oe-btn-quiet oe-btn-icon"
+              type="button"
+              data-pin
+              aria-pressed="false"
+              aria-label="Pin Finance overview"
+            >
+              <i data-lucide="pin"></i>
+            </button>
+          </div>
+          <div>
+            <p class="oe-eyebrow">Report</p>
+            <h3 class="oe-card-title">Finance overview</h3>
+          </div>
+          <p class="oe-card-subtitle" data-app-description>
+            Follow monthly results and the figures behind them.
+          </p>
+          <div class="oe-resource-meta">
+            <span class="oe-avatar oe-avatar-sm">SB</span
+            ><span>Sofia Berg<span class="oe-field-help">App owner</span></span>
+          </div>
+          <div class="oe-card-foot">
+            <span class="oe-badge oe-badge-neutral">Finance</span
+            ><button
+              class="oe-btn oe-btn-secondary"
+              type="button"
+              data-app-open
+              aria-haspopup="dialog"
+              aria-controls="app-dialog"
+              aria-label="View details for Finance overview"
+            >
+              View details <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+        </article>
+        <article
+          class="oe-card oe-resource-card"
+          data-catalog-card
+          data-app-key="projects"
+          data-name="Project tracker"
+          data-category="Operations"
+          data-source="Web app"
+          data-owner="Emil Lund"
+          data-pinned="false"
+        >
+          <div class="oe-card-head">
+            <span class="oe-resource-icon"><i data-lucide="package"></i></span
+            ><button
+              class="oe-btn oe-btn-quiet oe-btn-icon"
+              type="button"
+              data-pin
+              aria-pressed="false"
+              aria-label="Pin Project tracker"
+            >
+              <i data-lucide="pin"></i>
+            </button>
+          </div>
+          <div>
+            <p class="oe-eyebrow">Web app</p>
+            <h3 class="oe-card-title">Project tracker</h3>
+          </div>
+          <p class="oe-card-subtitle" data-app-description>
+            Keep milestones, owners and next steps in view.
+          </p>
+          <div class="oe-resource-meta">
+            <span class="oe-avatar oe-avatar-sm">EL</span
+            ><span>Emil Lund<span class="oe-field-help">App owner</span></span>
+          </div>
+          <div class="oe-card-foot">
+            <span class="oe-badge oe-badge-neutral">Operations</span
+            ><button
+              class="oe-btn oe-btn-secondary"
+              type="button"
+              data-app-open
+              aria-haspopup="dialog"
+              aria-controls="app-dialog"
+              aria-label="View details for Project tracker"
+            >
+              View details <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+        </article>
+        <article
+          class="oe-card oe-resource-card"
+          data-catalog-card
+          data-app-key="support"
+          data-name="Service desk"
+          data-category="People"
+          data-source="Tool"
+          data-owner="Maja Holm"
+          data-pinned="false"
+        >
+          <div class="oe-card-head">
+            <span class="oe-resource-icon"><i data-lucide="users"></i></span
+            ><button
+              class="oe-btn oe-btn-quiet oe-btn-icon"
+              type="button"
+              data-pin
+              aria-pressed="false"
+              aria-label="Pin Service desk"
+            >
+              <i data-lucide="pin"></i>
+            </button>
+          </div>
+          <div>
+            <p class="oe-eyebrow">Tool</p>
+            <h3 class="oe-card-title">Service desk</h3>
+          </div>
+          <p class="oe-card-subtitle" data-app-description>
+            Get help and follow the progress of your requests.
+          </p>
+          <div class="oe-resource-meta">
+            <span class="oe-avatar oe-avatar-sm">MH</span
+            ><span>Maja Holm<span class="oe-field-help">App owner</span></span>
+          </div>
+          <div class="oe-card-foot">
+            <span class="oe-badge oe-badge-neutral">People</span
+            ><button
+              class="oe-btn oe-btn-secondary"
+              type="button"
+              data-app-open
+              aria-haspopup="dialog"
+              aria-controls="app-dialog"
+              aria-label="View details for Service desk"
+            >
+              View details <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+        </article>
+        <article
+          class="oe-card oe-resource-card"
+          data-catalog-card
+          data-app-key="sales"
+          data-name="Sales pulse"
+          data-category="Finance"
+          data-source="Report"
+          data-owner="Sofia Berg"
+          data-pinned="false"
+        >
+          <div class="oe-card-head">
+            <span class="oe-resource-icon"
+              ><i data-lucide="chart-column"></i></span
+            ><button
+              class="oe-btn oe-btn-quiet oe-btn-icon"
+              type="button"
+              data-pin
+              aria-pressed="false"
+              aria-label="Pin Sales pulse"
+            >
+              <i data-lucide="pin"></i>
+            </button>
+          </div>
+          <div>
+            <p class="oe-eyebrow">Report</p>
+            <h3 class="oe-card-title">Sales pulse</h3>
+          </div>
+          <p class="oe-card-subtitle" data-app-description>
+            Stay close to opportunities and customer activity.
+          </p>
+          <div class="oe-resource-meta">
+            <span class="oe-avatar oe-avatar-sm">SB</span
+            ><span>Sofia Berg<span class="oe-field-help">App owner</span></span>
+          </div>
+          <div class="oe-card-foot">
+            <span class="oe-badge oe-badge-neutral">Finance</span
+            ><button
+              class="oe-btn oe-btn-secondary"
+              type="button"
+              data-app-open
+              aria-haspopup="dialog"
+              aria-controls="app-dialog"
+              aria-label="View details for Sales pulse"
+            >
+              View details <i data-lucide="arrow-right"></i>
+            </button>
+          </div>
+        </article>
+      </div>
+      <div class="oe-empty" data-catalog-empty hidden>
+        <i data-lucide="search"></i>
+        <h2 class="oe-empty-title">No apps found</h2>
+        <p class="oe-empty-text">Try another search or clear the filters.</p>
+        <button
+          class="oe-btn oe-btn-secondary"
+          type="button"
+          data-catalog-clear
+        >
+          Clear filters
+        </button>
+      </div>
+      <dialog
+        class="oe-dialog"
+        id="app-dialog"
+        aria-labelledby="app-dialog-title"
+      >
+        <div class="oe-dialog-head">
+          <h2 class="oe-dialog-title" id="app-dialog-title"></h2>
+          <button
+            class="oe-close"
+            type="button"
+            data-dismiss-dialog
+            aria-label="Close app details"
+          >
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="oe-dialog-body oe-stack">
+          <p data-app-detail-description></p>
+          <dl class="oe-dl" data-app-detail-meta></dl>
+        </div>
+        <div class="oe-dialog-actions">
+          <button
+            class="oe-btn oe-btn-primary"
+            type="button"
+            data-dismiss-dialog
+          >
+            Done
+          </button>
+        </div>
+      </dialog>
+    </main>
+  </body>
+</html>

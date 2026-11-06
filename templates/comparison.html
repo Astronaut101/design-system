@@ -1,0 +1,211 @@
+<!doctype html>
+<!-- Copy the structure into your app. Replace fictional content and routes. -->
+<!-- Applications own data-route actions, filtering, stories, chat and saved state. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Comparison table · Northwind</title>
+    <link rel="stylesheet" href="../dist/tokens.css" />
+    <link rel="stylesheet" href="../dist/components.css" />
+    <style>
+      @layer base {
+        body {
+          margin: 0;
+          background: var(--bg-page);
+          color: var(--fg-default);
+          font-family: var(--font-sans);
+          font-size: var(--text-base);
+          line-height: var(--leading-relaxed);
+        }
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+        h1,
+        h2,
+        h3,
+        p {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="oe-skip-link" href="#main">Skip to content</a>
+    <header class="oe-topnav">
+      <a class="oe-topnav-brand" href="/news"
+        ><i data-lucide="sparkles"></i>Northwind</a
+      >
+      <nav class="oe-topnav-links" aria-label="Primary">
+        <a class="oe-nav-item" href="/news">Knowledge hub</a
+        ><a class="oe-nav-item" href="/apps" aria-current="page">App catalog</a
+        ><a class="oe-nav-item" href="/chat">Assistant</a>
+      </nav>
+    </header>
+    <main class="oe-portal oe-stack" id="main">
+      <header class="oe-page-head">
+        <div>
+          <p class="oe-eyebrow">Make a confident choice</p>
+          <h1 class="oe-page-title">Compare planning tools</h1>
+          <p class="oe-page-subtitle">
+            Start with your team’s needs. Compare the features that will make a
+            difference.
+          </p>
+        </div>
+        <div class="oe-page-actions">
+          <button
+            class="oe-btn oe-btn-secondary"
+            type="button"
+            data-route="/apps"
+          >
+            Back to app catalog
+          </button>
+        </div>
+      </header>
+      <div class="oe-alert oe-alert-info">
+        <i data-lucide="info"></i>
+        <p>
+          Three fictional tools, one shared set of criteria. Highlight the
+          strongest values to spot the differences.
+        </p>
+      </div>
+      <div class="oe-card oe-card-flush" data-comparison-demo>
+        <div class="oe-card-body oe-toolbar">
+          <strong>Features at a glance</strong>
+          <div class="oe-toolbar-end">
+            <label class="oe-check-label"
+              ><input
+                class="oe-switch"
+                role="switch"
+                type="checkbox"
+                data-best-toggle
+                checked
+              />Highlight best values</label
+            >
+          </div>
+        </div>
+        <div
+          class="oe-table-wrap"
+          tabindex="0"
+          aria-label="Tool comparison, scroll horizontally"
+        >
+          <table class="oe-table oe-comparison" data-highlight="true">
+            <caption class="oe-sr-only">
+              Fictional planning tools — illustrative features and limits
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Find your fit</th>
+                <th scope="col">
+                  <div class="oe-stack">
+                    <div>
+                      <strong>Harbor</strong>
+                      <p class="oe-field-help">For smaller teams</p>
+                    </div>
+                    <button
+                      class="oe-btn oe-btn-secondary"
+                      type="button"
+                      data-choose-tool="Harbor"
+                      aria-pressed="false"
+                    >
+                      Choose Harbor
+                    </button>
+                  </div>
+                </th>
+                <th scope="col">
+                  <div class="oe-stack">
+                    <div>
+                      <strong>Summit</strong>
+                      <p class="oe-field-help">For growing operations</p>
+                    </div>
+                    <button
+                      class="oe-btn oe-btn-secondary"
+                      type="button"
+                      data-choose-tool="Summit"
+                      aria-pressed="false"
+                    >
+                      Choose Summit
+                    </button>
+                  </div>
+                </th>
+                <th scope="col">
+                  <div class="oe-stack">
+                    <div>
+                      <strong>Beacon</strong>
+                      <p class="oe-field-help">For complex projects</p>
+                    </div>
+                    <button
+                      class="oe-btn oe-btn-secondary"
+                      type="button"
+                      data-choose-tool="Beacon"
+                      aria-pressed="false"
+                    >
+                      Choose Beacon
+                    </button>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="oe-comparison-group">
+                <th colspan="4" scope="colgroup">Organization</th>
+              </tr>
+              <tr>
+                <th scope="row">Best for</th>
+                <td>Small teams</td>
+                <td>Multiple sites</td>
+                <td>Complex projects</td>
+              </tr>
+              <tr>
+                <th scope="row">Shared workspaces</th>
+                <td>5</td>
+                <td data-best>
+                  Unlimited <span class="oe-sr-only">— best value</span>
+                </td>
+                <td>20</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr class="oe-comparison-group">
+                <th colspan="4" scope="colgroup">Ways of working</th>
+              </tr>
+              <tr>
+                <th scope="row">Report export</th>
+                <td>CSV</td>
+                <td>CSV, PDF</td>
+                <td>CSV, PDF</td>
+              </tr>
+              <tr>
+                <th scope="row">Approval workflow</th>
+                <td>Not included</td>
+                <td>Included</td>
+                <td>Included</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr class="oe-comparison-group">
+                <th colspan="4" scope="colgroup">Getting started</th>
+              </tr>
+              <tr>
+                <th scope="row">Setup time</th>
+                <td data-best>
+                  1 day <span class="oe-sr-only">— best value</span>
+                </td>
+                <td>3 days</td>
+                <td>5 days</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="oe-card-body">
+          <p class="oe-field-help">
+            Scroll horizontally to compare every column on smaller screens.
+          </p>
+          <p class="oe-field-help" data-choice-status role="status"></p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

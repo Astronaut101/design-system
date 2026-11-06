@@ -1,0 +1,247 @@
+<!doctype html>
+<!-- Copy the structure into your app. Replace fictional content and routes. -->
+<!-- Applications own data-route actions, filtering, stories, chat and saved state. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News and resources · Northwind</title>
+    <link rel="stylesheet" href="../dist/tokens.css" />
+    <link rel="stylesheet" href="../dist/components.css" />
+    <style>
+      @layer base {
+        body {
+          margin: 0;
+          background: var(--bg-page);
+          color: var(--fg-default);
+          font-family: var(--font-sans);
+          font-size: var(--text-base);
+          line-height: var(--leading-relaxed);
+        }
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+        h1,
+        h2,
+        h3,
+        p {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="oe-skip-link" href="#main">Skip to content</a>
+    <header class="oe-topnav">
+      <a class="oe-topnav-brand" href="/news"
+        ><i data-lucide="sparkles"></i>Northwind</a
+      >
+      <nav class="oe-topnav-links" aria-label="Primary">
+        <a class="oe-nav-item" href="/news" aria-current="page">Knowledge hub</a
+        ><a class="oe-nav-item" href="/apps">App catalog</a
+        ><a class="oe-nav-item" href="/chat">Assistant</a>
+      </nav>
+    </header>
+    <main class="oe-portal oe-stack" id="main">
+      <header class="oe-page-head">
+        <div>
+          <p class="oe-eyebrow">Inside Northwind</p>
+          <h1 class="oe-page-title">News and resources</h1>
+          <p class="oe-page-subtitle">
+            Useful ideas, shared experience and tools for your working day.
+          </p>
+        </div>
+      </header>
+      <div class="oe-feature">
+        <article class="oe-card oe-card-flush oe-resource-card">
+          <div class="oe-feature-art" aria-hidden="true">
+            <div class="oe-feature-document">
+              <i data-lucide="file-text"></i><span></span><span></span
+              ><span></span>
+              <div class="oe-feature-document-stat">
+                <i data-lucide="chart-column"></i>A clearer weekly review
+              </div>
+            </div>
+          </div>
+          <div class="oe-card-body oe-stack">
+            <div class="oe-resource-meta">
+              <span class="oe-badge oe-badge-accent">Featured story</span
+              ><span>5 min read</span>
+            </div>
+            <h2 class="oe-feature-title">
+              Small improvements.<br />Shared across teams.
+            </h2>
+            <p class="oe-card-subtitle">
+              How a planning team made their weekly review simpler, one
+              repeatable step at a time.
+            </p>
+            <div class="oe-resource-meta">
+              <span class="oe-avatar oe-avatar-sm">MH</span>Maja Holm
+              <span>·</span
+              ><time class="oe-timestamp" datetime="2026-11-06"
+                >6 November 2026</time
+              >
+            </div>
+            <div>
+              <button
+                class="oe-btn oe-btn-primary"
+                type="button"
+                data-story="featured"
+                aria-haspopup="dialog"
+                aria-controls="story-dialog"
+              >
+                Read featured story <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+        <aside class="oe-card oe-resource-card">
+          <div>
+            <p class="oe-eyebrow">Make a start</p>
+            <h2 class="oe-card-title">A little help, right here</h2>
+            <p class="oe-card-subtitle">
+              Practical resources for your next task.
+            </p>
+          </div>
+          <div class="oe-resource-option">
+            <span class="oe-resource-icon"><i data-lucide="package"></i></span>
+            <div>
+              <h3 class="oe-section-title">Find your tools</h3>
+              <p class="oe-field-help">
+                Apps, dashboards and reports in one place.
+              </p>
+            </div>
+          </div>
+          <button
+            class="oe-btn oe-btn-secondary"
+            type="button"
+            data-route="/apps"
+          >
+            Browse app catalog
+          </button>
+          <hr class="oe-separator" />
+          <div class="oe-resource-option">
+            <span class="oe-resource-icon"><i data-lucide="sparkles"></i></span>
+            <div>
+              <h3 class="oe-section-title">Work through a question</h3>
+              <p class="oe-field-help">
+                Turn a planning question into a useful report.
+              </p>
+            </div>
+          </div>
+          <button
+            class="oe-btn oe-btn-secondary"
+            type="button"
+            data-route="/chat"
+          >
+            Open assistant
+          </button>
+        </aside>
+      </div>
+      <div class="oe-stack">
+        <div class="oe-section-head">
+          <div>
+            <h2 class="oe-section-title">Worth a few minutes</h2>
+            <p class="oe-section-text">
+              The latest guides and updates from the team.
+            </p>
+          </div>
+        </div>
+        <div class="oe-catalog">
+          <article class="oe-card oe-resource-card">
+            <span class="oe-resource-icon"><i data-lucide="package"></i></span>
+            <div>
+              <p class="oe-eyebrow">Guide</p>
+              <h3 class="oe-card-title">Choose the right tool</h3>
+            </div>
+            <p class="oe-card-subtitle">
+              A practical checklist for finding a better fit for your next task.
+            </p>
+            <div class="oe-card-foot">
+              <button
+                class="oe-btn oe-btn-secondary"
+                type="button"
+                data-story="tools"
+                aria-haspopup="dialog"
+                aria-controls="story-dialog"
+              >
+                Read guide
+              </button>
+            </div>
+          </article>
+          <article class="oe-card oe-resource-card">
+            <span class="oe-resource-icon"><i data-lucide="users"></i></span>
+            <div>
+              <p class="oe-eyebrow">Team story</p>
+              <h3 class="oe-card-title">A simpler project handover</h3>
+            </div>
+            <p class="oe-card-subtitle">
+              Keep decisions, owners and next steps together.
+            </p>
+            <div class="oe-card-foot">
+              <button
+                class="oe-btn oe-btn-secondary"
+                type="button"
+                data-story="handover"
+                aria-haspopup="dialog"
+                aria-controls="story-dialog"
+              >
+                Read story
+              </button>
+            </div>
+          </article>
+          <article class="oe-card oe-resource-card">
+            <span class="oe-resource-icon"><i data-lucide="sparkles"></i></span>
+            <div>
+              <p class="oe-eyebrow">Resource</p>
+              <h3 class="oe-card-title">Questions that move work forward</h3>
+            </div>
+            <p class="oe-card-subtitle">
+              Useful starting points for your next planning review.
+            </p>
+            <div class="oe-card-foot">
+              <button
+                class="oe-btn oe-btn-secondary"
+                type="button"
+                data-story="questions"
+                aria-haspopup="dialog"
+                aria-controls="story-dialog"
+              >
+                Read resource
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+      <dialog
+        class="oe-dialog oe-dialog-lg"
+        id="story-dialog"
+        aria-labelledby="story-title"
+      >
+        <div class="oe-dialog-head">
+          <h2 class="oe-dialog-title" id="story-title"></h2>
+          <button
+            class="oe-close"
+            type="button"
+            data-dismiss-dialog
+            aria-label="Close story"
+          >
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="oe-dialog-body oe-prose" data-story-body></div>
+        <div class="oe-dialog-actions">
+          <button
+            class="oe-btn oe-btn-secondary"
+            type="button"
+            data-dismiss-dialog
+          >
+            Back to resources
+          </button>
+        </div>
+      </dialog>
+    </main>
+  </body>
+</html>

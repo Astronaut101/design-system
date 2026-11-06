@@ -34,10 +34,12 @@
     "lint": "node bin/oe-lint.js site templates",
     "dev": "npm run build && vite --config site/vite.config.ts",
     "site:build": "npm run build && vite build --config site/vite.config.ts",
-    "site:preview": "vite preview --config site/vite.config.ts"
+    "site:preview": "vite preview --config site/vite.config.ts",
+    "test:browser": "npm run site:build && playwright test"
   },
   "devDependencies": {
     "@material/material-color-utilities": "^0.4.0",
+    "@playwright/test": "^1.65.0",
     "@types/node": "^26.6.6",
     "lucide": "^1.69.0",
     "lucide-static": "^1.69.0",
