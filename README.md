@@ -20,13 +20,13 @@ npm run site:build     # static showcase in site/dist, for any static host
 See the [showcase](https://oestergaard-a-s.github.io/design-system/). The package isn't on npm. Install it from GitHub at a version tag:
 
 ```bash
-npm install github:Oestergaard-A-S/design-system#v0.1.1
+npm install github:Oestergaard-A-S/design-system#v0.2.0
 ```
 
 Apps without npm can link the CSS directly:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Oestergaard-A-S/design-system@v0.1.1/dist/tokens.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Oestergaard-A-S/design-system@v0.2.0/dist/tokens.css" />
 ```
 
 **Any framework:**

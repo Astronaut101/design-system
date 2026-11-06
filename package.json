@@ -1,6 +1,6 @@
 {
   "name": "@oestergaard/design-tokens",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Oestergaard-AS design tokens: HCT-derived color roles and Tailwind-standard sizing for every framework.",
   "private": true,
   "repository": "github:Oestergaard-A-S/design-system",
