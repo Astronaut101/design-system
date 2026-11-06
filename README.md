@@ -77,24 +77,32 @@ With Tailwind, import `tailwind.css` first instead of `tokens.css`.
 
 | Component | Classes |
 | --- | --- |
-| Button | `oe-btn` with `-primary`, `-secondary`, `-ghost`, `-neutral` or `-danger`, plus `-sm`, `-lg` and `-icon` |
-| Field | `oe-field`, `oe-field-label`, `oe-field-help`, `oe-field-error` |
-| Input, select, textarea | `oe-input`. Set `aria-invalid="true"` for the error state |
+| Button | `oe-btn` with `-primary`, `-secondary`, `-ghost`, `-quiet`, `-neutral` or `-danger`, plus `-sm`, `-lg` and `-icon`; `oe-btn-group`. Set `aria-busy` or `aria-pressed` for those states |
+| Field, form | `oe-field`, `oe-field-label`, `oe-field-required`, `oe-field-help`, `oe-field-error`, `oe-field-inline`; `oe-fieldset`, `oe-fieldset-legend`; `oe-form`, `oe-form-row`, `oe-form-actions` |
+| Input, select, textarea | `oe-input` with `-sm`, `-lg`, `-autogrow`, `-code`. Set `aria-invalid="true"` for the error state |
+| Other inputs | `oe-slider`; `oe-radio-card`, `oe-radio-card-title`, `oe-radio-card-text`; `oe-dropzone` |
 | Checkbox, radio | `oe-check`, `oe-check-label` |
-| Badge | `oe-badge` with `-accent`, `-neutral`, `-info`, `-success`, `-warning` or `-danger` |
-| Alert | `oe-alert` with the same intents. Put the icon first, then one element of text |
-| Card, stat | `oe-card`; `oe-stat`, `oe-stat-label`, `oe-stat-value`, `oe-stat-delta` with `-success` or `-danger` |
+| Badge | `oe-badge` with `-accent`, `-neutral`, `-info`, `-success`, `-warning`, `-danger` or `-dot`; `oe-badge-remove` |
+| Avatar | `oe-avatar` with `-sm`, `-lg`, `-xl` or `-neutral`; `oe-avatar-group` |
+| Alert, banner | `oe-alert` with the same intents, `oe-alert-title`, `oe-alert-actions`; `oe-banner` with `-accent`, `-info`, `-warning` or `-danger`. Put the icon first, then one element of text |
+| Close button | `oe-close` |
+| Card, stat | `oe-card` with `-flush`, `oe-card-head`, `oe-card-title`, `oe-card-subtitle`, `oe-card-body`, `oe-card-foot`; `oe-stat`, `oe-stat-label`, `oe-stat-value`, `oe-stat-delta` with `-success` or `-danger` |
 | Table | `oe-table-wrap`, `oe-table` with `-compact` or `-sticky`; `oe-table-num`, `oe-table-empty`, `oe-table-sort`, `oe-row-selected`. Set `aria-sort` on the sorted `th` |
 | Tabs | `oe-tabs` around elements with `aria-selected="true"` or `aria-current="page"` |
 | Segmented control | `oe-segmented` around buttons with `aria-pressed` |
-| Dialog | `oe-dialog` on a `<dialog>`, with `oe-dialog-title` and `oe-dialog-actions` |
-| Menu | `oe-menu`, `oe-menu-item`, `oe-menu-item-danger` |
-| Toast, tooltip | `oe-toast`, `oe-tooltip`. The app places and shows them |
+| Dialog, drawer | `oe-dialog` with `-sm` or `-lg`, `oe-dialog-head`, `oe-dialog-title`, `oe-dialog-body`, `oe-dialog-actions`; `oe-drawer` with `-left`, `-top` or `-bottom`, on a `<dialog>` |
+| Popover | `oe-popover` |
+| Menu | `oe-menu`, `oe-menu-item`, `oe-menu-item-danger`, `oe-menu-heading`, `oe-menu-separator`, `oe-menu-shortcut` |
+| Toast, tooltip | `oe-toast` with `-info`, `-success`, `-warning` or `-danger`, `oe-toast-title`, `oe-toaster`; `oe-tooltip`. The app places and shows them |
 | Loading | `aria-busy="true"` on an `oe-btn`; `oe-spinner`, `oe-skeleton`, `oe-progress` |
 | Switch, key hint | `oe-switch`; `oe-kbd` |
 | Input with icon | `oe-input-group` |
 | Empty state | `oe-empty`, `oe-empty-title`, `oe-empty-text` |
 | Pagination, separator, accordion | `oe-pagination`; `oe-separator`; `oe-accordion` |
+| Toolbar | `oe-toolbar`, `oe-toolbar-end` |
+| Content | `oe-dl`; `oe-list`, `oe-list-item`, `oe-list-text`, `oe-list-title`, `oe-list-subtitle`; `oe-timeline`, `oe-timeline-item`, `oe-timeline-marker`, `oe-timeline-text`, `oe-timeline-time`; `oe-steps`, `oe-step`, `oe-step-done` |
+| Text | `oe-link`, `oe-code`, `oe-code-block`, `oe-prose`, `oe-sr-only` |
+| Date picker day | `oe-calendar-day`, for a date picker library |
 | App shell | `oe-shell`, `oe-shell-main`, `oe-shell-menu`, `oe-shell-toggle`, `oe-topbar`, `oe-topbar-actions`, `oe-breadcrumb`, `oe-sidenav`, `oe-sidenav-brand`, `oe-sidenav-body`, `oe-sidenav-foot`, `oe-nav-heading`, `oe-nav-list`, `oe-nav-item`, `oe-avatar`, `oe-page`, `oe-page-head`, `oe-page-actions`, `oe-page-title`, `oe-page-subtitle` |
 
 - An `svg` placed directly inside a component gets the right size, so a Lucide icon needs no size of its own.
@@ -102,7 +110,8 @@ With Tailwind, import `tailwind.css` first instead of `tokens.css`.
 - The classes only set the look. Add the behavior and ARIA roles in the app, such as arrow keys for `role="tab"`.
 - From 64rem, the page is an inset panel and `oe-shell-main` scrolls rather than the document. An `oe-shell-toggle` button closes the side nav to a rail of icons. Flip its `aria-expanded` between `true` and `false` on click, and the CSS does the rest.
 - Below 64rem the side nav becomes a drawer. Give `oe-sidenav` the `popover` attribute and open it from an `oe-shell-menu` button with `popovertarget`, which needs no JavaScript. In a single-page app, call `hidePopover()` on navigation. Set `--oe-sidenav-width` on `oe-shell` to change its width. The showcase's Layout page has the full markup.
-- For data tables, use [TanStack Table](https://tanstack.com/table) or similar for the logic and render a normal `<table>` with these classes.
+- Menus, comboboxes, date pickers and data tables need JavaScript. [AGENT-GUIDE.md](AGENT-GUIDE.md) has recipes for putting these classes on Base UI, Bits UI, Reka UI and TanStack Table. They have been run in real React, Svelte and Vue apps.
+- Selected states and fills fall back to system colors in Windows high contrast mode, and hover styles only apply on devices that can hover.
 
 The classes are in the `components` CSS layer, so Tailwind utilities override them. Styles outside a layer always beat layered ones, so an app's own reset, such as `button { color: inherit }`, breaks them unless it's in a layer too: `@layer base { ... }`. Tailwind's reset already is.
 
@@ -132,9 +141,17 @@ npx oe-lint src --json
 | `unknown-utility` | Tailwind's stock colors, and token utilities that don't exist, such as `bg-accent` or `bg-primary` |
 | `emphasis-pair` | A solid fill with the wrong text token |
 | `deprecated-icons` | Deprecated Lucide packages in `package.json` |
+| `icon-button-name` | `oe-btn-icon`, `oe-close` and `oe-badge-remove` with no `aria-label` |
+| `input-label` | `oe-input`, `oe-check`, `oe-switch` and `oe-slider` with no label |
+| `button-element` | `oe-btn` or `oe-menu-item` on a `<div>` or `<span>` |
+| `dialog-element` | `oe-dialog` or `oe-drawer` on anything but a `<dialog>` |
+| `switch-role` | `oe-switch` with no `role="switch"` |
+| `img-alt` | An `<img>` with no `alt` |
+| `table-wrap` | A warning for `oe-table` outside `oe-table-wrap` |
 | `unlayered-reset` | A warning for element styles outside a CSS layer, which override the component classes |
+| `restyled-component` | A warning when an app changes how an `oe-*` component looks, through a CSS rule, an inline style or a utility. Margins, width, and grid and flex placement are fine. Adding `oe-lint-ignore` with a reason keeps each exception easy to search for |
 
-An app's own variables, `--color-*` theme colors and `.oe-*` classes count as real if the app declares them. Names built at runtime, such as `` var(--fg-on-${intent}) ``, can't be checked and are skipped. To allow one line, add a comment containing `oe-lint-ignore` on it or the line before.
+An app's own variables, `--color-*` theme colors and `.oe-*` classes count as real if the app declares them. Names built at runtime, such as `` var(--fg-on-${intent}) ``, can't be checked and are skipped. The markup rules only check native lowercase elements, because a component like `<Button>` may add the missing part itself. To allow one line, add a comment containing `oe-lint-ignore` on it or the line before.
 
 ## Token naming
 

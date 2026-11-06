@@ -263,6 +263,41 @@ describe('components.css', () => {
     for (const name of classes) expect(name).toMatch(/^oe-/);
   });
 
+  it('lets the hidden attribute beat every display rule', () => {
+    const covered = css.match(/:is\(([^)]*)\)\[hidden\]/)![1];
+    const shown = rules.filter((r) => /^\.oe-[\w-]+$/.test(r.selector) && /(?:^|[\s;])display:\s*(?!none)/.test(r.body));
+    expect(shown.length).toBeGreaterThan(30);
+    for (const { selector } of shown) expect(covered, selector).toMatch(new RegExp(`${selector.replace('.', '\\.')}(?![\\w-])`));
+  });
+
+  it('only applies hover styles on devices that can hover', () => {
+    const lines = css.split('\n').filter((line) => line.includes(':hover'));
+    expect(lines.length).toBeGreaterThan(15);
+    for (const line of lines) expect(line).toContain('@media (hover: hover)');
+  });
+
+  it('shows selected states in forced colors mode', () => {
+    const forced = css.slice(css.indexOf('@media (forced-colors: active)'));
+    for (const name of ['.oe-nav-item[aria-current="page"]', '.oe-segmented > [aria-pressed="true"]', '.oe-pagination > [aria-current="page"]', '.oe-row-selected', '.oe-switch:checked']) {
+      expect(forced, name).toContain(name);
+    }
+  });
+
+  it('positions scrolling containers, so screen reader text inside them cannot widen the page', () => {
+    for (const name of ['.oe-table-wrap', '.oe-dialog-body', '.oe-sidenav-body']) {
+      expect(rules.find((r) => r.selector === name)?.body, name).toContain('position: relative');
+    }
+  });
+
+  it('keeps the shell in its own stacking context, so portaled menus open above the top bar', () => {
+    expect(rules.find((r) => r.selector === '.oe-shell')?.body).toContain('isolation: isolate');
+  });
+
+  it('highlights menu items from the headless libraries', () => {
+    expect(css).toContain('.oe-menu-item[data-highlighted]');
+    expect(css).toContain('.oe-menu-item[data-selected]:not([data-selected="false"])');
+  });
+
   it('never animates every property', () => {
     expect(css).not.toMatch(/transition:\s*all|transition-property:\s*all/);
   });

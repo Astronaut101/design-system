@@ -53,6 +53,17 @@ describe('oe-lint finds', () => {
     ['a shadcn text utility', 'a.html', '<p class="text-foreground">x</p>', 'unknown-utility'],
     ['an invented class in a Svelte directive', 'a.svelte', '<p class:oe-nope={on}>x</p>', 'unknown-class'],
     ['an invented class in a Vue binding', 'a.vue', `<p :class="{ 'oe-nope': on }">x</p>`, 'unknown-class'],
+    ['an icon button with no name', 'a.html', '<button class="oe-btn oe-btn-ghost oe-btn-icon"><svg></svg></button>', 'icon-button-name'],
+    ['a close button with no name', 'a.tsx', '<button className="oe-close" onClick={() => close()}><X /></button>', 'icon-button-name'],
+    ['a button made from a div', 'a.html', '<div class="oe-btn oe-btn-primary">x</div>', 'button-element'],
+    ['an image with no alt', 'a.svelte', '<img src="/a.png" class="oe-avatar" />', 'img-alt'],
+    ['a switch with no role', 'a.html', '<label><input class="oe-switch" type="checkbox" />x</label>', 'switch-role'],
+    ['a dialog on a div', 'a.vue', '<div class="oe-dialog">x</div>', 'dialog-element'],
+    ['a drawer on a div', 'a.html', '<div class="oe-drawer oe-drawer-left">x</div>', 'dialog-element'],
+    ['an input with no label', 'a.html', '<input class="oe-input" />', 'input-label'],
+    ['an input after a closed label', 'a.html', '<label>Name</label><input class="oe-input" />', 'input-label'],
+    ['an input whose id has no label', 'a.tsx', '<input className="oe-input" id="name" />', 'input-label'],
+    ['a select with no label', 'a.vue', '<select class="oe-input"><option>a</option></select>', 'input-label'],
     ['a deprecated icon package', 'package.json', '{ "dependencies": { "lucide-svelte": "1.0.0" } }', 'deprecated-icons'],
   ])('%s', (_label, path, text, rule) => {
     expect(rules(path, text)).toContain(rule);
@@ -93,6 +104,24 @@ describe('oe-lint allows', () => {
     ['the important modifier', 'a.html', '<p class="!bg-surface bg-surface! md:hover:bg-hover">x</p>'],
     ['opacity and arbitrary values', 'a.html', '<p class="bg-surface/50 text-sm/6 bg-(--bg-surface) bg-[var(--bg-surface)] text-[13px]">x</p>'],
     ['Tailwind utilities that share a prefix', 'a.html', '<p class="text-balance text-nowrap bg-clip-text bg-linear-to-r border-collapse border-x-2 text-base">x</p>'],
+    ['an icon button with a name', 'a.tsx', '<button className="oe-btn oe-btn-icon" aria-label={t("delete")}><Trash /></button>'],
+    ['a Vue bound name', 'a.vue', `<button class="oe-close" :aria-label="label"><X /></button>`],
+    ['a link styled as a button', 'a.html', '<a class="oe-btn oe-btn-primary" href="/new">New</a>'],
+    ['a component that may add its own name', 'a.tsx', '<IconButton className="oe-btn-icon" />'],
+    ['props spread onto an element', 'a.tsx', '<button className="oe-btn-icon" {...props} />'],
+    ['Svelte rest props', 'a.svelte', '<input class="oe-input" {...rest} />'],
+    ['an arrow function in an attribute', 'a.tsx', '<button className="oe-btn-icon" onClick={() => a > b} aria-label="x"></button>'],
+    ['an image with alt', 'a.html', '<img src="/a.png" alt="" />'],
+    ['a named switch', 'a.html', '<label><input class="oe-switch" type="checkbox" role="switch" />x</label>'],
+    ['a real dialog', 'a.html', '<dialog class="oe-dialog"><p class="oe-dialog-title">x</p></dialog>'],
+    ['dialog parts on other elements', 'a.html', '<div class="oe-dialog-actions"></div><div class="oe-dialog-body"></div>'],
+    ['an input inside a label', 'a.html', '<label class="oe-field"><span>Name</span><input class="oe-input" /></label>'],
+    ['an input linked to a label', 'a.html', '<label for="n">Name</label><input class="oe-input" id="n" />'],
+    ['a label linked in JSX', 'a.tsx', '<><label htmlFor="n">Name</label><input className="oe-input" id="n" /></>'],
+    ['an id built at runtime', 'a.tsx', '<input className="oe-input" id={id} />'],
+    ['an input named with aria-label', 'a.html', '<input class="oe-input" aria-label="Search" />'],
+    ['a hidden input', 'a.html', '<input class="oe-input" type="hidden" />'],
+    ['TypeScript generics', 'a.ts', 'const a: Record<string, number> = {}; const b = new Set<string>();'],
     ['current icon packages', 'package.json', '{ "dependencies": { "lucide-react": "1.0.0" } }'],
   ])('%s', (_label, path, text) => {
     expect(lint(path, text)).toEqual([]);
@@ -141,6 +170,37 @@ describe('oe-lint reporting', () => {
     const html = { path: 'b.html', text: '<button class="oe-btn">x</button>' };
     expect(lintFiles([css], data)).toEqual([]);
     expect(lintFiles([css, html], data)).toMatchObject([{ rule: 'unlayered-reset', severity: 'warning', line: 1 }]);
+  });
+
+  it('warns when an app restyles a component, however it does it', () => {
+    const warned = (path: string, text: string) => lint(path, text).map((f) => f.rule);
+    for (const css of ['.oe-card { padding: 0; }', '.panel .oe-card { padding: 0; }', '.oe-table th { padding: 0; }', '.oe-tabs > * { color: inherit; }', '.oe-btn:hover { opacity: 0.5; }', '@layer app { .oe-tooltip { white-space: normal; } }', '.a, .oe-card { padding: 0; }']) {
+      expect(warned('a.css', css), css).toEqual(['restyled-component']);
+    }
+    expect(warned('a.svelte', '<style>:global(.oe-card) { padding: 0; }</style>')).toEqual(['restyled-component']);
+    expect(warned('a.vue', '<style>:deep(.oe-card) { padding: 0; }</style>')).toEqual(['restyled-component']);
+    expect(warned('a.html', '<div class="oe-card" style="padding: 0"></div>')).toEqual(['restyled-component']);
+    expect(warned('a.tsx', '<div className="oe-card" style={{ paddingTop: 0 }} />')).toEqual(['restyled-component']);
+    expect(warned('a.tsx', '<div className="oe-card p-0" />')).toEqual(['restyled-component']);
+    expect(warned('a.html', '<button class="oe-btn hover:bg-hover"></button>')).toEqual(['restyled-component']);
+    expect(lint('a.css', '.oe-card { padding: 0; color: inherit; }')[0]).toMatchObject({ severity: 'warning', message: expect.stringContaining('padding, color') });
+  });
+
+  it('lets an app place a component and style its own elements', () => {
+    for (const css of ['.oe-card { margin-top: 8px; grid-column: 1 / -1; flex: 1; width: 100%; --oe-sidenav-width: 200px; }', '.oe-card .mine { padding: 0; }', '.oe-page-head + section { padding: 0; }', '.oe-custom { padding: 0; }', ':not(.oe-card) { padding: 0; }']) {
+      expect(lint('a.css', css), css).toEqual([]);
+    }
+    expect(lint('a.html', '<div class="oe-card" style="width: 100%; grid-template-columns: repeat(2, 1fr)"></div>')).toEqual([]);
+    expect(lint('a.tsx', '<div className="oe-card" style={{ gridTemplateColumns: "repeat(2, 1fr)", marginTop: 4 }} />')).toEqual([]);
+    expect(lint('a.tsx', '<div className="oe-card mt-4 w-full flex-1" />')).toEqual([]);
+    expect(lint('a.html', '<div class="mine p-0"></div>')).toEqual([]);
+    expect(lint('a.css', '/* oe-lint-ignore: a one-off for the print view */\n.oe-card { padding: 0; }')).toEqual([]);
+  });
+
+  it('warns about a table with no wrapper', () => {
+    expect(lint('a.html', '<table class="oe-table"></table>')).toMatchObject([{ rule: 'table-wrap', severity: 'warning' }]);
+    expect(lint('a.html', '<div class="oe-table-wrap"><table class="oe-table"></table></div>')).toEqual([]);
+    expect(rules('a.html', '<div class="oe-table-wrap"><table class="oe-table"></table></div><table class="oe-table"></table>')).toEqual(['table-wrap']);
   });
 
   it('skips build output and type declarations', () => {

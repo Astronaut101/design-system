@@ -1,4 +1,5 @@
 import {
+  Archive,
   ArrowDown,
   ArrowLeft,
   ArrowRight,
@@ -25,6 +26,7 @@ import {
   Palette,
   PanelLeft,
   Pencil,
+  Pin,
   Plus,
   Ruler,
   Save,
@@ -36,15 +38,18 @@ import {
   ToggleRight,
   Trash,
   TriangleExclamationPoint,
+  Upload,
   Truck,
   User,
   Users,
+  X,
   createElement,
   type IconNode,
 } from 'lucide';
 
 // Named imports, so the bundle holds only these rather than all of Lucide.
 export const ICON_NODES: Record<string, IconNode> = {
+  archive: Archive,
   'arrow-down': ArrowDown,
   'arrow-left': ArrowLeft,
   'arrow-right': ArrowRight,
@@ -71,6 +76,7 @@ export const ICON_NODES: Record<string, IconNode> = {
   palette: Palette,
   'panel-left': PanelLeft,
   pencil: Pencil,
+  pin: Pin,
   plus: Plus,
   ruler: Ruler,
   save: Save,
@@ -83,8 +89,10 @@ export const ICON_NODES: Record<string, IconNode> = {
   trash: Trash,
   'triangle-exclamation-point': TriangleExclamationPoint,
   truck: Truck,
+  upload: Upload,
   user: User,
   users: Users,
+  x: X,
 };
 
 export const lucideSvg = (name: string) => {

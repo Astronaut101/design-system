@@ -2,8 +2,8 @@
 /* In a layer, like Tailwind's reset, so it can't override the component styles. */
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
-  html, .oe-shell-main { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html, .oe-shell-main { scroll-behavior: auto; } }
+  html, .oe-shell-main { scroll-behavior: smooth; } /* oe-lint-ignore: the site's own scrolling */
+  @media (prefers-reduced-motion: reduce) { html, .oe-shell-main { scroll-behavior: auto; } } /* oe-lint-ignore: the site's own scrolling */
   body {
     margin: 0;
     background: var(--bg-page);
@@ -37,7 +37,8 @@ section:first-child { border-top: 0; padding-top: 0; }
 .oe-sidenav-brand .brand-mark { width: var(--space-6); height: var(--space-6); border-radius: var(--radius-md); }
 .brand-text { display: grid; line-height: var(--leading-tight); }
 .brand-text small { font-size: var(--text-xs); font-weight: var(--font-weight-normal); color: var(--fg-muted); }
-.oe-page { padding-bottom: var(--space-24); }
+.oe-page { padding-bottom: var(--space-24); } /* oe-lint-ignore: room to scroll past the last section */
+.topbar-demo { position: static; margin-bottom: var(--space-3); }
 .oe-topbar .oe-segmented > button { --ic-size: var(--space-4); }
 .section-head { max-width: var(--container-2xl); margin-bottom: var(--space-6); }
 .section-head h2 { font-size: var(--text-3xl); letter-spacing: var(--tracking-tight); margin-bottom: var(--space-2); }
@@ -110,7 +111,9 @@ section:first-child { border-top: 0; padding-top: 0; }
 .row { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
 .is-focus { outline: 2px solid var(--focus); outline-offset: 2px; }
 .size-grid .wide { grid-column: 1 / -1; }
+/* oe-lint-ignore: a static picture of a dialog */
 .scrim-demo .oe-dialog { position: relative; width: auto; padding: var(--space-3) var(--space-4); }
+/* oe-lint-ignore: a static picture of a dialog */
 .scrim-demo .oe-dialog-actions { margin-top: var(--space-2); }
 
 /* Interaction states on each surface */
@@ -210,6 +213,7 @@ section:first-child { border-top: 0; padding-top: 0; }
 .mock-main { padding: var(--space-4); display: grid; gap: var(--space-3); min-width: 0; align-content: start; }
 .mock-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
 .mock-title { font-size: var(--text-lg); font-weight: var(--font-weight-semibold); line-height: var(--leading-tight); }
+/* oe-lint-ignore: a smaller nav for the layout picture */
 .mock-nav .oe-nav-item { padding: var(--space-1) var(--space-2); }
 .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
 @container (max-width: 56rem) {

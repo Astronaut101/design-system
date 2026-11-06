@@ -16,7 +16,7 @@
 
 @layer components {
   /* The display rules below would otherwise beat the hidden attribute. */
-  :is(.oe-btn, .oe-badge, .oe-alert, .oe-field, .oe-field-error, .oe-check-label, .oe-stat-label, .oe-stat-value, .oe-stat-delta, .oe-tabs, .oe-segmented, .oe-dialog-actions, .oe-menu-item, .oe-toast, .oe-spinner, .oe-kbd, .oe-input-group, .oe-empty, .oe-pagination, .oe-avatar, .oe-shell, .oe-shell-main, .oe-topbar, .oe-topbar-actions, .oe-breadcrumb ol, .oe-sidenav-brand, .oe-sidenav-foot, .oe-nav-list, .oe-nav-item, .oe-page-head)[hidden],
+  :is(.oe-btn, .oe-badge, .oe-alert, .oe-field, .oe-field-error, .oe-check-label, .oe-stat-label, .oe-stat-value, .oe-stat-delta, .oe-tabs, .oe-segmented, .oe-dialog-actions, .oe-menu-item, .oe-toast, .oe-toaster, .oe-close, .oe-btn-group, .oe-avatar-group, .oe-card-head, .oe-card-foot, .oe-dialog-head, .oe-alert-actions, .oe-form, .oe-form-row, .oe-form-actions, .oe-fieldset, .oe-radio-card, .oe-dropzone, .oe-dl, .oe-list-item, .oe-timeline-item, .oe-steps, .oe-step, .oe-banner, .oe-toolbar, .oe-sidenav, .oe-skeleton, .oe-progress, .oe-spinner, .oe-kbd, .oe-input-group, .oe-empty, .oe-pagination, .oe-avatar, .oe-shell, .oe-shell-main, .oe-topbar, .oe-topbar-actions, .oe-breadcrumb ol, .oe-sidenav-brand, .oe-sidenav-foot, .oe-nav-list, .oe-nav-item, .oe-page-head, .oe-input-select, .oe-slider, .oe-radio-card-title, .oe-radio-card-text, .oe-badge-remove, .oe-table-sort, .oe-toolbar-end, .oe-list-title, .oe-list-subtitle, .oe-timeline-marker, .oe-timeline-time, .oe-calendar-day, .oe-page-actions, .oe-shell-menu, .oe-shell-toggle)[hidden],
   .oe-tabs > [hidden],
   .oe-segmented > [hidden],
   .oe-pagination > [hidden] {
@@ -24,7 +24,7 @@
   }
 
   /* Hover and press ease in, on only the properties that change. */
-  :is(.oe-btn, .oe-input, .oe-table-sort, .oe-tabs > *, .oe-segmented > *, .oe-menu-item, .oe-nav-item, .oe-breadcrumb a, .oe-pagination > *, .oe-accordion > summary) {
+  :is(.oe-btn, .oe-input, .oe-table-sort, .oe-tabs > *, .oe-segmented > *, .oe-menu-item, .oe-nav-item, .oe-breadcrumb a, .oe-pagination > *, .oe-accordion > summary, .oe-close, .oe-badge-remove, .oe-link, .oe-radio-card, .oe-dropzone, a.oe-list-item, .oe-calendar-day) {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     transition: color 150ms var(--ease-out), background-color 150ms var(--ease-out), border-color 150ms var(--ease-out);
@@ -41,7 +41,15 @@
   .oe-breadcrumb a:focus-visible,
   .oe-switch:focus-visible,
   .oe-pagination > :focus-visible,
-  .oe-accordion > summary:focus-visible {
+  .oe-accordion > summary:focus-visible,
+  .oe-close:focus-visible,
+  .oe-badge-remove:focus-visible,
+  .oe-link:focus-visible,
+  .oe-slider:focus-visible,
+  .oe-calendar-day:focus-visible,
+  .oe-radio-card:has(:focus-visible),
+  .oe-dropzone:has(:focus-visible),
+  a.oe-list-item:focus-visible {
     outline: 2px solid var(--focus);
     outline-offset: 2px;
   }
@@ -74,19 +82,22 @@
   }
   .oe-btn > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
   .oe-btn-primary { background: var(--bg-accent-emphasis); color: var(--fg-on-accent); }
-  .oe-btn-primary:hover { background: var(--bg-accent-emphasis-hover); }
+  @media (hover: hover) { .oe-btn-primary:hover { background: var(--bg-accent-emphasis-hover); } }
   .oe-btn-primary:active { background: var(--bg-accent-emphasis-active); }
   .oe-btn-secondary { background: var(--bg-surface); color: var(--fg-default); border-color: var(--border-default); }
-  .oe-btn-secondary:hover { background: var(--bg-hover); }
+  @media (hover: hover) { .oe-btn-secondary:hover { background: var(--bg-hover); } }
   .oe-btn-secondary:active { background: var(--bg-pressed); }
   .oe-btn-ghost { background: transparent; color: var(--fg-accent); }
-  .oe-btn-ghost:hover { background: var(--bg-accent-muted); }
+  @media (hover: hover) { .oe-btn-ghost:hover { background: var(--bg-accent-muted); } }
   .oe-btn-ghost:active { background: var(--bg-accent-muted-hover); }
+  .oe-btn-quiet { background: transparent; color: var(--fg-muted); }
+  @media (hover: hover) { .oe-btn-quiet:hover { background: var(--bg-hover); color: var(--fg-default); } }
+  .oe-btn-quiet:active { background: var(--bg-pressed); color: var(--fg-default); }
   .oe-btn-neutral { background: var(--bg-neutral-emphasis); color: var(--fg-on-neutral); }
-  .oe-btn-neutral:hover { background: var(--bg-neutral-emphasis-hover); }
+  @media (hover: hover) { .oe-btn-neutral:hover { background: var(--bg-neutral-emphasis-hover); } }
   .oe-btn-neutral:active { background: var(--bg-neutral-emphasis-active); }
   .oe-btn-danger { background: var(--bg-danger-emphasis); color: var(--fg-on-danger); }
-  .oe-btn-danger:hover { background: var(--bg-danger-emphasis-hover); }
+  @media (hover: hover) { .oe-btn-danger:hover { background: var(--bg-danger-emphasis-hover); } }
   .oe-btn-danger:active { background: var(--bg-danger-emphasis-active); }
   .oe-btn-sm { gap: var(--spacing); min-height: calc(var(--spacing) * 7); padding-inline: calc(var(--spacing) * 2); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
   .oe-btn-sm > svg { width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); }
@@ -95,12 +106,50 @@
   .oe-btn-icon { width: calc(var(--spacing) * 8); padding: 0; }
   .oe-btn-icon.oe-btn-sm { width: calc(var(--spacing) * 7); }
   .oe-btn-icon.oe-btn-lg { width: calc(var(--spacing) * 10); }
+  .oe-btn[aria-pressed="true"] { background: var(--bg-accent-muted); color: var(--fg-accent); border-color: var(--border-accent-muted); }
+  .oe-btn-group { display: inline-flex; max-width: 100%; }
+  .oe-btn-group > * { position: relative; border-radius: 0; }
+  .oe-btn-group > * + * { margin-left: -1px; }
+  .oe-btn-group > :first-child { border-start-start-radius: var(--radius-md); border-end-start-radius: var(--radius-md); }
+  .oe-btn-group > :last-child { border-start-end-radius: var(--radius-md); border-end-end-radius: var(--radius-md); }
+  .oe-btn-group > :is(:focus-visible, [aria-pressed="true"]) { z-index: 1; }
+  @media (hover: hover) { .oe-btn-group > :hover { z-index: 1; } }
   .oe-btn:disabled,
   .oe-btn[aria-disabled="true"] { background: var(--bg-disabled); color: var(--fg-disabled); border-color: var(--border-disabled); cursor: not-allowed; }
+
+  /* Close button, for alerts, banners, toasts, dialogs and drawers. Needs an aria-label. */
+  .oe-close {
+    box-sizing: border-box;
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--spacing) * 7);
+    height: calc(var(--spacing) * 7);
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--fg-muted);
+    cursor: pointer;
+  }
+  .oe-close > svg { width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
+  @media (hover: hover) { .oe-close:hover { background: var(--bg-hover); color: var(--fg-default); } }
+  .oe-close:active { background: var(--bg-pressed); }
 
   /* Form fields */
   .oe-field { display: grid; gap: var(--spacing); min-width: 0; font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
   .oe-field-label { font-weight: var(--font-weight-medium); }
+  /* Decoration only: the input's required attribute tells assistive tech. */
+  .oe-field-required::after { content: " *"; content: " *" / ""; color: var(--fg-danger); }
+  .oe-field-inline { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); column-gap: calc(var(--spacing) * 4); align-items: start; }
+  .oe-field-inline > .oe-field-label { padding-top: calc(var(--spacing) * 1.5); }
+  .oe-field-inline > :not(.oe-field-label) { grid-column: 2; }
+  .oe-fieldset { display: grid; gap: calc(var(--spacing) * 1); min-width: 0; margin: 0; padding: 0; border: 0; font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-fieldset-legend { margin-bottom: calc(var(--spacing) * 1); padding: 0; font-weight: var(--font-weight-medium); }
+  .oe-form { display: grid; gap: calc(var(--spacing) * 5); min-width: 0; }
+  .oe-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(calc(var(--spacing) * 48), 100%), 1fr)); gap: calc(var(--spacing) * 4); }
+  .oe-form-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: calc(var(--spacing) * 2); }
   .oe-field-help { color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
   .oe-field-error { display: flex; gap: var(--spacing); color: var(--fg-danger); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
   .oe-field-error > svg { flex: none; width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); margin-top: 0.15em; }
@@ -121,8 +170,27 @@
   .oe-input[aria-invalid="true"] { border-color: var(--border-danger-emphasis); }
   .oe-input:disabled { background-color: var(--bg-disabled); color: var(--fg-disabled); border-color: var(--border-disabled); cursor: not-allowed; }
   textarea.oe-input { resize: vertical; }
+  .oe-input-sm { min-height: calc(var(--spacing) * 7); padding-inline: calc(var(--spacing) * 2); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
+  .oe-input-lg { min-height: calc(var(--spacing) * 10); padding: calc(var(--spacing) * 1.75) calc(var(--spacing) * 3); font-size: var(--text-base); line-height: var(--text-base--line-height); }
+  /* Grows with its text where browsers support it, and stays resizable where they don't. */
+  .oe-input-autogrow { max-height: calc(var(--spacing) * 60); field-sizing: content; }
+  .oe-input-code { max-width: calc(var(--spacing) * 48); font-family: var(--font-mono); letter-spacing: 0.4em; text-align: center; }
+  input[type="file"].oe-input { padding: calc(var(--spacing) * 0.5); cursor: pointer; }
+  .oe-input::file-selector-button {
+    margin-right: calc(var(--spacing) * 2);
+    padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    background: var(--bg-sunken);
+    color: var(--fg-default);
+    font: inherit;
+    font-size: var(--text-xs);
+    cursor: pointer;
+  }
   /* WebKit won't size a native select, so this draws the arrow in the text color instead. */
-  select.oe-input:not([multiple]) {
+  .oe-input-select { display: block; text-align: left; cursor: pointer; }
+  select.oe-input:not([multiple]),
+  .oe-input-select {
     appearance: none;
     padding-right: calc(var(--spacing) * 8);
     background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
@@ -130,8 +198,49 @@
     background-size: calc(var(--spacing) * 1.25) calc(var(--spacing) * 1.25);
     background-repeat: no-repeat;
   }
+  .oe-slider { display: block; width: 100%; margin: 0; accent-color: var(--bg-accent-emphasis); cursor: pointer; }
   .oe-check { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); margin: 0; accent-color: var(--bg-accent-emphasis); }
   .oe-check-label { display: inline-flex; align-items: center; gap: calc(var(--spacing) * 2); min-height: calc(var(--spacing) * 6); font-size: var(--text-sm); line-height: var(--text-sm--line-height); cursor: pointer; }
+  .oe-radio-card {
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    gap: calc(var(--spacing) * 3);
+    min-width: 0;
+    padding: calc(var(--spacing) * 3);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    cursor: pointer;
+  }
+  .oe-radio-card > .oe-check { margin-top: calc(var(--spacing) * 0.5); }
+  @media (hover: hover) { .oe-radio-card:hover { background: var(--bg-hover); } }
+  .oe-radio-card:has(:checked) { background: var(--bg-accent-muted); border-color: var(--border-accent-emphasis); }
+  .oe-radio-card:has(:disabled) { background: var(--bg-disabled); color: var(--fg-disabled); border-color: var(--border-disabled); cursor: not-allowed; }
+  .oe-radio-card-title { display: block; font-weight: var(--font-weight-medium); }
+  .oe-radio-card-text { display: block; color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
+  /* The file input covers the whole area, so dropping a file works without JavaScript. */
+  .oe-dropzone {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing);
+    padding: calc(var(--spacing) * 8) calc(var(--spacing) * 4);
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-lg);
+    color: var(--fg-muted);
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    text-align: center;
+    cursor: pointer;
+  }
+  .oe-dropzone > svg { flex: none; width: calc(var(--spacing) * 6); height: calc(var(--spacing) * 6); }
+  .oe-dropzone > input[type="file"] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+  @media (hover: hover) { .oe-dropzone:hover { background: var(--bg-hover); border-color: var(--border-accent-emphasis); color: var(--fg-default); } }
+
   /* iOS zooms the page when a smaller input takes focus, including on a phone held sideways. */
   @media (max-width: 48rem), (pointer: coarse) {
     .oe-input { font-size: var(--text-base); }
@@ -152,6 +261,26 @@
     white-space: nowrap;
   }
   .oe-badge > svg { flex: none; width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); }
+  .oe-badge-dot::before { content: ""; flex: none; width: calc(var(--spacing) * 1.5); height: calc(var(--spacing) * 1.5); border-radius: 50%; background: currentColor; }
+  .oe-badge-remove {
+    position: relative;
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--spacing) * 4);
+    height: calc(var(--spacing) * 4);
+    margin-right: calc(var(--spacing) * -1);
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+  .oe-badge-remove::after { content: ""; position: absolute; inset: calc(var(--spacing) * -1); }
+  .oe-badge-remove > svg { width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); }
+  @media (hover: hover) { .oe-badge-remove:hover { background: var(--bg-hover); color: var(--fg-default); } }
   .oe-badge-accent { background: var(--bg-accent-muted); color: var(--fg-accent); }
   .oe-badge-neutral { background: var(--bg-neutral-muted); color: var(--fg-default); }
   .oe-badge-info { background: var(--bg-info-muted); color: var(--fg-info); }
@@ -174,7 +303,12 @@
     line-height: var(--text-sm--line-height);
   }
   .oe-alert > svg { flex: none; width: calc(var(--spacing) * 5); height: calc(var(--spacing) * 5); }
-  .oe-alert > :not(svg) { flex: 1; min-width: 0; margin: 0; }
+  .oe-alert > :not(svg, .oe-close) { flex: 1; min-width: 0; margin: 0; }
+  .oe-alert > .oe-close { margin: calc(var(--spacing) * -1); color: inherit; }
+  .oe-alert-title { margin: 0; font-weight: var(--font-weight-semibold); }
+  .oe-alert-title + * { margin-top: calc(var(--spacing) * 0.5); }
+  .oe-alert p { margin-block-end: 0; }
+  .oe-alert-actions { display: flex; flex-wrap: wrap; gap: calc(var(--spacing) * 2); margin-top: calc(var(--spacing) * 2); }
   .oe-alert-accent { background: var(--bg-accent-muted); border-color: var(--border-accent-muted); color: var(--fg-default); }
   .oe-alert-accent > svg { color: var(--fg-accent); }
   .oe-alert-info { background: var(--bg-info-muted); border-color: var(--border-info-muted); color: var(--fg-default); }
@@ -196,6 +330,10 @@
     background: var(--bg-surface);
     color: var(--fg-default);
   }
+  .oe-card-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: calc(var(--spacing) * 3); margin-bottom: calc(var(--spacing) * 4); }
+  .oe-card-title { margin: 0; font-size: var(--text-base); font-weight: var(--font-weight-semibold); line-height: var(--text-base--line-height); }
+  .oe-card-subtitle { margin: calc(var(--spacing) * 0.5) 0 0; color: var(--fg-muted); font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-card-foot { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: calc(var(--spacing) * 2); margin-top: calc(var(--spacing) * 4); padding-top: calc(var(--spacing) * 4); border-top: 1px solid var(--border-default); }
   .oe-stat {
     box-sizing: border-box;
     min-width: 0;
@@ -211,7 +349,9 @@
   .oe-stat-delta-danger { color: var(--fg-danger); }
 
   /* Table. Rows and sorting logic stay with the app. */
+  /* Scrolling containers are positioned so oe-sr-only text inside them can't widen the page. */
   .oe-table-wrap {
+    position: relative;
     overflow-x: auto;
     color: var(--fg-default);
   }
@@ -227,10 +367,13 @@
   .oe-table td { padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3); border-top: 1px solid var(--border-default); }
   .oe-table :is(th, td):first-child { padding-left: var(--spacing); }
   .oe-table :is(th, td):last-child { padding-right: var(--spacing); }
-  .oe-table tbody tr:hover > td { background: var(--bg-hover); }
+  @media (hover: hover) { .oe-table tbody tr:hover > td { background: var(--bg-hover); } }
   .oe-table .oe-row-selected > td { background: var(--bg-accent-muted); }
-  .oe-table tbody .oe-row-selected:hover > td { background: var(--bg-accent-muted-hover); }
+  @media (hover: hover) { .oe-table tbody .oe-row-selected:hover > td { background: var(--bg-accent-muted-hover); } }
   .oe-table .oe-table-num { font-variant-numeric: tabular-nums; text-align: right; }
+  .oe-table .oe-table-actions { width: 1%; text-align: right; white-space: nowrap; }
+  .oe-table .oe-table-select { width: 1%; line-height: 1; }
+  .oe-table .oe-table-truncate { max-width: calc(var(--spacing) * 60); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .oe-table td.oe-table-empty { padding-block: calc(var(--spacing) * 8); color: var(--fg-muted); text-align: center; }
   .oe-table-compact { font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
   .oe-table-compact th,
@@ -248,10 +391,29 @@
     font: inherit;
     cursor: pointer;
   }
-  .oe-table-sort:hover,
+  @media (hover: hover) { .oe-table-sort:hover { color: var(--fg-default); } }
   [aria-sort="ascending"] > .oe-table-sort,
   [aria-sort="descending"] > .oe-table-sort { color: var(--fg-default); }
   .oe-table-sort > svg { flex: none; width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); }
+
+  /* Toolbar, above or below a table or any other content */
+  .oe-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--spacing) * 2); min-width: 0; font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-toolbar-end { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--spacing) * 2); margin-left: auto; }
+  .oe-toolbar:has(+ .oe-table-wrap) { margin-bottom: calc(var(--spacing) * 3); }
+  .oe-table-wrap + .oe-toolbar { margin-top: calc(var(--spacing) * 3); color: var(--fg-muted); }
+  /* A table in a card lines its text up with the card's title, and the foot's border closes it. */
+  .oe-card > .oe-table-wrap { margin-inline: calc(var(--spacing) * -1); }
+  .oe-card-head:has(+ .oe-table-wrap) { margin-bottom: calc(var(--spacing) * 2); }
+  .oe-table-wrap + .oe-card-foot { margin-top: 0; }
+  /* A flush card has no padding, so its parts bring their own and tables run edge to edge. */
+  .oe-card-flush { padding: 0; overflow: hidden; }
+  .oe-card-flush > .oe-card-head { margin: 0; padding: calc(var(--spacing) * 4) calc(var(--spacing) * 5); border-bottom: 1px solid var(--border-default); }
+  .oe-card-flush > .oe-card-body { padding: calc(var(--spacing) * 5); }
+  .oe-card-flush > .oe-card-foot { margin: 0; padding: calc(var(--spacing) * 3) calc(var(--spacing) * 5); }
+  .oe-card-flush > .oe-toolbar { margin: 0; padding: calc(var(--spacing) * 3) calc(var(--spacing) * 5); }
+  .oe-card-flush > .oe-table-wrap { margin-inline: 0; }
+  .oe-card-flush > .oe-table-wrap .oe-table :is(th, td):first-child { padding-left: calc(var(--spacing) * 5); }
+  .oe-card-flush > .oe-table-wrap .oe-table :is(th, td):last-child { padding-right: calc(var(--spacing) * 5); }
 
   /* Tabs and segmented control. The look only: apps add the keyboard behavior for role="tab". */
   .oe-tabs { display: flex; flex-wrap: wrap; gap: var(--spacing); border-bottom: 1px solid var(--border-default); }
@@ -270,7 +432,7 @@
     text-decoration: none;
     cursor: pointer;
   }
-  .oe-tabs > :hover { color: var(--fg-default); }
+  @media (hover: hover) { .oe-tabs > :hover { color: var(--fg-default); } }
   .oe-tabs > [aria-selected="true"],
   .oe-tabs > [aria-current="page"] { border-bottom-color: var(--border-accent-emphasis); color: var(--fg-accent); font-weight: var(--font-weight-medium); }
   .oe-segmented {
@@ -297,7 +459,7 @@
     cursor: pointer;
   }
   .oe-segmented > * > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
-  .oe-segmented > :hover { background: var(--bg-hover); color: var(--fg-default); }
+  @media (hover: hover) { .oe-segmented > :hover { background: var(--bg-hover); color: var(--fg-default); } }
   .oe-segmented > [aria-pressed="true"] { background: var(--bg-accent-emphasis); color: var(--fg-on-accent); }
 
   /* Overlays. Open and place them with <dialog>, popover or the app's own code. */
@@ -313,6 +475,13 @@
     box-shadow: var(--shadow-overlay);
     overscroll-behavior: contain;
   }
+  .oe-dialog-sm { width: min(var(--container-sm), calc(100vw - calc(var(--spacing) * 8))); }
+  .oe-dialog-lg { width: min(var(--container-2xl), calc(100vw - calc(var(--spacing) * 8))); }
+  /* A dialog with a body scrolls only the body, so its header and actions stay in view. */
+  .oe-dialog:is([open], :not(dialog)):has(> .oe-dialog-body) { display: flex; flex-direction: column; max-height: calc(100dvh - calc(var(--spacing) * 8)); overflow: hidden; }
+  .oe-dialog-head { flex: none; display: flex; align-items: flex-start; justify-content: space-between; gap: calc(var(--spacing) * 3); margin-bottom: calc(var(--spacing) * 3); }
+  .oe-dialog-body { position: relative; flex: 1; min-height: 0; margin-inline: calc(var(--spacing) * -5); padding-inline: calc(var(--spacing) * 5); overflow-y: auto; overscroll-behavior: contain; font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-dialog-actions { flex: none; }
   .oe-dialog::backdrop { background: var(--bg-scrim); }
   dialog.oe-dialog { transition: opacity 150ms var(--ease-out), translate 150ms var(--ease-out), display 150ms allow-discrete, overlay 150ms allow-discrete; }
   dialog.oe-dialog:not([open]) { opacity: 0; translate: 0 calc(var(--spacing) * 2); }
@@ -323,6 +492,64 @@
   }
   .oe-dialog-title { margin: 0; font-size: var(--text-base); font-weight: var(--font-weight-semibold); line-height: var(--text-base--line-height); }
   .oe-dialog-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: calc(var(--spacing) * 2); margin-top: calc(var(--spacing) * 4); }
+  /* Drawer, on a <dialog>. It slides from the right unless told otherwise. */
+  .oe-drawer {
+    --oe-drawer-from: 100% 0;
+    box-sizing: border-box;
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(var(--container-md), calc(100vw - calc(var(--spacing) * 12)));
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: calc(var(--spacing) * 5);
+    padding-bottom: max(calc(var(--spacing) * 5), env(safe-area-inset-bottom, 0px));
+    border: 0;
+    background: var(--bg-raised);
+    color: var(--fg-default);
+    box-shadow: var(--shadow-overlay);
+    overscroll-behavior: contain;
+    transition: translate 200ms var(--ease-out), display 200ms allow-discrete, overlay 200ms allow-discrete;
+  }
+  .oe-drawer-left { --oe-drawer-from: -100% 0; inset: 0 auto 0 0; }
+  .oe-drawer-top { --oe-drawer-from: 0 -100%; inset: 0 0 auto 0; width: auto; height: auto; max-height: 80dvh; }
+  .oe-drawer-bottom { --oe-drawer-from: 0 100%; inset: auto 0 0 0; width: auto; height: auto; max-height: 80dvh; }
+  .oe-drawer[open] { display: flex; flex-direction: column; }
+  .oe-drawer:not([open]) { translate: var(--oe-drawer-from); }
+  .oe-drawer > .oe-dialog-body { margin-top: 0; }
+  .oe-drawer::backdrop { background: var(--bg-scrim); transition: opacity 200ms var(--ease-out); }
+  @starting-style {
+    .oe-drawer[open] { translate: var(--oe-drawer-from); }
+    .oe-drawer[open]::backdrop { opacity: 0; }
+  }
+  /* Popover panel. Place it with CSS anchor positioning or a library. */
+  .oe-popover {
+    box-sizing: border-box;
+    width: min(var(--container-xs), calc(100vw - calc(var(--spacing) * 8)));
+    margin: 0;
+    padding: calc(var(--spacing) * 4);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    background: var(--bg-raised);
+    color: var(--fg-default);
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    box-shadow: var(--shadow-overlay);
+  }
+  /* A native popover opens below its trigger. Give the trigger an anchor-name and this a matching
+     position-anchor. Popups placed by a library don't have the popover attribute. */
+  :is(.oe-popover, .oe-menu)[popover] {
+    inset: auto;
+    margin-block: var(--spacing);
+    position-area: bottom span-right;
+    position-try-fallbacks: flip-block, flip-inline;
+  }
+  .oe-popover[popover] { transition: opacity 150ms var(--ease-out), translate 150ms var(--ease-out), display 150ms allow-discrete, overlay 150ms allow-discrete; }
+  .oe-popover[popover]:not(:popover-open) { opacity: 0; translate: 0 calc(var(--spacing) * -1); }
+  @starting-style {
+    .oe-popover[popover]:popover-open { opacity: 0; translate: 0 calc(var(--spacing) * -1); }
+  }
   .oe-menu {
     box-sizing: border-box;
     min-width: calc(var(--spacing) * 40);
@@ -359,9 +586,28 @@
     cursor: pointer;
   }
   .oe-menu-item > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
-  .oe-menu-item:hover { background: var(--bg-hover); }
+  @media (hover: hover) { .oe-menu-item:hover { background: var(--bg-hover); } }
   .oe-menu-item:active { background: var(--bg-pressed); }
   .oe-menu-item-danger { color: var(--fg-danger); }
+  /* Keyboard highlight from Radix, Base UI, Bits UI and Reka UI. Command palettes use data-selected for it. */
+  .oe-menu-item[data-highlighted],
+  .oe-menu-item[data-selected]:not([data-selected="false"]) { background: var(--bg-hover); outline: 0; }
+  .oe-menu-item:disabled,
+  .oe-menu-item[aria-disabled="true"],
+  .oe-menu-item[data-disabled] { background: transparent; color: var(--fg-disabled); cursor: not-allowed; }
+  .oe-menu-item[aria-checked="true"]::after {
+    content: "";
+    flex: none;
+    width: calc(var(--spacing) * 1.5);
+    height: calc(var(--spacing) * 3);
+    margin: 0 calc(var(--spacing) * 0.75) calc(var(--spacing) * 0.5) auto;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    rotate: 45deg;
+  }
+  .oe-menu-heading { padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2.5) var(--spacing); color: var(--fg-muted); font-size: var(--text-xs); font-weight: var(--font-weight-medium); line-height: var(--text-xs--line-height); }
+  .oe-menu-separator { height: 1px; margin: var(--spacing) calc(var(--spacing) * -1); background: var(--border-default); }
+  .oe-menu-shortcut { margin-left: auto; padding-left: calc(var(--spacing) * 4); color: var(--fg-muted); font-size: var(--text-xs); }
   .oe-toast {
     display: inline-flex;
     align-items: center;
@@ -375,14 +621,52 @@
     box-shadow: var(--shadow-overlay);
   }
   .oe-toast > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
+  .oe-toast p { margin: 0; }
+  .oe-toast > :is(p, div) { flex: 1; min-width: 0; }
+  .oe-toast-title { font-weight: var(--font-weight-medium); }
+  .oe-toast > .oe-btn,
+  .oe-toast > .oe-close { flex: none; }
+  .oe-toast > .oe-close { margin-block: calc(var(--spacing) * -1); margin-right: calc(var(--spacing) * -2); color: inherit; }
+  @media (hover: hover) { .oe-toast > .oe-close:hover { background: transparent; color: inherit; opacity: 0.7; } }
+  .oe-toast-info,
+  .oe-toast-success,
+  .oe-toast-warning,
+  .oe-toast-danger { border: 1px solid var(--border-default); background: var(--bg-raised); color: var(--fg-default); }
+  .oe-toast-info > svg:first-child { color: var(--fg-info); }
+  .oe-toast-success > svg:first-child { color: var(--fg-success); }
+  .oe-toast-warning > svg:first-child { color: var(--fg-warning); }
+  .oe-toast-danger > svg:first-child { color: var(--fg-danger); }
+  /* Stacks toasts in a corner. Give it role="status" and aria-live="polite". */
+  .oe-toaster {
+    box-sizing: border-box;
+    position: fixed;
+    right: max(calc(var(--spacing) * 4), env(safe-area-inset-right, 0px));
+    bottom: max(calc(var(--spacing) * 4), env(safe-area-inset-bottom, 0px));
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: calc(var(--spacing) * 2);
+    max-width: min(var(--container-sm), calc(100vw - calc(var(--spacing) * 8)));
+    pointer-events: none;
+  }
+  .oe-toaster > * { pointer-events: auto; }
+  .oe-toaster > .oe-toast { transition: opacity 150ms var(--ease-out), translate 150ms var(--ease-out); }
+  @starting-style {
+    .oe-toaster > .oe-toast { opacity: 0; translate: 0 calc(var(--spacing) * 2); }
+  }
   .oe-tooltip {
-    padding: calc(var(--spacing) * 0.5) calc(var(--spacing) * 2);
+    box-sizing: border-box;
+    width: max-content;
+    max-width: calc(var(--spacing) * 60);
+    margin: 0;
+    padding: var(--spacing) calc(var(--spacing) * 2);
+    border: 0;
     border-radius: var(--radius-sm);
     background: var(--bg-inverse);
     color: var(--fg-on-inverse);
     font-size: var(--text-xs);
     line-height: var(--text-xs--line-height);
-    white-space: nowrap;
     pointer-events: none;
   }
 
@@ -516,7 +800,7 @@
     cursor: pointer;
   }
   .oe-pagination > * > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
-  .oe-pagination > :hover { background: var(--bg-hover); color: var(--fg-default); }
+  @media (hover: hover) { .oe-pagination > :hover { background: var(--bg-hover); color: var(--fg-default); } }
   .oe-pagination > [aria-current="page"] { background: var(--bg-accent-muted); color: var(--fg-accent); font-weight: var(--font-weight-medium); }
   .oe-pagination > [aria-disabled="true"],
   .oe-pagination > :disabled { background: transparent; color: var(--fg-disabled); cursor: not-allowed; }
@@ -564,6 +848,130 @@
     font-weight: var(--font-weight-medium);
   }
 
+  .oe-avatar > img { width: 100%; height: 100%; object-fit: cover; }
+  .oe-avatar-sm { width: calc(var(--spacing) * 5); height: calc(var(--spacing) * 5); font-size: calc(var(--spacing) * 2.25); }
+  .oe-avatar-lg { width: calc(var(--spacing) * 8); height: calc(var(--spacing) * 8); font-size: var(--text-sm); }
+  .oe-avatar-xl { width: calc(var(--spacing) * 12); height: calc(var(--spacing) * 12); font-size: var(--text-lg); }
+  .oe-avatar-neutral { background: var(--bg-neutral-muted); color: var(--fg-default); }
+  .oe-avatar-group { display: inline-flex; }
+  .oe-avatar-group > .oe-avatar { outline: 2px solid var(--bg-surface); }
+  .oe-avatar-group > .oe-avatar + .oe-avatar { margin-left: calc(var(--spacing) * -1); }
+
+  /* Text */
+  .oe-link { border-radius: var(--radius-xs); color: var(--fg-link); text-decoration: underline; text-underline-offset: 0.15em; }
+  @media (hover: hover) { .oe-link:hover { color: var(--fg-link-hover); } }
+  .oe-code { padding: 0.1em 0.35em; border-radius: var(--radius-sm); background: var(--bg-neutral-muted); color: var(--fg-default); font-family: var(--font-mono); font-size: 0.875em; }
+  .oe-code-block {
+    margin: 0;
+    padding: calc(var(--spacing) * 4);
+    overflow-x: auto;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    background: var(--bg-sunken);
+    color: var(--fg-default);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    line-height: var(--leading-relaxed);
+    tab-size: 2;
+  }
+  .oe-sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; border: 0; clip-path: inset(50%); white-space: nowrap; }
+  /* Long text from a CMS or Markdown, where the elements can't carry classes */
+  .oe-prose { max-width: 70ch; color: var(--fg-default); font-size: var(--text-base); line-height: var(--leading-relaxed); text-wrap: pretty; }
+  .oe-prose > * { margin-block: 0; }
+  .oe-prose > * + * { margin-top: 1em; }
+  .oe-prose :is(h1, h2, h3, h4) { font-weight: var(--font-weight-semibold); letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); text-wrap: balance; }
+  .oe-prose h1 { font-size: var(--text-3xl); }
+  .oe-prose h2 { font-size: var(--text-2xl); }
+  .oe-prose h3 { font-size: var(--text-xl); }
+  .oe-prose h4 { font-size: var(--text-base); }
+  .oe-prose > :is(h1, h2, h3, h4) { margin-top: 1.75em; }
+  .oe-prose > :first-child { margin-top: 0; }
+  .oe-prose > :is(h1, h2, h3, h4) + * { margin-top: 0.75em; }
+  .oe-prose a { color: var(--fg-link); text-underline-offset: 0.15em; }
+  .oe-prose :is(ul, ol) { padding-left: 1.5em; }
+  .oe-prose li + li { margin-top: 0.25em; }
+  .oe-prose blockquote { margin-inline: 0; padding-left: 1em; border-left: 2px solid var(--border-strong); color: var(--fg-muted); }
+  .oe-prose hr { border: 0; border-top: 1px solid var(--border-default); }
+  .oe-prose img { max-width: 100%; height: auto; border-radius: var(--radius-lg); }
+  .oe-prose code { padding: 0.1em 0.35em; border-radius: var(--radius-sm); background: var(--bg-neutral-muted); font-family: var(--font-mono); font-size: 0.875em; }
+  .oe-prose pre { padding: calc(var(--spacing) * 4); overflow-x: auto; border: 1px solid var(--border-default); border-radius: var(--radius-lg); background: var(--bg-sunken); font-size: var(--text-xs); line-height: var(--leading-relaxed); }
+  .oe-prose pre code { padding: 0; background: transparent; font-size: inherit; }
+  .oe-prose table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+  .oe-prose :is(th, td) { padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3) calc(var(--spacing) * 2) 0; border-bottom: 1px solid var(--border-default); text-align: left; }
+
+  /* Description list, list rows and timeline */
+  .oe-dl { display: grid; margin: 0; font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-dl > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: calc(var(--spacing) * 4); padding-block: calc(var(--spacing) * 3); border-top: 1px solid var(--border-default); }
+  .oe-dl dt { color: var(--fg-muted); }
+  .oe-dl dd { margin: 0; min-width: 0; }
+  .oe-list { margin: 0; padding: 0; list-style: none; font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-list > * + * { border-top: 1px solid var(--border-default); }
+  .oe-list-item { box-sizing: border-box; display: flex; align-items: center; gap: calc(var(--spacing) * 3); min-width: 0; padding: calc(var(--spacing) * 3) var(--spacing); color: inherit; text-decoration: none; }
+  .oe-list-item > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); color: var(--fg-muted); }
+  @media (hover: hover) { a.oe-list-item:hover { background: var(--bg-hover); } }
+  .oe-list-text { flex: 1; min-width: 0; }
+  .oe-list-title { display: block; overflow: hidden; font-weight: var(--font-weight-medium); text-overflow: ellipsis; white-space: nowrap; }
+  .oe-list-subtitle { display: block; overflow: hidden; color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--text-xs--line-height); text-overflow: ellipsis; white-space: nowrap; }
+  .oe-timeline { margin: 0; padding: 0; list-style: none; font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-timeline-item { position: relative; display: flex; gap: calc(var(--spacing) * 3); padding-bottom: calc(var(--spacing) * 5); }
+  .oe-timeline-item:last-child { padding-bottom: 0; }
+  .oe-timeline-item:not(:last-child)::before { content: ""; position: absolute; top: calc(var(--spacing) * 7); bottom: var(--spacing); left: calc(var(--spacing) * 3 - 0.5px); width: 1px; background: var(--border-default); }
+  .oe-timeline-marker { display: inline-flex; flex: none; align-items: center; justify-content: center; width: calc(var(--spacing) * 6); height: calc(var(--spacing) * 6); border-radius: 50%; background: var(--bg-neutral-muted); color: var(--fg-default); }
+  .oe-timeline-marker > svg { width: calc(var(--spacing) * 3); height: calc(var(--spacing) * 3); }
+  .oe-timeline-text { flex: 1; min-width: 0; padding-top: calc(var(--spacing) * 0.5); }
+  .oe-timeline-time { display: block; color: var(--fg-muted); font-size: var(--text-xs); line-height: var(--text-xs--line-height); }
+
+  /* Stepper, on an <ol>. Mark the current step with aria-current="step". */
+  .oe-steps { counter-reset: oe-step; display: flex; gap: calc(var(--spacing) * 2); margin: 0; padding: 0; color: var(--fg-muted); font-size: var(--text-sm); line-height: var(--text-sm--line-height); list-style: none; }
+  .oe-step { counter-increment: oe-step; display: flex; flex: 1; align-items: center; gap: calc(var(--spacing) * 2); min-width: 0; white-space: nowrap; }
+  .oe-step::before { content: counter(oe-step); box-sizing: border-box; display: inline-flex; flex: none; align-items: center; justify-content: center; width: calc(var(--spacing) * 6); height: calc(var(--spacing) * 6); border: 1px solid var(--border-strong); border-radius: 50%; font-size: var(--text-xs); font-variant-numeric: tabular-nums; }
+  .oe-step:not(:last-child)::after { content: ""; flex: 1; min-width: calc(var(--spacing) * 4); height: 1px; background: var(--border-default); }
+  .oe-step:last-child { flex: none; }
+  .oe-step[aria-current="step"] { color: var(--fg-default); font-weight: var(--font-weight-medium); }
+  .oe-step[aria-current="step"]::before { border-color: transparent; background: var(--bg-accent-emphasis); color: var(--fg-on-accent); }
+  .oe-step-done { color: var(--fg-default); }
+  .oe-step-done::before { content: "\2713"; content: "\2713" / ""; border-color: transparent; background: var(--bg-accent-muted); color: var(--fg-accent); }
+
+  /* Banner, across the top of the page. */
+  .oe-banner { box-sizing: border-box; display: flex; align-items: center; gap: calc(var(--spacing) * 2); padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4); border-bottom: 1px solid var(--border-default); background: var(--bg-neutral-muted); color: var(--fg-default); font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
+  .oe-banner > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
+  .oe-banner > :not(svg, .oe-close, .oe-btn) { flex: 1; min-width: 0; margin: 0; }
+  .oe-banner > .oe-btn { flex: none; }
+  .oe-banner > .oe-close { margin-block: calc(var(--spacing) * -1); color: inherit; }
+  .oe-banner-accent { background: var(--bg-accent-muted); border-color: var(--border-accent-muted); color: var(--fg-default); }
+  .oe-banner-accent > svg { color: var(--fg-accent); }
+  .oe-banner-info { background: var(--bg-info-muted); border-color: var(--border-info-muted); color: var(--fg-default); }
+  .oe-banner-info > svg { color: var(--fg-info); }
+  .oe-banner-warning { background: var(--bg-warning-muted); border-color: var(--border-warning-muted); color: var(--fg-default); }
+  .oe-banner-warning > svg { color: var(--fg-warning); }
+  .oe-banner-danger { background: var(--bg-danger-muted); border-color: var(--border-danger-muted); color: var(--fg-default); }
+  .oe-banner-danger > svg { color: var(--fg-danger); }
+
+  /* Calendar day, for the date picker libraries. Those libraries build the grid. */
+  .oe-calendar-day {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(var(--spacing) * 8);
+    height: calc(var(--spacing) * 8);
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--fg-default);
+    font: inherit;
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+  }
+  @media (hover: hover) { .oe-calendar-day:hover { background: var(--bg-hover); } }
+  /* Bits UI and Reka UI put the state on the day itself, and react-day-picker on its cell. */
+  .oe-calendar-day:is([data-today], [data-today] > *) { border-color: var(--border-strong); }
+  .oe-calendar-day:is([data-outside-month], [data-outside] > *) { color: var(--fg-muted); }
+  .oe-calendar-day:is([data-selected], [data-selected] > *) { background: var(--bg-accent-emphasis); color: var(--fg-on-accent); }
+  .oe-calendar-day:is(:disabled, [data-disabled], [data-unavailable], [data-disabled] > *) { background: transparent; color: var(--fg-disabled); cursor: not-allowed; }
+
   /* App shell: a full-height side nav beside the top bar and page. From 64rem, the page is an inset
      panel that scrolls on its own, and the oe-shell-toggle button collapses the side nav to an icon
      rail through its aria-expanded. Below that the document scrolls, and the side nav is a drawer: give it the popover attribute and open it from an oe-shell-menu button with
@@ -572,6 +980,8 @@
     --oe-topbar-height: calc(var(--spacing) * 14);
     --oe-sidenav-width: var(--container-3xs);
     --oe-sidenav-rail: var(--oe-topbar-height);
+    /* Keeps the sticky top bar's z-index inside the shell, so portaled menus open above it. */
+    isolation: isolate;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     min-height: 100dvh;
@@ -596,8 +1006,11 @@
     color: var(--fg-default);
   }
   .oe-topbar .oe-btn-ghost { color: var(--fg-muted); }
-  .oe-topbar .oe-btn-ghost:hover { background: var(--bg-hover); color: var(--fg-default); }
+  @media (hover: hover) { .oe-topbar .oe-btn-ghost:hover { background: var(--bg-hover); color: var(--fg-default); } }
   .oe-topbar .oe-btn-ghost:active { background: var(--bg-pressed); }
+  /* Tabs in the bar fill its height, so the selected line sits on the bar's own border. */
+  .oe-topbar .oe-tabs { flex-wrap: nowrap; align-self: stretch; min-width: 0; margin-bottom: -1px; overflow-x: auto; border-bottom: 0; scrollbar-width: none; }
+  .oe-topbar .oe-tabs > * { flex: none; margin-bottom: 0; white-space: nowrap; }
   .oe-topbar-actions { display: flex; flex: none; align-items: center; gap: calc(var(--spacing) * 1); margin-left: auto; }
   /* The breadcrumb gives way first, so a long name can't push the page wider than the screen. */
   .oe-breadcrumb { min-width: 0; overflow: hidden; margin-left: calc(var(--spacing) * 1); font-size: var(--text-sm); line-height: var(--text-sm--line-height); }
@@ -605,7 +1018,7 @@
   .oe-breadcrumb li { display: flex; align-items: center; gap: calc(var(--spacing) * 2); min-width: 0; color: var(--fg-muted); }
   .oe-breadcrumb li + li::before { content: "/"; content: "/" / ""; }
   .oe-breadcrumb a { border-radius: var(--radius-xs); color: var(--fg-muted); text-decoration: none; }
-  .oe-breadcrumb a:hover { color: var(--fg-default); }
+  @media (hover: hover) { .oe-breadcrumb a:hover { color: var(--fg-default); } }
   .oe-breadcrumb [aria-current="page"] { overflow: hidden; color: var(--fg-default); font-weight: var(--font-weight-medium); text-overflow: ellipsis; }
   .oe-sidenav {
     box-sizing: border-box;
@@ -636,7 +1049,7 @@
     white-space: nowrap;
   }
   .oe-sidenav-brand > :is(svg, img) { flex: none; width: calc(var(--spacing) * 6); height: calc(var(--spacing) * 6); }
-  .oe-sidenav-body { flex: 1; min-height: 0; padding: calc(var(--spacing) * 3); overflow: hidden auto; overscroll-behavior: contain; }
+  .oe-sidenav-body { position: relative; flex: 1; min-height: 0; padding: calc(var(--spacing) * 3); overflow: hidden auto; overscroll-behavior: contain; }
   .oe-sidenav-foot { flex: none; display: grid; grid-template-columns: minmax(0, 1fr); gap: calc(var(--spacing) * 0.5); padding: calc(var(--spacing) * 3); padding-bottom: max(calc(var(--spacing) * 3), env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--border-default); }
   .oe-nav-heading {
     margin: calc(var(--spacing) * 5) 0 calc(var(--spacing) * 1);
@@ -675,7 +1088,8 @@
   .oe-nav-item > svg { flex: none; width: calc(var(--spacing) * 4); height: calc(var(--spacing) * 4); }
   .oe-nav-item > .oe-avatar { margin: calc(var(--spacing) * -0.5) calc(var(--spacing) * -1); }
   .oe-nav-item > .oe-badge { flex: none; margin-left: auto; font-variant-numeric: tabular-nums; }
-  .oe-nav-item:hover { background: var(--bg-hover); color: var(--fg-default); }
+  @media (hover: hover) { .oe-nav-item:hover { background: var(--bg-hover); color: var(--fg-default); } }
+  .oe-nav-item:active { background: var(--bg-pressed); }
   .oe-nav-item[aria-current="page"] { background: var(--bg-accent-muted); color: var(--fg-accent); font-weight: var(--font-weight-medium); }
   .oe-page {
     box-sizing: border-box;
@@ -702,6 +1116,7 @@
     .oe-shell:has(.oe-shell-toggle[aria-expanded="false"]) .oe-nav-heading { opacity: 0; }
     .oe-shell:has(.oe-shell-toggle[aria-expanded="false"]) .oe-sidenav-body { scrollbar-width: none; }
     .oe-shell-main {
+      position: relative;
       grid-column: 2;
       height: calc(100dvh - calc(var(--spacing) * 4));
       margin: calc(var(--spacing) * 2) calc(var(--spacing) * 2) calc(var(--spacing) * 2) 0;
@@ -746,6 +1161,13 @@
     }
   }
   @media (width < 48rem) {
+    .oe-field-inline { grid-template-columns: minmax(0, 1fr); }
+    .oe-field-inline > .oe-field-label { padding-top: 0; }
+    .oe-field-inline > :not(.oe-field-label) { grid-column: auto; }
+    .oe-dl > div { grid-template-columns: minmax(0, 1fr); gap: var(--spacing); }
+    .oe-steps { flex-direction: column; }
+    .oe-step:not(:last-child)::after { content: none; }
+    .oe-toaster { left: calc(var(--spacing) * 4); align-items: stretch; max-width: none; }
     .oe-page {
       padding: calc(var(--spacing) * 4);
       padding-inline: max(calc(var(--spacing) * 4), env(safe-area-inset-left, 0px)) max(calc(var(--spacing) * 4), env(safe-area-inset-right, 0px));
@@ -757,7 +1179,10 @@
   /* Touch: 44px targets. Small controls keep their size and reach further with an invisible area. */
   @media (pointer: coarse) {
     .oe-btn, .oe-input, .oe-nav-item, .oe-menu-item, .oe-tabs > *, .oe-segmented > *, .oe-check-label { min-height: calc(var(--spacing) * 11); }
-    .oe-pagination > *, .oe-accordion > summary { min-height: calc(var(--spacing) * 11); }
+    .oe-pagination > *, .oe-accordion > summary, .oe-close, .oe-calendar-day { min-height: calc(var(--spacing) * 11); }
+    .oe-close, .oe-calendar-day { width: calc(var(--spacing) * 11); }
+    .oe-badge-remove::after { inset: calc(var(--spacing) * -3.5); }
+    .oe-slider { min-height: calc(var(--spacing) * 11); }
     .oe-pagination > * { min-width: calc(var(--spacing) * 11); }
     .oe-btn-icon { width: calc(var(--spacing) * 11); }
     .oe-btn-sm { position: relative; min-height: calc(var(--spacing) * 7); }
@@ -768,8 +1193,22 @@
     .oe-table-sort::after { content: ""; position: absolute; inset: calc(var(--spacing) * -3) 0; }
   }
   @media (prefers-reduced-motion: reduce) {
-    :is(.oe-btn, .oe-input, .oe-table-sort, .oe-tabs > *, .oe-segmented > *, .oe-menu-item, .oe-nav-item, .oe-breadcrumb a, .oe-pagination > *, .oe-accordion > summary),
-    dialog.oe-dialog, dialog.oe-dialog::backdrop, .oe-menu[popover], .oe-switch, .oe-accordion > summary::after, .oe-shell, .oe-sidenav, .oe-nav-heading { transition: none; }
+    :is(.oe-btn, .oe-input, .oe-table-sort, .oe-tabs > *, .oe-segmented > *, .oe-menu-item, .oe-nav-item, .oe-breadcrumb a, .oe-pagination > *, .oe-accordion > summary, .oe-close, .oe-badge-remove, .oe-link, .oe-radio-card, .oe-dropzone, a.oe-list-item, .oe-calendar-day),
+    dialog.oe-dialog, dialog.oe-dialog::backdrop, .oe-drawer, .oe-drawer::backdrop, .oe-popover[popover], .oe-menu[popover], .oe-toaster > .oe-toast, .oe-switch, .oe-accordion > summary::after, .oe-shell, .oe-sidenav, .oe-nav-heading { transition: none; }
     .oe-skeleton { animation: none; }
+  }
+  /* Windows high contrast replaces our colors, so anything that shows state through a background
+     needs a system color instead, and anything that relied on a fill or shadow needs a border. */
+  @media (forced-colors: active) {
+    :is(.oe-nav-item[aria-current="page"], .oe-pagination > [aria-current="page"], .oe-segmented > [aria-pressed="true"], .oe-btn[aria-pressed="true"], .oe-menu-item[data-highlighted], .oe-menu-item[data-selected]:not([data-selected="false"]), .oe-calendar-day:is([data-selected], [data-selected] > *), .oe-step[aria-current="step"]::before) { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+    .oe-row-selected > td { forced-color-adjust: none; background: Highlight; color: HighlightText; }
+    .oe-radio-card:has(:checked) { border: 2px solid Highlight; }
+    .oe-switch { forced-color-adjust: none; border: 1px solid CanvasText; background-color: Canvas; background-image: radial-gradient(closest-side, CanvasText 96%, transparent); }
+    .oe-switch:checked { background-color: Highlight; background-image: radial-gradient(closest-side, HighlightText 96%, transparent); }
+    .oe-switch:disabled { border-color: GrayText; background-color: Canvas; background-image: radial-gradient(closest-side, GrayText 96%, transparent); }
+    .oe-spinner, .oe-btn[aria-busy="true"]::before { forced-color-adjust: none; border-color: CanvasText; border-right-color: transparent; }
+    .oe-progress { appearance: auto; }
+    .oe-skeleton, .oe-badge, .oe-toast, .oe-tooltip, .oe-dialog, .oe-drawer, .oe-popover, .oe-avatar, .oe-timeline-marker { border: 1px solid CanvasText; }
+    .oe-tabs > [aria-selected="true"], .oe-tabs > [aria-current="page"] { border-bottom-color: Highlight; }
   }
 }
